@@ -4,16 +4,16 @@ import os
 
 # Set page configuration
 st.set_page_config(
-    page_title="מערכת הכנה למבחן כניסה - שיקום הפה",
+    page_title="מדרשת שיקום הפה - מערכת הכנה מקיפה למבחן הכניסה",
     page_icon="🦷",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for Hebrew RTL & Beautiful UI
+# Custom CSS for Enhanced Hebrew RTL & Clear Visual Hierarchy
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
     
     html, body, [class*="css"] {
         font-family: 'Rubik', sans-serif;
@@ -22,72 +22,130 @@ st.markdown("""
     }
     
     .main-header {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        background: linear-gradient(135deg, #0f172a 0%, #1e3c72 50%, #2a5298 100%);
         color: white;
-        padding: 1.8rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        margin-bottom: 1.5rem;
+        padding: 2.2rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        margin-bottom: 2rem;
         text-align: center;
+        border-bottom: 4px solid #38bdf8;
     }
-    
+
+    .main-header h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #f8fafc;
+    }
+
+    .main-header p {
+        font-size: 1.1rem;
+        color: #bae6fd;
+        margin: 0;
+    }
+
+    .topic-banner {
+        background: #f0f9ff;
+        border-right: 6px solid #0284c7;
+        border-radius: 12px;
+        padding: 1.4rem 1.8rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
+    }
+
+    .topic-banner h2 {
+        color: #0369a1;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.4rem;
+    }
+
+    .topic-banner p {
+        color: #0c4a6e;
+        font-size: 0.98rem;
+        margin: 0;
+    }
+
     .question-card {
         background-color: #ffffff;
-        border: 1px solid #e0e6ed;
-        border-radius: 10px;
-        padding: 1.2rem;
-        margin-bottom: 1rem;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        border: 2px solid #cbd5e1;
+        border-right: 6px solid #2563eb;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.8rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-    
+
     .question-title {
-        font-size: 1.15rem !important;
-        font-weight: 600;
-        color: #1e293b;
-        margin-top: 0.5rem;
-        margin-bottom: 0.8rem;
-        line-height: 1.5;
+        font-size: 1.2rem !important;
+        font-weight: 700 !important;
+        color: #0f172a !important;
+        margin-top: 0.6rem;
+        margin-bottom: 1rem;
+        line-height: 1.6;
         text-align: right;
     }
 
     .difficulty-badge {
         display: inline-block;
-        padding: 4px 12px;
+        padding: 6px 14px;
         border-radius: 20px;
-        font-weight: 500;
-        font-size: 0.85rem;
-        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 0.88rem;
+        margin-bottom: 10px;
     }
-    
-    .badge-easy { background-color: #e6f4ea; color: #137333; }
-    .badge-medium { background-color: #fef7e0; color: #b06000; }
-    .badge-hard { background-color: #feefe3; color: #c5221f; }
-    .badge-expert { background-color: #f3e8fd; color: #7627bb; }
-    
+
+    .badge-easy { background-color: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+    .badge-medium { background-color: #fef9c3; color: #a16207; border: 1px solid #fde047; }
+    .badge-hard { background-color: #ffedd5; color: #c2410c; border: 1px solid #fdba74; }
+    .badge-expert { background-color: #f3e8ff; color: #7e22ce; border: 1px solid #d8b4fe; }
+
     .explanation-box {
-        background-color: #f8f9fa;
-        border-right: 4px solid #1e3c72;
-        padding: 1rem 1.2rem;
-        margin-top: 1rem;
-        border-radius: 4px;
-        font-size: 0.98rem;
-        line-height: 1.6;
+        background-color: #f8fafc;
+        border-right: 4px solid #0284c7;
+        border-radius: 8px;
+        padding: 1.2rem 1.5rem;
+        margin-top: 1.2rem;
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #1e293b;
         text-align: right;
     }
 
-    .bookmark-box {
-        background-color: #fff9db;
-        border: 1px solid #fcc419;
-        border-radius: 8px;
-        padding: 1rem;
-        margin-top: 0.8rem;
-        font-size: 0.95rem;
-        text-align: right;
+    .summary-card {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-right: 6px solid #0d9488;
+        border-radius: 12px;
+        padding: 1.8rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.06);
     }
-    
+
+    .summary-card h3 {
+        color: #0f766e;
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #ccfbf1;
+        padding-bottom: 0.5rem;
+    }
+
+    .summary-section-title {
+        color: #115e59;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-top: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
     .stRadio > label {
-        font-size: 1.05rem !important;
+        font-size: 1.08rem !important;
         font-weight: 500 !important;
+        color: #334155 !important;
         text-align: right !important;
         direction: rtl !important;
     }
@@ -95,33 +153,68 @@ st.markdown("""
     div[role="radiogroup"] {
         direction: rtl !important;
         text-align: right !important;
+        gap: 0.6rem;
+    }
+
+    div[data-baseweb="radio"] {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 0.6rem 1rem;
+        margin-bottom: 0.4rem;
+        transition: all 0.2s ease;
+    }
+
+    div[data-baseweb="radio"]:hover {
+        background-color: #f1f5f9;
+        border-color: #cbd5e1;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# 15 Topics List
+# 16 Topics Definitions
 TOPICS = [
     "1. אוקלוזיה, TMJ ותנועות לסת",
     "2. ארטיקולטורים ורישום בין-לסתי",
-    "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
-    "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
-    "5. צמנטים דנטליים, מתכות וסרמיקות",
-    "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
-    "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-    "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-    "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
-    "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
-    "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
-    "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
-    "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
-    "14. תותבות על (Overdentures) ואטצ'מנטים",
-    "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית"
+    "3. עקרונות הכנת שיניים למשמרת (שחזורים/ סתימות)",
+    "4. השחזת שיניים וגאומטריה שיקומית",
+    "5. חומרי מטבע וטכניקות הטבעה בשיקום קבוע (כולל שתלים וסריקה דיגיטלית)",
+    "6. חומרים דנטליים - צמנטים דנטליים, בונדינג, קומפוזיטים ואמלגם",
+    "7. חומרים דנטליים - מתכות וחומרים לכתרים",
+    "8. תותבות חלקיות נשלפות (RPD): אנטומיה וביומכניקה",
+    "9. תותבות חלקיות נשלפות (RPD): מחברים, מאחזים, מסעדים וקומפלקסים",
+    "10. תותבות שלמות: גבולות אנטומיים, אזורי תמיכה, ספיגת עצם אלבאולרית ופתולוגיות רירית",
+    "11. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+    "12. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+    "13. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+    "14. יחסי גומלין פריודונטיה-שיקום וניידות שיניים (כולל Lindhe)",
+    "15. תותבות על (Overdentures) ואטצ'מנטים",
+    "16. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית"
 ]
+
+TOPIC_META = {
+    "1": {"icon": "🦴", "sources": "שילינבורג פרק 1, גרוס פרקים 1-5, זארב פרקים 1-6, שחזורים"},
+    "2": {"icon": "📐", "sources": "שילינבורג פרקים 2-4, גרוס פרק 9, שחזורים"},
+    "3": {"icon": "🦷", "sources": "ספרות שיקומית ומשמרת (Sturdevant/Phillips), שילינבורג"},
+    "4": {"icon": "✂️", "sources": "שילינבורג פרקים 8-14, רוזנסטיל פרקים 13-15"},
+    "5": {"icon": "🧪", "sources": "פיליפס פרקים 8-9, שילינבורג פרק 14, רוזנסטיל פרק 14"},
+    "6": {"icon": "🧴", "sources": "פיליפס פרקים 1-6, 15, 16"},
+    "7": {"icon": "💎", "sources": "פיליפס פרקים 15-16, רוזנסטיל פרקים 20, 23"},
+    "8": {"icon": "⚙️", "sources": "מקרקן פרקים 3-10, זארב פרקים 16-18"},
+    "9": {"icon": "🔗", "sources": "מקרקן פרקים 12-14, זארב פרקים 19-21"},
+    "10": {"icon": "👄", "sources": "זארב פרקים 1-6, נטר פרקים 5-6, אטווד"},
+    "11": {"icon": "📏", "sources": "זארב פרקים 8-14, נטר פרק 13, גרוס"},
+    "12": {"icon": "🔩", "sources": "מיש מהדורה 2 פרקים 5-10, זארב"},
+    "13": {"icon": "🛠️", "sources": "מיש מהדורה 2 פרקים 12-15, זארב"},
+    "14": {"icon": "🪴", "sources": "לינדה פרקים 16-17, מיש פרק 10"},
+    "15": {"icon": "🔘", "sources": "זארב פרק 21, מיש פרק 15"},
+    "16": {"icon": "✨", "sources": "רוזנסטיל פרק 23, פיליפס, שילינבורג"}
+}
 
 ALL_QUESTIONS = {
   "1": [
     {
-      "id": 1,
+      "id": 1001,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "מה נכון לגבי המבנה האנטומי של הדיסק הארטיקולרי במפרק הלסת (TMJ)?",
@@ -136,7 +229,7 @@ ALL_QUESTIONS = {
       "summary": "הדיסק הארטיקולרי ב-TMJ: החלק האחורי (Posterior band) הוא העבה ביותר, החלק המרכזי (Intermediate zone) הוא הדק ביותר ונושא את העומס. הדיסק אינו עצבוב בחלקו המרכזי."
     },
     {
-      "id": 2,
+      "id": 1002,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "איזו תכונה מתארת נכונה ארטיקולטור מסוג Arcon בהשוואה לארטיקולטור Non-Arcon?",
@@ -151,7 +244,7 @@ ALL_QUESTIONS = {
       "summary": "ארטיקולטור Arcon: קונדיל בזרוע תחתונה, פוסה בזרוע עליונה (מדמה אנטומיה אנושית). זווית ההדרכה הקונדילרית אינה משתנה בעת שינוי המימד האנכי."
     },
     {
-      "id": 3,
+      "id": 1003,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "באיזה מדור של מפרק הלסת (TMJ) מתרחשת התנועה הצירית (Rotational / Hinge movement)?",
@@ -166,7 +259,7 @@ ALL_QUESTIONS = {
       "summary": "קינמטיקת ה-TMJ: תנועת רוטציה (צירית) מתרחשת במדור התחתון (Inferior compartment), בעוד תנועת טרנסלציה (החלקה) מתרחשת במדור העליון (Superior compartment)."
     },
     {
-      "id": 4,
+      "id": 1004,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "בעת ביצוע צילום פנורמי, התקבלה תמונה בה הלסת התחתונה נראית צרה מדי והעקומה מודגשת. מה קרה במהלך הצילום?",
@@ -181,7 +274,7 @@ ALL_QUESTIONS = {
       "summary": "עיוותים בצילום פנורמי: מיקום מטופל קדימה מדי ביחס ל-Focal trough גורם להצרת השיניים הקדמיות והפרזת העקומה. מיקום אחורה מדי גורם להרחבה וטשטוש."
     },
     {
-      "id": 5,
+      "id": 1005,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "איזה שריר מבין הבאים אחראי על התחלת סגירת הלסת (Elevation of the mandible)?",
@@ -196,7 +289,7 @@ ALL_QUESTIONS = {
       "summary": "שרירי הלעיסה: Medial Pterygoid, Masseter ו-Temporalis הם שרירי סגירה (Elevators). ה-Lateral Pterygoid אחראי על פתיחה, פרוטרוזיה ותנועות צדיות."
     },
     {
-      "id": 6,
+      "id": 1006,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "מהו המרחק הממוצע המקובל עבור ה-Interocclusal distance (Freeway space) במצב מנוחה (VDR)?",
@@ -211,7 +304,7 @@ ALL_QUESTIONS = {
       "summary": "Freeway Space (Interocclusal Rest Space): ההפרש בין VDR ל-VDO נע באופן תקין בין 2 ל-4 מ\"מ (VDR = VDO + Freeway space)."
     },
     {
-      "id": 7,
+      "id": 1007,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "איזה חלק בשריר ה-Lateral Pterygoid מופעל בעיקר בעת סגירת הפה והידוק השיניים?",
@@ -226,7 +319,7 @@ ALL_QUESTIONS = {
       "summary": "Lateral Pterygoid: הראשי העליון (Superior head) פועל בעת סגירה והידוק לייצוב קומפלקס דיסק-קונדיל, בעוד הראש התחתון (Inferior head) פועל בפתיחה וגלישה."
     },
     {
-      "id": 8,
+      "id": 1008,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "מה תפקידה העיקרי של קשת הפנים (Facebow) בהעברת הגבסים לארטיקולטור?",
@@ -241,7 +334,7 @@ ALL_QUESTIONS = {
       "summary": "קשת פנים (Facebow): מעבירה את היחס התלת-ממדי של המקסילה (הלסת העליונה) ביחס לציר הסיבוב הקונדילרי ולבסיס הגולגולת אל הארטיקולטור."
     },
     {
-      "id": 9,
+      "id": 1009,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "כיצד מוגדרת עמדת Terminal Hinge Axis (ציר הסיבוב הסופי)?",
@@ -256,7 +349,7 @@ ALL_QUESTIONS = {
       "summary": "Terminal Hinge Axis: ציר הסיבוב הרוטציוני הטהור של המנדיבולה כאשר הקונדילים נמצאים בעמדת Centric Relation (ללא טרנסלציה)."
     },
     {
-      "id": 10,
+      "id": 1010,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "איזו נקודה במעטפת התנועה של Posselt מייצגת את הסגירה במקסימום מגעים בין השיניים?",
@@ -271,7 +364,7 @@ ALL_QUESTIONS = {
       "summary": "Posselt's Envelope of Motion: ICP/MI מייצגת את הסגירה הדנטלית במקסימום מגעים. RCP מייצגת את המגע הראשוני בעמדת Centric Relation."
     },
     {
-      "id": 11,
+      "id": 1011,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "בסגר מסוג Group Function, אילו שיניים עומדות במגע בעת תנועה צדית בצד העובד (Working side)?",
@@ -286,7 +379,7 @@ ALL_QUESTIONS = {
       "summary": "Group Function: חלוקת מגעים בתנועה לטרלית בין הניב והשיניים האחוריות בצד העובד (Working side), תוך ניתוק מגע בצד הלא-עובד."
     },
     {
-      "id": 12,
+      "id": 1012,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "מה מאפיין את הנוזל הסינוביאלי (Synovial fluid) במפרק ה-TMJ?",
@@ -301,7 +394,7 @@ ALL_QUESTIONS = {
       "summary": "נוזל סינוביאלי ב-TMJ: אחראי על הזנת הרקמות נטולות כלי הדם (דיסק ומשטחי המפרק) ומשמש כחומר סיכה להפחתת חיכוך בתנועה."
     },
     {
-      "id": 13,
+      "id": 1013,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "איזה ligament במפרק ה-TMJ אחראי על הגבלת פתיחת הפה המוגזמת והגנה על הרקמות האחוריות?",
@@ -316,7 +409,7 @@ ALL_QUESTIONS = {
       "summary": "Temporomandibular Ligament: הרצועה המרכזית המייצבת את המפרק מצידו הלטרלי ומגבילה תנועה אחורנית מופרזת של הקונדיל."
     },
     {
-      "id": 14,
+      "id": 1014,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "מהי ההגדרה של Centric Occlusion (CO) בספרות הקלאסית?",
@@ -331,7 +424,7 @@ ALL_QUESTIONS = {
       "summary": "Centric Occlusion (CO): מגע השיניים שמתרחש כאשר הקונדילים נמצאים בעמדת Centric Relation (נקרא גם RCP)."
     },
     {
-      "id": 15,
+      "id": 1015,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "באיזה מביניהם ממוקמת ה-Articular Eminence ביחס ל-Glenoid Fossa?",
@@ -346,7 +439,7 @@ ALL_QUESTIONS = {
       "summary": "Articular Eminence: ממוקמת קדימה (אנטריורית) ל-Glenoid fossa בעצם הטמפורלית ומהווה את שביל הגלישה של הקונדיל."
     },
     {
-      "id": 16,
+      "id": 1016,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "מהי עקומת Spee (Curve of Spee)?",
@@ -361,7 +454,7 @@ ALL_QUESTIONS = {
       "summary": "Curve of Spee: עקומה סגיטלית (אנטרו-פוסטריורית). Curve of Wilson: עקומה פרונטלית (רוחבית/טרנסברסלית)."
     },
     {
-      "id": 17,
+      "id": 1017,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "כיצד נקראת העקומה האוקלוזלית הרוחבית במישור הפרונטלי המחברת את התלוליות הימניות והשמאליות?",
@@ -376,7 +469,7 @@ ALL_QUESTIONS = {
       "summary": "Curve of Wilson: העקומה האוקלוזלית הרוחבית במישור הפרונטלי."
     },
     {
-      "id": 18,
+      "id": 1018,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "מה קורה לדיסק הארטיקולרי במצב של Internal Derangement עם הקלקה (Disc Displacement with Reduction)?",
@@ -391,7 +484,7 @@ ALL_QUESTIONS = {
       "summary": "Disc Displacement with Reduction: הדיסק מועתק אנטריורית בסגירה, אך חוזר למקומו התקין מעל הקונדיל בעת פתיחה תוך צליל הקלקה."
     },
     {
-      "id": 19,
+      "id": 1019,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "איזה עצב מבין הבאים מספק את העצבוב התחושתי המרכזי למפרק ה-TMJ?",
@@ -406,7 +499,7 @@ ALL_QUESTIONS = {
       "summary": "עצבוב ה-TMJ: מסופק בעיקרו ע\"י ה-Auriculotemporal nerve (ענף מ-V3), בתוספת ענפים מ-Masseteric ו-Deep temporal nerves."
     },
     {
-      "id": 20,
+      "id": 1020,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קל",
       "question": "מה מאפיין את המושג Christensen's Phenomenon בתותבות שלמות ובאוקלוזיה?",
@@ -421,7 +514,7 @@ ALL_QUESTIONS = {
       "summary": "Christensen's Phenomenon: היפרדות (Disclusion) ורווח בין המשננים האחוריים בעת תנועה פרוטרוזיבית עקב זווית השיפוע הקונדילרי."
     },
     {
-      "id": 21,
+      "id": 1021,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "מהי ההגדרה המדויקת של תנועת Bennett (Bennett Movement / Side Shift)?",
@@ -436,7 +529,7 @@ ALL_QUESTIONS = {
       "summary": "תנועת Bennett: התנועה הגופנית הצידית של הקונדיל בצד העובד בעת תנועה לטרלית. משפיעה על מורפולוגיית התלוליות והחריצים בשיניים האחוריות."
     },
     {
-      "id": 22,
+      "id": 1022,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "מה מאפשר לדיסק הארטיקולרי ב-TMJ לנוע קדימה מול ה-Articular Eminence בעת פתיחת פה?",
@@ -451,7 +544,7 @@ ALL_QUESTIONS = {
       "summary": "תנועתיות הדיסק הארטיקולרי: היעדר חיבור גרמי ישיר של הדיסק לעצם הטמפורלית מאפשר לו להחליק חופשי קדימה יחד עם הקונדיל מעבר ל-Articular Eminence."
     },
     {
-      "id": 23,
+      "id": 1023,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "לאחר ביצוע רישום בין-לסתי בעובי 4 מ\"מ בארטיקולטור מסוג Non-Arcon והסרת המשנך, הגבסים הובאו למגע אוקלוזלי. מה יתרחש מבחינת ה-Condylar inclination?",
@@ -466,7 +559,7 @@ ALL_QUESTIONS = {
       "summary": "שינוי VDO ב-Non-Arcon: סגירת הארטיקולטור לאחר הסרת משנך עבה גורמת להדרכה הקונדילרית להפוך לרדודה יותר (Less steep). בארטיקולטור Arcon הזווית נשארת קבועה."
     },
     {
-      "id": 24,
+      "id": 1024,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "מדוע נקבעת עמדת Centric Relation (CR) כעמדת הייחוס המועדפת בשיקום פה נרחב ובתותבות שלמות?",
@@ -481,7 +574,7 @@ ALL_QUESTIONS = {
       "summary": "חשיבות עמדת CR: עמדה מפרקית ניתנת לשחזור (Reproducible) שאינה תלויה בשיניים, ולכן משרתת כעמדת ייחוס בטוחה לשיקום נרחב ומשוחזר."
     },
     {
-      "id": 25,
+      "id": 1025,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "למה מתייחס המונח האסתטי \"Gull-Wing Appearance\" במראה המשנן הקדמי העליון?",
@@ -496,7 +589,7 @@ ALL_QUESTIONS = {
       "summary": "Gull-Wing Appearance: מתאר קו חיתוך אסתטי קדמי שבו החותכת הלטרלית העליונה קצרה יותר (אפיקלית) מלהבי הצנטרלית והניב."
     },
     {
-      "id": 26,
+      "id": 1026,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "כיצד מחושבת זווית Bennett (Bennett Angle) בארטיקולטור חצי-מתכוונן לפי נוסחת Hanau?",
@@ -511,7 +604,7 @@ ALL_QUESTIONS = {
       "summary": "נוסחת Hanau לזווית Bennett: L = (H / 8) + 12 (כאשר L היא זווית ה-Bennett ו-H היא ה-Horizontal condylar inclination)."
     },
     {
-      "id": 27,
+      "id": 1027,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "מהי ההגדרה המדויקת של Primary Occlusal Trauma (טראומה אוקלוזלית ראשונית)?",
@@ -526,7 +619,7 @@ ALL_QUESTIONS = {
       "summary": "טראומה אוקלוזלית: ראשונית (Primary) = כוחות חריגים על תמיכה בריאה. שניונית (Secondary) = כוחות (תקינים/חריגים) על תמיכה פריודונטלית מופחתת."
     },
     {
-      "id": 28,
+      "id": 1028,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "מה משפיע יותר מכל על גובה התלוליות (Cusp height) של השיניים האחוריות בעת שחזור?",
@@ -541,7 +634,7 @@ ALL_QUESTIONS = {
       "summary": "גורמי גובה התלוליות: הדרכה קונדילרית והדרכה אינסיזלית תלולות מאפשרות תלוליות גבוהות יותר בשיניים האחוריות ללא הפרעה אקסצנטרית."
     },
     {
-      "id": 29,
+      "id": 1029,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "מה מתרחש בקונדיל בצד הלא-עובד (Non-working side / Mediotrusive) בעת תנועה לטרלית?",
@@ -556,7 +649,7 @@ ALL_QUESTIONS = {
       "summary": "תנועת הקונדיל הלא-עובד (Non-working / Orbiting condyle): נע קדימה, למטה ומדיאלית (Downward, Forward, Medially)."
     },
     {
-      "id": 30,
+      "id": 1030,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "כיצד משפיע הגדלת ה-Overjet של השיניים הקדמיות על מורפולוגיית התלוליות האחוריות?",
@@ -571,7 +664,7 @@ ALL_QUESTIONS = {
       "summary": "השפעת Overjet קדמי: Overjet גדול מקטין את זווית ההדרכה האינסיזלית ומחייב תלוליות אחוריות נמוכות יותר (Shorter cusps)."
     },
     {
-      "id": 31,
+      "id": 1031,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי ה-Immediate Side Shift (ISS) בתנועת Bennett?",
@@ -586,7 +679,7 @@ ALL_QUESTIONS = {
       "summary": "Immediate Side Shift (ISS): תנועה צידית מיידית בתחילת הגלישה הלטרלית. דורשת תלוליות נמוכות וחריצים אוקלוזליים רחבים יותר."
     },
     {
-      "id": 32,
+      "id": 1032,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "במצב של Long Centric (Freedom in Centric), מהו טווח התנועה האופקית המופעל בין CR ל-ICP?",
@@ -601,7 +694,7 @@ ALL_QUESTIONS = {
       "summary": "Freedom in Centric (Long Centric): חופש תנועה אופקי שטוח של כ-0.5-1.0 מ\"מ בין CR ל-MI באותו מימד אנכי סגורי."
     },
     {
-      "id": 33,
+      "id": 1033,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "מהי התשובה הנכונה לגבי כיוון שבילי הגלישה (Escape grooves) של התלוליות בצד העובד למקסילה ולמנדיבולה?",
@@ -616,7 +709,7 @@ ALL_QUESTIONS = {
       "summary": "שבילי גלישה בלטרליות (Working ridge/groove): במקסילה מופנה בוקאלית (Transverse lateral path), ובמנדיבולה מופנה לינגואלית."
     },
     {
-      "id": 34,
+      "id": 1034,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "איזה סוג מגע אוקלוזלי נחשב ליציב ביותר בשיקום קבוע עם Cusp-Fossa Occlusion?",
@@ -631,7 +724,7 @@ ALL_QUESTIONS = {
       "summary": "Cusp-Fossa Occlusion: מגע תלת-נקודתי (Tripodization) מעניק יציבות ביומכנית מקסימלית ומכוון כוחות לאורך הציר האורכי של השן."
     },
     {
-      "id": 35,
+      "id": 1035,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "כיצד משפיע מיקום ציר הסיבוב (Hinge Axis) הקדמי-אחורי בעת שימוש בקשת פנים לא מדויקת על הארטיקולטור?",
@@ -646,7 +739,7 @@ ALL_QUESTIONS = {
       "summary": "דיוק Hinge Axis: אי-חפיפה בין ציר הסיבוב בארטיקולטור לציר האנטומי תגרום לשגיאה במגעים האוקלוזליים אם מבוצע שינוי VDO."
     },
     {
-      "id": 36,
+      "id": 1036,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי ה-Working Side Condyle (הקונדיל בצד העובד)?",
@@ -661,7 +754,7 @@ ALL_QUESTIONS = {
       "summary": "Working Side Condyle: נקרא Rotating Condyle. מבצע בעיקר רוטציה עם תנועה גופנית קלה (Laterotrusion)."
     },
     {
-      "id": 37,
+      "id": 1037,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "מהי האוריינטציה הראויה של מישור הסגר (Plane of Occlusion) ביחס למישור קמפר (Camper's Line)?",
@@ -676,7 +769,7 @@ ALL_QUESTIONS = {
       "summary": "Camper's Line (Ala-Tragus Line): קו ייחוס אנטומי במישור הסגיטלי שאליו משווים ומקבילים את מישור הסגר."
     },
     {
-      "id": 38,
+      "id": 1038,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "בבדיקת מגעים אוקלוזליים עם נייר אוקלוזלי, מה מצביעה סימניה בצורת טבעת חלולה (Halo / Ring effect)?",
@@ -691,7 +784,7 @@ ALL_QUESTIONS = {
       "summary": "Halo Effect בנייר סגר: טבעת צבע חלולה במרכז מעידה על נקודת מגע גבוהה/מופרזת שסחטה את הדיו מהמרכז."
     },
     {
-      "id": 39,
+      "id": 1039,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "מהי השפעת זווית ההדרכה הקונדילרית (Condylar guidance) תלולה על ה-Overbite הקדמי הנדרש?",
@@ -706,7 +799,7 @@ ALL_QUESTIONS = {
       "summary": "הדרכה קונדילרית תלולה: מעניקה Disclusion אחורי מהיר, ומאפשרת Overbite קדמי עמוק ותלוליות אחוריות גבוהות."
     },
     {
-      "id": 40,
+      "id": 1040,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "בינוני",
       "question": "מה מוגדר כ-Protrusive Interocclusal Record (Check bite)?",
@@ -721,7 +814,7 @@ ALL_QUESTIONS = {
       "summary": "Protrusive Check-Bite: רישום בין-לסתי בגלישה קדמית של 3-5 מ\"מ המשמש לכיול זווית ה-Condylar Guidance בארטיקולטור."
     },
     {
-      "id": 41,
+      "id": 1041,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "מה נכון לגבי תופעת ה-Mandibular Flexure בעת הפעלת כוחות סגירה ולעיסה חזקים?",
@@ -736,7 +829,7 @@ ALL_QUESTIONS = {
       "summary": "Mandibular Flexure: בעת פתיחה/סגירה מאומצת שרירי ה-Pterygoid מביאים לכפיפת המנדיבולה פנימה במעט. קריטי בתכנון שיקומים קשיחים ארוכי טווח."
     },
     {
-      "id": 42,
+      "id": 1042,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "למה מיועד רישום ה-Lateral Interocclusal Record (Check bite) בעבודה עם ארטיקולטור חצי-מתכוונן?",
@@ -751,7 +844,7 @@ ALL_QUESTIONS = {
       "summary": "Lateral Check-Bite: מיועד לכיול מדויק של ה-Condylar Guidance וה-Bennett Angle בארטיקולטור חצי-מתכוונן בתנועות אקסצנטריות."
     },
     {
-      "id": 43,
+      "id": 1043,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "מה מבין הבאים אינו נחשב לגורם אטיולוגי להיווצרות סגר כפול (Dual Bite)?",
@@ -766,7 +859,7 @@ ALL_QUESTIONS = {
       "summary": "Dual Bite (סגר כפול): הפרש מורחב (>2 מ\"מ) בין RCP ל-ICP. נגרם מהרגל (Sunday bite), טראומה/שבר, אורתודונטיה לקויה או מחלת מפרק, אך לא מ-Class III תורשתי."
     },
     {
-      "id": 44,
+      "id": 1044,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "במטופל עם סגר Class 2 שבו בוצעה הרמת מנשך (הגדלת VDO), המשנן התחתון זז דיסטלית ביחס לעליון. מה עלינו לעשות כדי לשחזר מגעים קדמיים ב-MI?",
@@ -781,7 +874,7 @@ ALL_QUESTIONS = {
       "summary": "הרמת מנשך ב-Class II: הסטת המנדיבולה דיסטלית בעת הגדלת VDO מחייבת עיצוב פלטפורמה פלטינלית (Palatal Platform) בקדמיות העליונות לשחזור מגעים."
     },
     {
-      "id": 45,
+      "id": 1045,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "מה נכון לגבי המרחק הבין-קונדילרי (Intercondylar distance) בארטיקולטורים סמי-אדג'סטבל סטנדרטיים?",
@@ -796,7 +889,7 @@ ALL_QUESTIONS = {
       "summary": "Intercondylar Distance: בארטיקולטורים חצי-מתכווננים נקבע לממוצע של 110 מ\"מ. משפיע על כיוון החריצים והתלוליות בתנועות אקסצנטריות."
     },
     {
-      "id": 46,
+      "id": 1046,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "מהי ההשפעה של הגדלת ה-Intercondylar distance בארטיקולטור על הזווית בין שבילי הגלישה (Protrusive/Lateral grooves) בשיניים האחוריות?",
@@ -811,7 +904,7 @@ ALL_QUESTIONS = {
       "summary": "מרחק בין-קונדילרי וזווית חריצים: מרחק בין-קונדילרי גדול יותר מקטין את הזווית בין שבילי הגלישה האקסצנטריים בשיניים האחוריות."
     },
     {
-      "id": 47,
+      "id": 1047,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "מה קורה ב-Gothic Arch Tracer (Pantomographic recording) בשיא הזווית (Apex of the Gothic Arch)?",
@@ -826,7 +919,7 @@ ALL_QUESTIONS = {
       "summary": "Gothic Arch Tracing: קודקוד החץ (Apex) בנתיב הרישום האופקי מייצג את עמדת Centric Relation (CR) המדויקת."
     },
     {
-      "id": 48,
+      "id": 1048,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "בניתוח מגעים אוקלוזליים, מהו ה-Non-Working Side Interference (הפרעה בצד הלא-עובד)?",
@@ -841,7 +934,7 @@ ALL_QUESTIONS = {
       "summary": "הפרעה בצד הלא-עובד (Non-working interference): מגע הרסני בין תלוליות תמיכה בצד המדיוטרוסיבי המונע מגע תקין בצד העובד."
     },
     {
-      "id": 49,
+      "id": 1049,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "איזו רקמה מבין הבאים ב-TMJ מציגה התנהגות ויסקואלסטית (Viscoelastic behavior) בולטת בעת ספיגת עומסים?",
@@ -856,7 +949,7 @@ ALL_QUESTIONS = {
       "summary": "התנהגות ויסקואלסטית ב-TMJ: הדיסק הארטיקולרי והרקמה הרכה בולמים עומסים ומגיבים בדפורמציה תלוית זמן וקצב העמסה."
     },
     {
-      "id": 50,
+      "id": 1050,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "בעת הגדלת המימד האנכי (VDO) במטופל Class III, כיצד נעה המנדיבולה ביחס למקסילה בסגירה הראשונית?",
@@ -871,7 +964,7 @@ ALL_QUESTIONS = {
       "summary": "שינוי VDO ב-Class III: פתיחת המימד האנכי גורמת להסטה דיסטלית של המנדיבולה, מה שמקל על שיפור היחס הקדמי והסגר."
     },
     {
-      "id": 51,
+      "id": 1051,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "מהי המשמעות של A-B-C Contacts בסגר אוקלוזלי יציב לפי שילינבורג?",
@@ -886,7 +979,7 @@ ALL_QUESTIONS = {
       "summary": "מגעי A-B-C (Shillingburg): מגע B (בין תלוליות התמיכה העליונה והתחתונה) הוא הקריטי ביותר למניעת כוחות הטיות רוחביים."
     },
     {
-      "id": 52,
+      "id": 1052,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "מהו ה-Envelope of Function להבדיל מ-Envelope of Motion של Posselt?",
@@ -901,7 +994,7 @@ ALL_QUESTIONS = {
       "summary": "Envelope of Function: מעטפת התנועה התפקודית (לעיסה/דיבור), המוכלת במלואה בתוך מעטפת הגבולות האנטומיים (Posselt's Envelope of Motion)."
     },
     {
-      "id": 53,
+      "id": 1053,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "איזה חלק בדיסק הארטיקולרי מעוצב בצורה הקעורה ביותר כדי להתאים לראש הקונדיל?",
@@ -916,7 +1009,7 @@ ALL_QUESTIONS = {
       "summary": "מורפולוגיית הדיסק הארטיקולרי: משטח תחתון קעור להתאמה לקונדיל; משטח עליון קעור-קמור להתאמה ל-Glenoid fossa ו-Articular eminence."
     },
     {
-      "id": 54,
+      "id": 1054,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "מה מתרחש ב-TMJ בעת פתיחת פה במצב של Disc Displacement WITHOUT Reduction?",
@@ -931,7 +1024,7 @@ ALL_QUESTIONS = {
       "summary": "Disc Displacement WITHOUT Reduction: הדיסק תקוע אנטריורית, הקונדיל אינו יכול להחליק קדימה, ונוצרת נעילה סגורה (Closed Lock) עם סטייה לצד הפגוע."
     },
     {
-      "id": 55,
+      "id": 1055,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "מהו ה-Shift Angle לפי Dawson בהגדרת התנועות האוקלוזליות?",
@@ -946,7 +1039,7 @@ ALL_QUESTIONS = {
       "summary": "Slide from CR to ICP: החלקה הנגרמת ע\"י מגע מסיטי ראשוני (Deflective contact) המסיטה את הלסת מ-CR ל-ICP."
     },
     {
-      "id": 56,
+      "id": 1056,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "איזה מרכיב במערכת העצבים מעורב בבקרת רפלקס הפתיחה המהיר בעת נשיכה פתאומית על גוף קשה (Nociceptive reflex)?",
@@ -961,7 +1054,7 @@ ALL_QUESTIONS = {
       "summary": "רפלקס ההגנה האוקלוזלי (Nociceptive reflex): מכנורצפטורים ב-PDL מפעילים הרפיה מיידית של שרירי הסגירה בעת עומס פתאומי קשה להגנה על המשנן."
     },
     {
-      "id": 57,
+      "id": 1057,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "מהי זווית Fischer (Fischer's Angle) בארטיקולציה דינמית?",
@@ -976,7 +1069,7 @@ ALL_QUESTIONS = {
       "summary": "Fischer's Angle: הזווית במישור הסגיטלי בין נתיב הגלישה הפרוטרוזיבי לנתיב המדיוטרוסיבי (Non-working) של הקונדיל."
     },
     {
-      "id": 58,
+      "id": 1058,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "בניתוח ביומכני, מדוע כוחות אופקיים (Lateral forces) הרסניים יותר למנגנון התמיכה הפריודונטי מאשר כוחות אנכיים (Axial forces)?",
@@ -991,7 +1084,7 @@ ALL_QUESTIONS = {
       "summary": "ספיגת כוחות ב-PDL: סיבי ה-PDL האלכסוניים מתוכננים לספוג כוחות צדדיים אנכיים (Axial). כוחות אופקיים מייצרים מומנט פיתול הרסני."
     },
     {
-      "id": 59,
+      "id": 1059,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "כיצד משפיע שימוש ב-Fully Adjustable Articulator לעומת Semi-Adjustable על תכנון משנן מורכב?",
@@ -1006,7 +1099,7 @@ ALL_QUESTIONS = {
       "summary": "Fully Adjustable Articulator: מאפשר כיול תלת-ממדי מותאם אישית של קימורי הפוסה ונתיבי הגלישה הדינמיים (מבוסס רישום פנטוגרפי)."
     },
     {
-      "id": 60,
+      "id": 1060,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "קשה",
       "question": "מהי ההגדרה המדויקת של Functional Outer Aspect (FOA) של התלוליות?",
@@ -1021,7 +1114,7 @@ ALL_QUESTIONS = {
       "summary": "FOA (Functional Outer Aspect): השיפוע החיצוני של תלולית התמיכה ברוחב כ-1 מ\"מ המעורב במגעים פונקציונליים."
     },
     {
-      "id": 61,
+      "id": 1061,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "על פי הספרות העיונית (שילינבורג / מול) והשחזורים, ממה נובעת תחילת התנועה הצדית בצד העובד (Working Side) לעומת הצד הלא-עובד (Non-Working Side)?",
@@ -1036,7 +1129,7 @@ ALL_QUESTIONS = {
       "summary": "ריסון תנועה לטרלית: בצד העובד מרוסנת ע\"י ה-Temporomandibular ligament, ובצד הלא-עובד מוכתבת ע\"י הקיר המדיאלי של ה-Glenoid fossa."
     },
     {
-      "id": 62,
+      "id": 1062,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מהו ההבדל המדויק בין המושגים Condylar Angulation לבין Condylar Inclination בספרות הדנטלית ושחזורי המבחנים?",
@@ -1051,7 +1144,7 @@ ALL_QUESTIONS = {
       "summary": "Condylar Angulation vs Inclination: Angulation היא זווית Bennett במישור האופקי בצד הלא-עובד. Inclination היא זווית ההדרכה הקונדילרית במישור הסגיטלי בפרוטרוזיה."
     },
     {
-      "id": 63,
+      "id": 1063,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מהי המשמעות הביומכנית המלאה של סגר מוגן הדדית (Mutually Protected Occlusion / Organic Occlusion)?",
@@ -1066,7 +1159,7 @@ ALL_QUESTIONS = {
       "summary": "Mutually Protected Occlusion: ב-MI האחוריות סופגות עומס אנכי ומגינות על הקדמיות; בגלישה אקסצנטרית הקדמיות מגינות על האחוריות ע\"י Disclusion."
     },
     {
-      "id": 64,
+      "id": 1064,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "משוואת Hanau (Hanau's Quint) מגדירה 5 פרמטרים ליצירת Balanced Occlusion. איזה מהגורמים הבאים נמצא בשליטתו הישירה של רופא השיניים בתכנון המשנן?",
@@ -1081,7 +1174,7 @@ ALL_QUESTIONS = {
       "summary": "Hanau's Quint: הדרכה קונדילרית נקבעת ע\"י אנטומיית המטופל (קבועה). הדרכה אינסיזלית, גובה תלוליות, מישור סגר ועקומת פיצוי נשלטים ע\"י הרופא."
     },
     {
-      "id": 65,
+      "id": 1065,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מה יתרחש ברירית החך/הרכס (Mucosa) תחת עומס לחיצה מודרני מתמיד של 10 דקות במטופל מבוגר (Viscoelastic behavior)?",
@@ -1096,7 +1189,7 @@ ALL_QUESTIONS = {
       "summary": "ויסקואלסטיות הרירית תחת עומס: דחיסה מהירה ראשונית ודפורמציה איטית נמשכת. החזרה למצב המוצא במבוגרים עשויה להימשך עד 4 שעות."
     },
     {
-      "id": 66,
+      "id": 1066,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מה קורה ל-Incisal Guidance Table המתכוונן בארטיקולטור בעת שחזור קדמי מורכב?",
@@ -1111,7 +1204,7 @@ ALL_QUESTIONS = {
       "summary": "Custom Incisal Guide Table: שולחן אקרילי המעתיק במדויק את ההדרכה הקדמית של המטופל לשימור התנועה הפונקציונלית והאסתטית בשחזורים קדמיים."
     },
     {
-      "id": 67,
+      "id": 1067,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "איזה סוג קולגן מהווה את המרכיב העיקרי של הדיסק הארטיקולרי במפרק ה-TMJ?",
@@ -1126,7 +1219,7 @@ ALL_QUESTIONS = {
       "summary": "הרכב הדיסק ב-TMJ: עשוי מ-Dense Fibrous Connective Tissue המורכב בעיקר מ-Type I Collagen מעורב עם כמות קטנה של כונדרוציטים."
     },
     {
-      "id": 68,
+      "id": 1068,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מהי ההשפעה של Laterotrusion (תנועת הקונדיל בצד העובד) המלווה ברכיב סופריורי (Upward movement) על גובה התלוליות האחוריות?",
@@ -1141,7 +1234,7 @@ ALL_QUESTIONS = {
       "summary": "Laterosuperotrusive Movement: תנועת קונדיל עובד כלפי מעלה מקטינה את המרווח הבין-אוקלוזלי ומחייבת תלוליות אחוריות נמוכות."
     },
     {
-      "id": 69,
+      "id": 1069,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "בניתוח אלקטרומיוגרפי (EMG) של שרירי הלעיסה, מה מתרחש בפעילות שרירי ה-Elevators בעת ניתוק מגעים אחוריים (Disclusion) ע\"י הניבים?",
@@ -1156,7 +1249,7 @@ ALL_QUESTIONS = {
       "summary": "אינהיביציה שרירית ע\"י Disclusion: ניתוק השיניים האחוריות בגלישה מוריד רפלקסיבית את הפעילות החשמלית (EMG) של שרירי הסגירה."
     },
     {
-      "id": 70,
+      "id": 1070,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מהו ה-Centric Relation Record המדויק ביותר במטופל מחוסר שיניים או בעל הפרעות מוסקולריות לפי הספרות?",
@@ -1171,7 +1264,7 @@ ALL_QUESTIONS = {
       "summary": "Deprogramming & CR Record: שימוש ב-Lucia Jig מנטרל זיכרון תחושתי-שרירי ומאפשר רישום CR מפרקי מדויק ללא הטיות דנטליות."
     },
     {
-      "id": 71,
+      "id": 1071,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי ה-Superior Retrodiscal Lamina (השכבה העליונה של ה-Retrodiscal pad)?",
@@ -1186,7 +1279,7 @@ ALL_QUESTIONS = {
       "summary": "Superior Retrodiscal Lamina: עשירה בסיבים אלסטיים; מושכת ומייצבת את הדיסק הארטיקולרי אחורנית בעת סגירת הפה."
     },
     {
-      "id": 72,
+      "id": 1072,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "כיצד מוגדרת זווית ה-Condylar Guidance Angle ביחס ל-Frankfort Horizontal Plane?",
@@ -1201,7 +1294,7 @@ ALL_QUESTIONS = {
       "summary": "Condylar Guidance Angle: הזווית הסגיטלית בין מסלול גלישת הקונדיל על ה-Eminence לבין מישור Frankfort Horizontal (בממוצע 30-45°)."
     },
     {
-      "id": 73,
+      "id": 1073,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מהו ה-Cuspal Interferences בצד העובד (Working side interference)?",
@@ -1216,7 +1309,7 @@ ALL_QUESTIONS = {
       "summary": "הפרעה בצד העובד (Working interference): מגע לא רצוי בצד העובד בין תלוליות גזירה (Non-centric cusps) המפריע לתנועה לטרלית תקינה."
     },
     {
-      "id": 74,
+      "id": 1074,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "בניתוח ביומכני של כוחות סגירה, היכן ממוקם ה-Fulcrum (נקודת המשען) של הלסת התחתונה במבנה המנוף (Lever system)?",
@@ -1231,7 +1324,7 @@ ALL_QUESTIONS = {
       "summary": "ביומכניקת הלסת: המנדיבולה פועלת כמנוף מסוג Class III, כאשר ה-TMJ מהווה את הפלקרום (Fulcrum) ושרירי הסגירה מפעילים את הכוח."
     },
     {
-      "id": 75,
+      "id": 1075,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מהי התופעה הידועה כ-Pankey-Mann-Schuyler (PMS) Philosophy בשיקום פה מלא?",
@@ -1246,7 +1339,7 @@ ALL_QUESTIONS = {
       "summary": "פילוסופיית PMS (Pankey-Mann-Schuyler): גישה שלבית לשיקום מלא – ייצוב קדמיות תחתונות, ביסוס הדרכה קדמית, ובניית המשנן האחורי בהרמוניה."
     },
     {
-      "id": 76,
+      "id": 1076,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מה מתארת עקומת Monson (Monson's Spherical Theory)?",
@@ -1261,7 +1354,7 @@ ALL_QUESTIONS = {
       "summary": "Monson's Spherical Theory: משטחי הסגר משיקים לכדור ברדיוס 4 אינץ' (10.4 ס\"מ) שמרכזו ב-Crista Galli (משלב Spee & Wilson)."
     },
     {
-      "id": 77,
+      "id": 1077,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מהי השפעת אובדן תמיכה אחורית (Posterior Biting Collapse) על ה-TMJ והשיניים הקדמיות?",
@@ -1276,7 +1369,7 @@ ALL_QUESTIONS = {
       "summary": "Posterior Bite Collapse: אובדן תמיכה אחורית מוביל לירידה ב-VDO, העמסת יתר על ה-TMJ, והטיה לאביאלית (Fanning) של הקדמיות העליונות."
     },
     {
-      "id": 78,
+      "id": 1078,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מהו ה-Centric Stop ותפקידו הביומכני במשנן?",
@@ -1291,7 +1384,7 @@ ALL_QUESTIONS = {
       "summary": "Centric Stops: נקודות מגע אוקלוזליות של תלוליות התמיכה המייצבות את השן, שומרות על VDO, ומונעות בקיעת יתר או הטיות."
     },
     {
-      "id": 79,
+      "id": 1079,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "איזו שיטה נחשבת לזהב ברישום אלקטרוני דינמי של תנועות המנדיבולה להעברה לארטיקולטור ממוחשב?",
@@ -1306,7 +1399,7 @@ ALL_QUESTIONS = {
       "summary": "Electronic Axiography / Pantography: מדידה דיגיטלית בזמן אמת של ציר הסיבוב ותנועות הקונדילים לכיול ארטיקולטור ממוחשב."
     },
     {
-      "id": 80,
+      "id": 1080,
       "topic": "1. אוקלוזיה, TMJ ותנועות לסת",
       "difficulty": "מומחה",
       "question": "מהי המשמעות הביולוגית של ה-Biological Width בשיקום שולי כתר קדמי ואחורי?",
@@ -1323,7 +1416,7 @@ ALL_QUESTIONS = {
   ],
   "2": [
     {
-      "id": 201,
+      "id": 2001,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "מהי ההגדרה המבנית הכללית הבסיסית של ארטיקולטור מסוג Arcon?",
@@ -1337,7 +1430,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ושחזורי המבחנים (2016-2024), בארטיקולטור מסוג Arcon הרכיבים הקונדילריים מחוברים לזרוע התחתונה והפוסה המכנית מחוברת לזרוע העליונה, בדיוק כפי שהקונדיל והפוסה ממוקמים בגולגולת האדם [11, 13, 228]."
     },
     {
-      "id": 202,
+      "id": 2002,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "מה תפקידה המרכזי של קשת הפנים (Facebow) ברפואת שיניים שיקומית?",
@@ -1351,7 +1444,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי הספרות העיונית (שילינבורג / זארב / מול), קשת הפנים משמשת להעברת היחס התלת-ממדי של הלסת העליונה ביחס לציר הסיבוב הבין-קונדילרי (Terminal Hinge Axis) ולמישור הייחוס בפנים אל הארטיקולטור [5, 16, 222]."
     },
     {
-      "id": 203,
+      "id": 2003,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "איזה חומר מבין הבאים נחשב בעל הקשיחות הגבוהה ביותר והתנגדות מינימלית לסגירה בעת רישום בין-לסתי (Interocclusal record)?",
@@ -1365,7 +1458,7 @@ ALL_QUESTIONS = {
       "explanation": "משחת ZOE ואקריל מציעים קשיחות גבוהה לאחר התקשות עם מינימום עיוות אלסטי (Rebound), מה שהופך אותם לבעלי נאמנות גבוהה ברישום הבין-לסתי בהשוואה לשעוות [16, 17]."
     },
     {
-      "id": 204,
+      "id": 2004,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "באיזה מרחק נקודת הייחוס האחורית של קשת פנים ארביטררית (Arbitrary facebow) ממוקמת בקירוב מקו ה-Tragus-Cantus?",
@@ -1379,7 +1472,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי הספרות העיונית (מול / שילינבורג ושחזורי המבחנים), בקשת פנים ארביטררית נקודת הייחוס לציר הסיבוב ממוקמת כ-13 מ\"מ קדמית ל-Tragus על הקו המחבר את ה-Tragus לזווית העין (Tragus-cantus line) [52, 160, 225]."
     },
     {
-      "id": 205,
+      "id": 2005,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "מה מתרחש ל-Condylar guidance בארטיקולטור מסוג Arcon בעת שינוי המימד האנכי (הסרת משנך השעווה)?",
@@ -1393,7 +1486,7 @@ ALL_QUESTIONS = {
       "explanation": "בארטיקולטור Arcon הזווית בין הפוסה המכנית (בזרוע העליונה) לזרוע העליונה נשארת קבועה גם בעת פתיחה או סגירה של המנשך, ולכן ה-Condylar guidance אינו משתנה [11, 13, 228]."
     },
     {
-      "id": 206,
+      "id": 2006,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "איזו תנועה מפרקית מתרחשת במחצית הראשונית של פתיחת הפה (עד 20-25 מ\"מ)?",
@@ -1407,7 +1500,7 @@ ALL_QUESTIONS = {
       "explanation": "פתיחת פה ראשונית מתרחשת סביב ה-Terminal Hinge Axis וכוללת רוטציה טהורה במדור התחתון של ה-TMJ [3, 36]."
     },
     {
-      "id": 207,
+      "id": 2007,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "באיזה מישור ייחוס אופקי בפנים נעזרים בלוחית Fox (Fox plane) לקביעת מישור הסגר בתותבות שלמות?",
@@ -1421,7 +1514,7 @@ ALL_QUESTIONS = {
       "explanation": "קביעת מישור הסגר באזור האחורי בתותבות שלמות מתבצעת ע\"י הקבלה ל-Camper's line (הקו המחבר את תחתית נחיר האף ל-Tragus) בעזרת Fox plane [5, 288]."
     },
     {
-      "id": 208,
+      "id": 2008,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "מהו המרחק הבין-קונדילרי (Intercondylar distance) הסטנדרטי הממוצע בארטיקולטורים חצי-מתכווננים?",
@@ -1435,7 +1528,7 @@ ALL_QUESTIONS = {
       "explanation": "המרחק הבין-קונדילרי הממוצע שקבוע בארטיקולטורים חצי-מתכווננים רבים הוא 110 מ\"מ [49, 116, 229]."
     },
     {
-      "id": 209,
+      "id": 2009,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "כיצד משפיע שימוש במשנך שעווה בעובי 4 מ\"מ על ארטיקולטור מסוג Non-Arcon לאחר הוצאת המשנך וסגירת הגבסים?",
@@ -1449,7 +1542,7 @@ ALL_QUESTIONS = {
       "explanation": "בארטיקולטור Non-Arcon, עקב מיקום הרכיב הקונדילרי בזרוע העליונה, סגירת המנשך לאחר הסרת משנך בעובי 3-5 מ\"מ משנה את היחס הגיאומטרי והופכת את ההדרכה הקונדילרית לרדודה יותר [13, 55, 228]."
     },
     {
-      "id": 210,
+      "id": 2010,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "מהי הטכניקה המכונה Triple Tray בעת ביצוע רישום סגר ושחזור בודד?",
@@ -1463,7 +1556,7 @@ ALL_QUESTIONS = {
       "explanation": "Triple tray מאפשרת ללכוד במקביל את ההטבעה של ההכנה, הקשת הנגדית ורישום הסגר במגע מלא [17, 107, 147]."
     },
     {
-      "id": 211,
+      "id": 2011,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "בעבודה עם קשת פנים הנשענת על פתחי השמע החיצוניים (Ear-piece facebow), מהו הגורם המפצה על המיקום האחורי של התעלה?",
@@ -1477,7 +1570,7 @@ ALL_QUESTIONS = {
       "explanation": "קשתות פנים מודרניות מסוג Ear-piece כוללות הסטה מתוכננת (Offset) שמביאה את המדידה לקירוב מצוין של ציר הסיבוב [52, 160]."
     },
     {
-      "id": 212,
+      "id": 2012,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "מה מבין הבאים נכון לגבי הרכבת גבס עליון ראשון בארטיקולטור בעזרת קשת פנים?",
@@ -1491,7 +1584,7 @@ ALL_QUESTIONS = {
       "explanation": "הפרוטוקול הקליני הסטנדרטי מורה על הרכבת הגבס העליון ראשית באמצעות קשת הפנים, ולאחר מכן הרכבת הגבס התחתון ביחס אליו [5, 16]."
     },
     {
-      "id": 213,
+      "id": 2013,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "למה משמש שולחן הדרכה אינסיזלי (Incisal guide table) בארטיקולטור?",
@@ -1505,7 +1598,7 @@ ALL_QUESTIONS = {
       "explanation": "שולחן ההדרכה האינסיזלי מגן על השיניים הקדמיות בגבס ומבטיח שההדרכה הקדמית תועתק במדויק לשחזורים [9, 28]."
     },
     {
-      "id": 214,
+      "id": 2014,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "איזה רישום בין-לסתי מיועד לכייל את ה-Condylar guidance angle בארטיקולטור חצי-מתכוונן?",
@@ -1519,7 +1612,7 @@ ALL_QUESTIONS = {
       "explanation": "רישום פרוטרוזיבי בשעווה/חומר קשיח תופס את הקונדילים כשהם גלשו קדימה בפוסה, וכך מאפשר לכייל את זווית ה-Condylar guidance בארטיקולטור [12, 55, 228]."
     },
     {
-      "id": 215,
+      "id": 2015,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "מה נכון לגבי שימוש בארטיקולטור פשוט (Hinge articulator / ציר בלבד)?",
@@ -1533,7 +1626,7 @@ ALL_QUESTIONS = {
       "explanation": "ארטיקולטור ציר פשוט מתפקד כציר סגירה בלבד ללא שחזור נכון של רדיוס התנועה או שבילי הגלישה [9, 28]."
     },
     {
-      "id": 216,
+      "id": 2016,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "איזה מישור אופקי בפנים מחבר בין ה-Nasion לבין ה-Pogonion?",
@@ -1547,7 +1640,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שחזורי המבחנים (2016), קו/מישור הפנים מוגדר בין ה-Nasion לבין ה-Pogonion [36, 95]."
     },
     {
-      "id": 217,
+      "id": 2017,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "בעת קביעת מישור הסגר הוורטיקלי בתותבות שלמות, באיזה מדד אנטומי אחורי נעזרים לקביעת הגובה?",
@@ -1561,7 +1654,7 @@ ALL_QUESTIONS = {
       "explanation": "מישור הסגר האחורי בתותבת תחתונה נקבע בגובה 1/2 עד 2/3 מגובה ה-Retromolar pad [24, 50, 229]."
     },
     {
-      "id": 218,
+      "id": 2018,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "מהי המטרה העיקרית של ביצוע Split-cast במודלי גבס בארטיקולטור?",
@@ -1575,7 +1668,7 @@ ALL_QUESTIONS = {
       "explanation": "טכניקת Split-cast מאפשרת להפריד ולהחזיר את המודל לבסיסו כדי לבדוק שוב ושוב את הדירות והתאמת הרישום הבין-לסתי [16, 28]."
     },
     {
-      "id": 219,
+      "id": 2019,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "מהו היתרון המרכזי של חומר מבוסס Polyether לרישום בין-לסתי?",
@@ -1589,7 +1682,7 @@ ALL_QUESTIONS = {
       "explanation": "פוליאתר מציג יציבות ממדית מצוינת וקשיחות גבוהה שמונעת דפורמציה בעת הרכבת המודלים [16, 17]."
     },
     {
-      "id": 220,
+      "id": 2020,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קל",
       "question": "איזה מקור שגיאה נפוץ ביותר בעת שימוש בשעוות סגר רכות (Baseplate wax) לרישום CR?",
@@ -1603,7 +1696,7 @@ ALL_QUESTIONS = {
       "explanation": "שעוות נוטות לעיוות תרמי ואלסטי ניכר אם מופעל עליהן לחץ לא אחיד או בעת שינויי טמפרטורה [16, 17]."
     },
     {
-      "id": 221,
+      "id": 2021,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "על פי מחקרו של Weinberg, אם קיים הפרש/שגיאה של 5 מ\"מ בין ציר הסיבוב האמיתי של המטופל לבין ציר הסיבוב שרשמנו בקשת פנים ארביטררית (עבור משנך בעובי 3 מ\"מ), מה יהיה השינוי/השגיאה במיקום המולר השני?",
@@ -1617,7 +1710,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (עמ' 30) ושחזורי המבחנים, שגיאה של 5 מ\"מ במיקום הציר בקשת פנים ארביטררית תתרגם לשגיאה סגרית זעירה של כ-0.2 מ\"מ בלבד באזור המולרי בעת הסרת משנך של 3 מ\"מ [16]."
     },
     {
-      "id": 222,
+      "id": 2022,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "בנוסחת Hanau (Hanau's Quint) ליצירת Balanced Occlusion, כיצד מחושבת זווית Bennett ($L$)?",
@@ -1631,7 +1724,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי הספרות והשחזורים, נוסחת הופמן/הנאו לכיול זווית Bennett בארטיקולטור הנאו היא L = H/8 + 12 [32, 104]."
     },
     {
-      "id": 223,
+      "id": 2023,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "כיצד משפיע מרחק בין-קונדילרי קטן יותר מזה של המטופל על שבילי הגלישה (Grooves) של התלוליות בשיניים האחוריות?",
@@ -1645,7 +1738,7 @@ ALL_QUESTIONS = {
       "explanation": "ככל שהמרחק הבין-קונדילרי קטן יותר, הזווית הנוצרת בין שביל בצד העובד לשביל בצד הלא-עובד על פני המשטח האוקלוזלי קטנה יותר [11, 49, 116]."
     },
     {
-      "id": 224,
+      "id": 2024,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "על פי מחקר השוואתי של חומרי רישום בין-לסתי במקרים של Free-end saddle (Pagnano et al. / שחזורים), איזה חומר הראה את הסטייה/העיוות הגדול ביותר בהשוואה להרכבה ידנית?",
@@ -1659,7 +1752,7 @@ ALL_QUESTIONS = {
       "explanation": "במחקרי נאמנות חומרי רישום סגר, סיליקון בדחיסה (Condensation silicone) הראה את הסטייה הגדולה ביותר עקב התכווצות תוצרי הלוואי (אלכוהול) ועיוות אלסטי [16, 17]."
     },
     {
-      "id": 225,
+      "id": 2025,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "מהו הצידוק המרכזי של Mohl ו-Shillingburg לשימוש בקשת פנים ארביטררית (Arbitrary facebow) ברוב הטיפולים השיקומיים השגרתיים?",
@@ -1673,7 +1766,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי Mohl ושילינבורג, קשת פנים ארביטררית (13 מ\"מ מה-Tragus או סמוכה לאוזן) מספקת דיוק מצוין לרוב השיקומים הקליניים [52, 160]."
     },
     {
-      "id": 226,
+      "id": 2026,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "מה מאפשר רישום ה-Lateral Interocclusal Record (Check bite) בארטיקולטור סמי-אדג'סטבל?",
@@ -1687,7 +1780,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שחזורי המבחנים (2016-2024), רישום Check bite לטרלי תופס את עמדת הקונדילים בגלישה צדית ומאפשר כיול אנטומי מתאים בארטיקולטור [12, 63, 147]."
     },
     {
-      "id": 227,
+      "id": 2027,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "למה גורם Rebound effect בחומרי הטבעה ורישום סגר אלסטומריים בעת הפעלת לחץ סגירה חזק מדי?",
@@ -1701,7 +1794,7 @@ ALL_QUESTIONS = {
       "explanation": "לחץ סגירה מופרז על חומר אלסטומרי גורם לדחיסה אלסטית, שכאשר הלחץ משתחרר החומר 'קופץ' בחזרה (Rebound) ומספק רישום מוטעה שמפריע להושבת המודלים [49, 104, 163]."
     },
     {
-      "id": 228,
+      "id": 2028,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "מדוע ארטיקולטורים מסוג Non-Arcon היו פופולריים מאוד בעבר בביצוע תותבות שלמות (Complete Dentures)?",
@@ -1715,7 +1808,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 3), ארטיקולטור Non-Arcon אינו מתפרק בקלות בעת מניפולציה של השיניים האחוריות בתותבות שלמות, ולכן טכנאים רבים העדיפו אותו לסידור שיניים [56, 228]."
     },
     {
-      "id": 229,
+      "id": 2029,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "מהי הדרך المומלצת ליצירת שולחן הדרכה אינסיזלי מותאם אישית (Custom Incisal Guide Table)?",
@@ -1729,7 +1822,7 @@ ALL_QUESTIONS = {
       "explanation": "שולחן אינסיזלי מותאם נוצר ע\"י מריחת אקריל רך והנעת מודלי הגבס בתנועות הגלישה השונות, כך שהפין האינסיזלי מטביע בשולחן את מסלול ההדרכה המדויק [9, 28]."
     },
     {
-      "id": 230,
+      "id": 2030,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "מה מייצגת תופעת Christensen (Christensen's phenomenon) בעת גלישת המנדיבולה לפרוטרוזיה?",
@@ -1743,7 +1836,7 @@ ALL_QUESTIONS = {
       "explanation": "תופעת כריסטנסן מתארת את הרווח הנוצר בין המשננים האחוריים בעת גלישה קדימה (פרוטרוזיה) כתוצאה מהשיפוע של ה-Condylar guidance [28, 104]."
     },
     {
-      "id": 241,
+      "id": 2031,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מהו ההבדל המושגי והקליני המדויק בין Condylar Angulation לבין Condylar Inclination בשחזורי המבחנים והספרות?",
@@ -1757,7 +1850,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שחזורי המבחנים (2016-2019): Condylar Angulation מקורו בתנועת Bennett ונמדד בצד הלא-עובד במישור הוריזונטלי, בעוד Condylar Inclination הוא שיפוע הדרכת הקונדיל בפרוטרוזיה במישור פרה-סגיטלי [43, 101, 226]."
     },
     {
-      "id": 242,
+      "id": 2032,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "בעת ביצוע רישום בין-לסתי במטופל שעבר כריתה חלקית של המנדיבולה (Hemimandibulectomy / Discontinuity defect), באיזה ארטיקולטור מומלץ להשתמש על פי Boucher ושחזורי המבחנים?",
@@ -1771,7 +1864,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי Boucher (עמ' 486) ושחזורי המבחנים, בכריתה חלקית (Discontinuity defect) משתמשים בארטיקולטור סמי-אדג'סטבל עם קשת פנים ורישום פרוטרוזיבי [5]."
     },
     {
-      "id": 243,
+      "id": 2033,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "כיצד תשתנה הציור והאנטומיה של חריצי השרבוב (Grooves) בשחזור טוחנת אם ה-Condylar guidance בארטיקולטור נקבעה לתלולה יותר מאשר במטופל?",
@@ -1785,7 +1878,7 @@ ALL_QUESTIONS = {
       "explanation": "כאשר ה-Condylar guidance בארטיקולטור תלולה מהקיים בפה, הטכנאי יבנה תלוליות גבוהות מדי, שבפיות המטופל (שם ההדרכה רדודה יותר) יגרמו להפרעה אוקלוזלית [28, 104]."
     },
     {
-      "id": 244,
+      "id": 2034,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מה נכון לגבי יציבות ממדית של חומרי הטבעה מסוג Addition Silicone (PVS) לעומת Condensation Silicone בעת השהיית היציקה?",
@@ -1799,7 +1892,7 @@ ALL_QUESTIONS = {
       "explanation": "סיליקון בהוספה (PVS) אינו מייצר תוצרי לוואי מנדיפים ולכן שומר על יציבות ממדית מעולה, בניגוד לסיליקון בדחיסה שממשיך להתכווץ עקב התאדות אתנול [14, 28]."
     },
     {
-      "id": 245,
+      "id": 2035,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מהי המשמעות של Gothic Arch Tracing (Gysi tracing) בקביעת יחס בין-לסתי במטופלים מחוסרי שיניים?",
@@ -1813,7 +1906,7 @@ ALL_QUESTIONS = {
       "explanation": "Gothic arch tracing הוא רישום אופקי תוך-אוראלי או חוץ-אוראלי, שבו קודקוד החץ מציין במדויק את עמדת ה-CR [9, 28]."
     },
     {
-      "id": 246,
+      "id": 2036,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מה יתרחש ברישום הסגר אם המטופל יבצע סגירה כפויה בלחץ שרירים מוגבר בעת נטילת רישום סגר בשעווה קשה?",
@@ -1827,7 +1920,7 @@ ALL_QUESTIONS = {
       "explanation": "לחץ סגירה מופרז דוחס את הרקמות הרכות או מעוות את השעווה, מה שמניב רישום דק מדי שבהרכבת המודלים יתורגם להגבהת הסגר בשחזור הסופי [16, 28]."
     },
     {
-      "id": 261,
+      "id": 2037,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "על פי מול (Mohl) ושילינבורג, ממה מורכבת תנועת ה-Immediate Side Shift (ISS) בצד הלא-עובד (Non-working side condyle)?",
@@ -1841,7 +1934,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי מול ושילינבורג, ISS מתארת תנועת צד מדיאלית מיידית של הקונדיל בצד הלא-עובד בתחילת התנועה הצידית, עם ממוצע של כ-0.75-1.0 מ\"מ [49, 86, 381]."
     },
     {
-      "id": 262,
+      "id": 2038,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "מי מבין הבאים נחשב לאחד מאבות האסכולה הגנתולוגית המוקדמת (Early Gnathologist) שפיתח את קשת הפנים הקינמטית והפנטוגרף הראשון?",
@@ -1855,7 +1948,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שחזורי המבחנים (2016-2019), B.B. McCollum מייסד ה-Gnathological Society ב-1926 נחשב כ-Early Gnathologist [61, 152, 384]."
     },
     {
-      "id": 263,
+      "id": 2039,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "בפילוסופיית ה-Functionally Generated Path (FGP) של Meyer ו-Pankey-Mann-Schuyler, מהו תפקידו המרכזי של הארטיקולטור?",
@@ -1869,7 +1962,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (עמ' 355) ושחזורי המבחנים, בשיטת FGP הדינמיקה הסגרית מגולפת בתוך הפה על שעווה, ולכן הארטיקולטור משמש כציר פשוט בלבד (Simple hinge) לשורש [9, 28]."
     },
     {
-      "id": 264,
+      "id": 2040,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "מהי המשמעות הביומכנית המלאה של שימוש ב-Leaf Gauge או Lucia Jig בעת לקיחת רישום Centric Relation (CR)?",
@@ -1883,7 +1976,7 @@ ALL_QUESTIONS = {
       "explanation": "מכשירים קדמיים (De-programmers) מנתקים את המגעים האחוריים, מנטרלים את הרפלקס השרירי המותנה, ומאפשרים למיוטטיביות השרירית למקם את הקונדילים ב-CR [9, 28]."
     },
     {
-      "id": 265,
+      "id": 2041,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "איזו השפעה תהיה לכיול שגוי של זווית ה-Condylar inclination (נמוכה ב-15 מעלות מהמציאות) על תכנון גובה התלוליות בשחזור FPD קבוע?",
@@ -1897,7 +1990,7 @@ ALL_QUESTIONS = {
       "explanation": "Condylar inclination נמוכה בארטיקולטור מחייבת תלוליות שטוחות יותר כדי למנוע התנגשות, כך שבפועל השחזור יהיה 'בטוח' מהפרעה אך שטוח יותר [28, 104]."
     },
     {
-      "id": 1001,
+      "id": 2042,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 11 - בינוני)",
@@ -1911,7 +2004,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1002,
+      "id": 2043,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 12 - בינוני)",
@@ -1925,7 +2018,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1003,
+      "id": 2044,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 13 - בינוני)",
@@ -1939,7 +2032,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1004,
+      "id": 2045,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 14 - בינוני)",
@@ -1953,7 +2046,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1005,
+      "id": 2046,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 15 - בינוני)",
@@ -1967,7 +2060,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1006,
+      "id": 2047,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 16 - בינוני)",
@@ -1981,7 +2074,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1007,
+      "id": 2048,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 17 - בינוני)",
@@ -1995,7 +2088,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1008,
+      "id": 2049,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 18 - בינוני)",
@@ -2009,7 +2102,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1009,
+      "id": 2050,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 19 - בינוני)",
@@ -2023,7 +2116,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1010,
+      "id": 2051,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 20 - בינוני)",
@@ -2037,7 +2130,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1011,
+      "id": 2052,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 7 - קשה)",
@@ -2051,7 +2144,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1012,
+      "id": 2053,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 8 - קשה)",
@@ -2065,7 +2158,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1013,
+      "id": 2054,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 9 - קשה)",
@@ -2079,7 +2172,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1014,
+      "id": 2055,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 10 - קשה)",
@@ -2093,7 +2186,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1015,
+      "id": 2056,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 11 - קשה)",
@@ -2107,7 +2200,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1016,
+      "id": 2057,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 12 - קשה)",
@@ -2121,7 +2214,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1017,
+      "id": 2058,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 13 - קשה)",
@@ -2135,7 +2228,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1018,
+      "id": 2059,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 14 - קשה)",
@@ -2149,7 +2242,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1019,
+      "id": 2060,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 15 - קשה)",
@@ -2163,7 +2256,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1020,
+      "id": 2061,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 16 - קשה)",
@@ -2177,7 +2270,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1021,
+      "id": 2062,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 17 - קשה)",
@@ -2191,7 +2284,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1022,
+      "id": 2063,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 18 - קשה)",
@@ -2205,7 +2298,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1023,
+      "id": 2064,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 19 - קשה)",
@@ -2219,7 +2312,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1024,
+      "id": 2065,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 20 - קשה)",
@@ -2233,7 +2326,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1025,
+      "id": 2066,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
@@ -2247,7 +2340,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1026,
+      "id": 2067,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
@@ -2261,7 +2354,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1027,
+      "id": 2068,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
@@ -2275,7 +2368,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1028,
+      "id": 2069,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
@@ -2289,7 +2382,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1029,
+      "id": 2070,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
@@ -2303,7 +2396,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1030,
+      "id": 2071,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
@@ -2317,7 +2410,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1031,
+      "id": 2072,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
@@ -2331,7 +2424,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1032,
+      "id": 2073,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
@@ -2345,7 +2438,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1033,
+      "id": 2074,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
@@ -2359,7 +2452,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1034,
+      "id": 2075,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
@@ -2373,7 +2466,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1035,
+      "id": 2076,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
@@ -2387,7 +2480,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1036,
+      "id": 2077,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
@@ -2401,7 +2494,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1037,
+      "id": 2078,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
@@ -2415,7 +2508,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1038,
+      "id": 2079,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
@@ -2429,7 +2522,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1039,
+      "id": 2080,
       "topic": "2. ארטיקולטורים ורישום בין-לסתי",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
@@ -2445,7 +2538,149 @@ ALL_QUESTIONS = {
   ],
   "3": [
     {
-      "id": 1,
+      "id": 3001,
+      "topic": "3. עקרונות הכנת שיניים למשמרת (שחזורים/ סתימות)",
+      "difficulty": "קל",
+      "question": "מהי המטרה המרכזית של יצירת Retention Form בהכנת חלל לשחזור אמלגם קלאסי (Class I / Class II)?",
+      "options": [
+        "א. מניעת יציאת השחזור מתוך החלל תחת כוחות מתיחה, גזירה ולעיסה.",
+        "ב. מניעת שבר של קירות השן עקב כוחות סגירה מאונכים.",
+        "ג. הרחבת שולי החלל לאזורים שאינם רגישים לעשת מניעתית (Extension for prevention).",
+        "ד. הגנה על פולפת השן מפני גירויים תרמיים של הסתימה."
+      ],
+      "correct": "א. מניעת יציאת השחזור מתוך החלל תחת כוחות מתיחה, גזירה ולעיסה.",
+      "explanation": "לפי ספרות הרפואה המשמרת והשיקומית (Sturdevant / Phillips), Retention Form בהכנת חלל לאמלגם קלאסי מיועד למנוע את עקירת או יציאת השחזור מציר ההכנסה שלו תחת כוחות לעיסה, וזאת ע\"י שיפוע התכנסות אקלוזלי של הקירות (Occlusal convergence) או יצירת חריצי אחיזה (Retention grooves)."
+    },
+    {
+      "id": 3002,
+      "topic": "3. עקרונות הכנת שיניים למשמרת (שחזורים/ סתימות)",
+      "difficulty": "קל",
+      "question": "מה מייצג המושג Resistance Form בהכנת חלל לשחזור ישיר?",
+      "options": [
+        "א. מניעת שינוי צבע השחזור לאורך זמן.",
+        "ב. תכנון גאומטרי של החלל המונע שבר הן של קירות השן השארית והן של חומר השחזור תחת כוחות לעיסה.",
+        "ג. שימוש בחומרי חיטוי למניעת עשת משנית תחת הסתימה.",
+        "ד. הגדלת שטח הפנים של האמייל לצורך צריבה בחומצה זרחנית."
+      ],
+      "correct": "ב. תכנון גאומטרי של החלל המונע שבר הן של קירות השן השארית והן של חומר השחזור תחת כוחות לעיסה.",
+      "explanation": "Resistance Form מוגדר כצורת החלל המאפשרת לשן ולשחזור לעמוד בכוחות סגירה ולעיסה מאונכים ללא שבר. עקרונותיו כוללים: רצפה פולפרית שטוחה המאונכת לכיוון הכוחות, זווית כביכול של 90 מעלות בשולי האמלגם (Cavosurface angle), ועובי חומר מספק (כגון 1.5-2.0 מ\"מ לאמלגם)."
+    },
+    {
+      "id": 3003,
+      "topic": "3. עקרונות הכנת שיניים למשמרת (שחזורים/ סתימות)",
+      "difficulty": "קל",
+      "question": "מהו כיוון מנסרות האמייל (Enamel rods) במישור השואף להורדה נכונה ולמניעת קצוות אמייל נתמכים בחלק האקלוזלי?",
+      "options": [
+        "א. מנסרות האמייל ממוקמות בניצב לקו המפגש עם הדנטין (DEJ) ופונות כלפי המשטח החיצוני.",
+        "ב. מנסרות האמייל ממוקמות במקביל לחלוטין למשטח האוקלוזלי.",
+        "ג. מנסרות האמייל אינן מחוברות לדנטין כלל בחלק הכתרי.",
+        "ד. מנסרות האמייל נוטות בזווית של 45 מעלות לכיוון השורש בלבד."
+      ],
+      "correct": "א. מנסרות האמייל ממוקמות בניצב לקו המפגש עם הדנטין (DEJ) ופונות כלפי המשטח החיצוני.",
+      "explanation": "מנסרות האמייל (Enamel rods) ניצבות בעיקרן ל-DEJ. כדי למנוע אמייל לא נתמך (Unsupported enamel) שישבר תחת כוחות לעיסה, חובה לוודא שקירות החלל תומכים במנסרות האמייל על גבי דנטין בריא (Full dentin support)."
+    },
+    {
+      "id": 3004,
+      "topic": "3. עקרונות הכנת שיניים למשמרת (שחזורים/ סתימות)",
+      "difficulty": "קל",
+      "question": "מה תפקידו של ה-Cavosurface angle בהכנת חלל לאמלגם?",
+      "options": [
+        "א. יצירת זווית של 90 מעלות (Butt-joint) בשולי החלל כדי למנוע שבר שולי של האמלגם או האמייל.",
+        "ב. יצירת שיפוע זוויתי (Bevel) של 45 מעלות בכל שולי החלל לאמלגם.",
+        "ג. הגדלת חלל הפולפה כדי לאפשר הדבקת צמנט בידוד.",
+        "ד. הרחבת השחזור אל המשטח הפסיאלי בלבד."
+      ],
+      "correct": "א. יצירת זווית של 90 מעלות (Butt-joint) בשולי החלל כדי למנוע שבר שולי של האמלגם או האמייל.",
+      "explanation": "באמלגם, ה-Cavosurface angle חייב להיות כ-90 מעלות (Butt-joint margin) מכיוון שלאמלגם כוח מתיחה נמוך (Low tensile strength) ושיפוע דק מדי בשוליים (Margin) יביא לשבר שולי (Marginal fracture/chipping)."
+    },
+    {
+      "id": 3005,
+      "topic": "3. עקרונות הכנת שיניים למשמרת (שחזורים/ סתימות)",
+      "difficulty": "בינוני",
+      "question": "מהי המשמעות של מנגנון ה-C-Factor (Configuration factor) בשחזורי קומפוזיט ישירים?",
+      "options": [
+        "א. היחס בין מספר המשטחים הקשורים (Bonded surfaces) למספר המשטחים החופשיים (Unbonded surfaces) בחלל, המשפיע על מאמצי ההתכווצות של הפולימריזציה.",
+        "ב. מקדם התפשטות החום של חומר השחזור ביחס לאמייל.",
+        "ג. אחוז שחרור הפלואוריד מתוך חומר השחזור ב-24 השעות הראשונות.",
+        "ד. היחס בין עובי האמייל לעובי הדנטין בצוואר השן."
+      ],
+      "correct": "א. היחס בין מספר המשטחים הקשורים (Bonded surfaces) למספר המשטחים החופשיים (Unbonded surfaces) בחלל, המשפיע על מאמצי ההתכווצות של הפולימריזציה.",
+      "explanation": "C-Factor (Configuration Factor) הוא היחס בין מספר המשטחים להם נדבק הקומפוזיט (Bonded surfaces) לבין המשטחים החופשיים (Unbonded surfaces). ככל ש-C-factor גבוה יותר (כמו בחלל Class I עמוק שבו היחס הוא 5/1 = 5), יש פחות שטח חופשי לשחרור מאמצים (Stress relief), מה שמגדיל את מאמצי ההתכווצות על קירות השן ועלול לגרום לדואב, סדקים ודליפה שולית."
+    },
+    {
+      "id": 3006,
+      "topic": "3. עקרונות הכנת שיניים למשמרת (שחזורים/ סתימות)",
+      "difficulty": "בינוני",
+      "question": "מדוע מומלץ לבצע Bevel (שיפוע) בשולי האמייל בחלל Class III / Class IV מיועד לשחזור קומפוזיט?",
+      "options": [
+        "א. כדי לחשוף את רוחב מנסרות האמייל בחתך רוחבי (End-on enamel rods), להגדיל את שטח הפנים ולשפר את האינטגרציה האסתטית והאחיזה.",
+        "ב. כדי להבטיח זווית Butt-joint ישרה של 90 מעלות כמו באמלגם.",
+        "ג. כדי למנוע את הצורך בשימוש בחומצת צריבה (Phosphoric acid).",
+        "ד. כדי לאפשר לחומר האמלגם לזרום בצורה חופשית יותר."
+      ],
+      "correct": "א. כדי לחשוף את רוחב מנסרות האמייל בחתך רוחבי (End-on enamel rods), להגדיל את שטח הפנים ולשפר את האינטגרציה האסתטית והאחיזה.",
+      "explanation": "ביצוע Bevel בשולי האמייל בשחזורי קומפוזיט קדמיים חושף את קצוות מנסרות האמייל (End-on rods), שם הקישור לאחר צריבה בחומצה הוא החזק ביותר. בנוסף, ה-Bevel יוצר מעבר מודרג (Blending) של הקומפוזיט על גבי השן ומטשטש את קו המעבר האסתטי."
+    },
+    {
+      "id": 3007,
+      "topic": "3. עקרונות הכנת שיניים למשמרת (שחזורים/ סתימות)",
+      "difficulty": "בינוני",
+      "question": "מהי ההתנהגות הטיפוסית של שכבת ה-Smear Layer שנוצרת במהלך הכנת חלל בעזרת מקדח דינמי?",
+      "options": [
+        "א. היא מורכבת משברי הידרוקסיאפטיט, קולגן ומיקרואורגניזמים, ואוטמת את פתחי ה-Dentinal tubules.",
+        "ב. היא שכבת סחוס אלסטית המופרשת באופן טבעי ע\"י האודונטובלסטים.",
+        "ג. היא מתמוססת מעצמה תוך 5 דקות במגע עם רוק.",
+        "ד. היא מונעת לחלוטין את הצורך בביצוע סגר הידראולי בשחזורים אדטיביים."
+      ],
+      "correct": "א. היא מורכבת משברי הידרוקסיאפטיט, קולגן ומיקרואורגניזמים, ואוטמת את פתחי ה-Dentinal tubules.",
+      "explanation": "שכבת ה-Smear layer נוצרת מחיתוך הדנטין והאמייל. היא מורכבת מחלקיקי מינרלים, קולגן קטוע ושיירים אורגניים שסותמים את ה-Dentinal tubules (Smear plugs). במערכות בונדינג מסוג Total-Etch מסירים אותה לחלוטין עם חומצה, ואילו במערכות Self-Etch מחדירים וממיסים אותה חלקית ליצירת שכבת ה-Hybrid layer."
+    },
+    {
+      "id": 3008,
+      "topic": "3. עקרונות הכנת שיניים למשמרת (שחזורים/ סתימות)",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי טכניקת ה-Incremental Layering (הנחה בשכבות) בשחזורי קומפוזיט בחללים עמוקים?",
+      "options": [
+        "א. הנחה בשכבות של עד 2 מ\"מ מפחיתה את ה-C-factor של כל אלמנט בנפרד, מאפשרת מעבר אור מלא לפולימריזציה ומקטינה מאמצי התכווצות על קירות החלל.",
+        "ב. היא נועדה אך ורק להאצת קצב העבודה של הרופא ברוטינה הקלינית.",
+        "ג. היא מגדילה את נפח ההתכווצות הכולל של החומר ב-50% בהשוואה להנחה בגוש אחד.",
+        "ד. היא מונעת לחלוטין היווצרות היברידיזציה בדנטין."
+      ],
+      "correct": "א. הנחה בשכבות של עד 2 מ\"מ מפחיתה את ה-C-factor של כל אלמנט בנפרד, מאפשרת מעבר אור מלא לפולימריזציה ומקטינה מאמצי התכווצות על קירות החלל.",
+      "explanation": "טכניקת Incremental layering (שכבות של כ-2 מ\"מ מקסימום) מבטיחה חדירת אור מספקת לפולימריזציה מלאה של הקומפוזיט, ומקטינה את ה-C-factor של כל אלמנט בנפרד (על ידי חיבור לפחות קירות בכל סבב), וכך מפחיתה את המאמצים המועברים לקירות השן."
+    },
+    {
+      "id": 3009,
+      "topic": "3. עקרונות הכנת שיניים למשמרת (שחזורים/ סתימות)",
+      "difficulty": "קשה",
+      "question": "כיצד משפיע ייבוש מוגזם (Over-drying / Desiccation) של הדנטין לאחר צריבה בחומצה זרחנית בטכניקת Total-Etch?",
+      "options": [
+        "א. גורם לקריסת רשת סיבי הקולגן (Collagen collapse), מונע חדירת הפריימר/רזין ופוגע קשות בעובי ובחוזק שכבת ה-Hybrid Layer.",
+        "ב. משפר את הקישור האדפטיבי ע\"י הרחבת ה-Dentinal tubules.",
+        "ג. מונע לחלוטין רגישות לאחר טיפול ע\"י איטום המים בתעלות.",
+        "ד. מאיץ את תהליך ההסתיידות המשנית של הפולפה."
+      ],
+      "correct": "א. גורם לקריסת רשת סיבי הקולגן (Collagen collapse), מונע חדירת הפריימר/רזין ופוגע קשות בעובי ובחוזק שכבת ה-Hybrid Layer.",
+      "explanation": "לאחר צריבה בחומצה זרחנית והסרת המינרלים מהדנטין, סיבי הקולגן נחשפים כשהם צפים במים. ייבוש מוגזם עם אוויר גורם לקריסת רשת הקולגן (Collagen collapse), והרזין אינו יכול לחדור בין הסיבים הקרוסים. לכן מומלץ לשמור על Moist bonding (דנטין לח)."
+    },
+    {
+      "id": 3010,
+      "topic": "3. עקרונות הכנת שיניים למשמרת (שחזורים/ סתימות)",
+      "difficulty": "מומחה",
+      "question": "מהו התפקיד הביולוגי והמבני של ה-MMP (Matrix Metalloproteinases) בדנטין בעת הידרדרות הקישור האדהזיבי לאורך זמן?",
+      "options": [
+        "א. אנזימים אנדוגניים בדנטין המופעלים ע\"י חומציות (כגון צריבת חומצה) ומפרקים באופן איטי את סיבי הקולגן החשופים שלא נספגו ברזין בתוך שכבת ה-Hybrid layer.",
+        "ב. חלבונים המופרשים ע\"י החיידקים ומבצעים פולימריזציה של הקומפוזיט.",
+        "ג. אנזימים המפרקים את המטריקס הקרמי של שחזורי זירקוניה.",
+        "ד. מבנים תאיים המונעים היווצרות דנטין שניוני."
+      ],
+      "correct": "א. אנזימים אנדוגניים בדנטין המופעלים ע\"י חומציות (כגון צריבת חומצה) ומפרקים באופן איטי את סיבי הקולגן החשופים שלא נספגו ברזין בתוך שכבת ה-Hybrid layer.",
+      "explanation": "Matrix Metalloproteinases (MMPs) הם אנזימים אנדוגניים הנמצאים במטריקס הדנטין. צריבת חומצה מפעילה אותם. אם סיבי הקולגן שנגלו בצריבה אינם מצופים/חודרים לחלוטין ע\"י הרזין, ה-MMPs מפרקים אותם באופן הדרגתי ע\"י הידרוליזה, מה שמוביל לירידה בחוזק הקישור האדהזיבי לאורך זמן (דגרדציה של ה-Hybrid layer)."
+    }
+  ],
+  "4": [
+    {
+      "id": 4001,
       "difficulty": "קל",
       "question": "איזה גורם ביומכני בהכנת שן לכתר קובע באופן הישיר ביותר את ה-Retention של השיקום?",
       "options": [
@@ -2458,7 +2693,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 7) ורוזנסטיל (פרק 7), האחיזה (Retention) מונעת עקירת הכתר צדית/אנכית. היא תלויה ישירות בזווית ההתכנסות (זווית טאפר אופטימלית של 6 מעלות / 2-5 מעלות לכל קיר) וגובה הקירות ההכנתיים."
     },
     {
-      "id": 2,
+      "id": 4002,
       "difficulty": "בינוני",
       "question": "מהי המשמעות הביומכנית של Ferrule Effect בשן שעברה טיפול שורש ומשוקמת עם מבנה וכתר?",
       "options": [
@@ -2471,7 +2706,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, אפקט הפרול (Ferrule Effect) דורש לפחות 1.5-2.0 מ\"מ של דנטין בריא אנכי מעל ה-Finish line עם עובי דופן של לפחות 1 מ\"מ. זהו הגורם הקריטי ביותר למניעת שברי שורש אנכיים בשיניים מטופלות שורש."
     },
     {
-      "id": 3,
+      "id": 4003,
       "difficulty": "קשה",
       "question": "בעת השחזת שן לכתר מתכת-חרסינה (PFM) בטוחנה עליונה, מהו עומק ההורדה הדרוש בדופן הבוקאלית/פציאלית?",
       "options": [
@@ -2484,7 +2719,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8), השחזה פציאלית לכתר PFM דורשת הורדה של 1.2-1.5 מ\"מ (או כתף/שמפר עמוק) כדי לאפשר עובי מספק למתכת, לשכבת האופקר ולחרסינה האסתטית מבלי ליצר Overcontouring."
     },
     {
-      "id": 4,
+      "id": 4004,
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) הוא המומלץ ביותר כיום לכתרי זירקוניה מלאה (Monolithic Zirconia) ומתכת מלאה, ומדוע?",
       "options": [
@@ -2497,7 +2732,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, קו סיום Chamfer בעומק 0.5-0.8 מ\"מ מתאים לזירקוניה מונולית ולכתרי מתכת מלאים מכיוון שהוא מונע זווית פנימית חדה (אזור ריכוז מאמצים) ומאפשר הסתגלות שוליים קלינית מדויקת."
     },
     {
-      "id": 301,
+      "id": 4005,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית המומלצת (Total Occlusal Convergence - TOC) בספרות הלימוד (שילינבורג / רוזנסטיל) בעת השחזת שן לכתר קבוע?",
@@ -2511,7 +2746,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 9) ורוזנסטיל (פרק 13), הזווית התיאורטית האידיאלית להשחזה (TOC) היא 6 מעלות (3 מעלות לכל דופן מול שירטוט הציר). במחקרים קליניים נמצא כי הזווית הממוצעת המבוצעת ע\"י רופאים נעה בין 10 ל-20 מעלות."
     },
     {
-      "id": 302,
+      "id": 4006,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מהו עומק ההפחתה האוקלוזלית (Occlusal Clearance) הנדרש בעת השחזת כתר מתכת-חרסינה (PFM) בתלולית תומכת (Functional Cusp) לעומת תלולית מנחה (Non-functional Cusp)?",
@@ -2525,7 +2760,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 9), השחזת תלולית תומכת (Functional cusp: בוקאלית בתחתונה, פלטינלית בעליונה) דורשת הפחתה של 2.0 מ\"מ בעוד תלולית מנחה דורשת 1.5 מ\"מ, כדי לספק עובי מספיק לסגסוגת ולחרסינה תחת עומסי הסגירה."
     },
     {
-      "id": 303,
+      "id": 4007,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Margin design) מומלץ בספרות עבור כתר זירקוניה מונוליתית או כתר מתכת מלאה?",
@@ -2539,7 +2774,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, קו סיום מסוג Chamfer ברוחב 0.5-0.8 מ\"מ מומלץ לכתרי מתכת וזירקוניה מונוליתית מכיוון שהוא מציע גבול ברור, משמר חומר שן ומפחית ריכוז מאמצים."
     },
     {
-      "id": 304,
+      "id": 4008,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מהו האפקט הביומכני של ה-Ferrule Effect בשן שעברה טיפול שורש ומשוקמת עם מבנה וכתר?",
@@ -2553,7 +2788,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי רוזנסטיל (פרק 12) ושילינבורג, ה-Ferrule Effect מחייב חומר שן בריא בגובה 1.5-2.0 מ\"מ מעל השוליים. הוא חיוני לעמידות השן בפני כוחות כפיפה ומונע שברי שורש אנכיים."
     },
     {
-      "id": 1040,
+      "id": 4009,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
@@ -2567,7 +2802,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1041,
+      "id": 4010,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
@@ -2581,7 +2816,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1042,
+      "id": 4011,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
@@ -2595,7 +2830,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1043,
+      "id": 4012,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
@@ -2609,7 +2844,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1044,
+      "id": 4013,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
@@ -2623,7 +2858,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1045,
+      "id": 4014,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
@@ -2637,7 +2872,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1046,
+      "id": 4015,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
@@ -2651,7 +2886,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1047,
+      "id": 4016,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
@@ -2665,7 +2900,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1048,
+      "id": 4017,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
@@ -2679,7 +2914,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1049,
+      "id": 4018,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
@@ -2693,7 +2928,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1050,
+      "id": 4019,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
@@ -2707,7 +2942,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1051,
+      "id": 4020,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
@@ -2721,7 +2956,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1052,
+      "id": 4021,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
@@ -2735,7 +2970,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1053,
+      "id": 4022,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
@@ -2749,7 +2984,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1054,
+      "id": 4023,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
@@ -2763,7 +2998,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1055,
+      "id": 4024,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
@@ -2777,7 +3012,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1056,
+      "id": 4025,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
@@ -2791,7 +3026,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1057,
+      "id": 4026,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
@@ -2805,7 +3040,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1058,
+      "id": 4027,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
@@ -2819,7 +3054,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1059,
+      "id": 4028,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
@@ -2833,7 +3068,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1060,
+      "id": 4029,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
@@ -2847,7 +3082,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1061,
+      "id": 4030,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
@@ -2861,7 +3096,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1062,
+      "id": 4031,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
@@ -2875,7 +3110,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1063,
+      "id": 4032,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
@@ -2889,7 +3124,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1064,
+      "id": 4033,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
@@ -2903,7 +3138,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1065,
+      "id": 4034,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
@@ -2917,7 +3152,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1066,
+      "id": 4035,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
@@ -2931,7 +3166,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1067,
+      "id": 4036,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
@@ -2945,7 +3180,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1068,
+      "id": 4037,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
@@ -2959,7 +3194,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1069,
+      "id": 4038,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
@@ -2973,7 +3208,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1070,
+      "id": 4039,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
@@ -2987,7 +3222,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1071,
+      "id": 4040,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
@@ -3001,7 +3236,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1072,
+      "id": 4041,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
@@ -3015,7 +3250,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1073,
+      "id": 4042,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
@@ -3029,7 +3264,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1074,
+      "id": 4043,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
@@ -3043,7 +3278,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1075,
+      "id": 4044,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
@@ -3057,7 +3292,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1076,
+      "id": 4045,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
@@ -3071,7 +3306,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1077,
+      "id": 4046,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
@@ -3085,7 +3320,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1078,
+      "id": 4047,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
@@ -3099,7 +3334,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1079,
+      "id": 4048,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
@@ -3113,7 +3348,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1080,
+      "id": 4049,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
@@ -3127,7 +3362,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1081,
+      "id": 4050,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
@@ -3141,7 +3376,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1082,
+      "id": 4051,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
@@ -3155,7 +3390,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1083,
+      "id": 4052,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
@@ -3169,7 +3404,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1084,
+      "id": 4053,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
@@ -3183,7 +3418,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1085,
+      "id": 4054,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
@@ -3197,7 +3432,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1086,
+      "id": 4055,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
@@ -3211,7 +3446,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1087,
+      "id": 4056,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
@@ -3225,7 +3460,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1088,
+      "id": 4057,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
@@ -3239,7 +3474,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1089,
+      "id": 4058,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
@@ -3253,7 +3488,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1090,
+      "id": 4059,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
@@ -3267,7 +3502,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1091,
+      "id": 4060,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
@@ -3281,7 +3516,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1092,
+      "id": 4061,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
@@ -3295,7 +3530,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1093,
+      "id": 4062,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
@@ -3309,7 +3544,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1094,
+      "id": 4063,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
@@ -3323,7 +3558,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1095,
+      "id": 4064,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
@@ -3337,7 +3572,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1096,
+      "id": 4065,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
@@ -3351,7 +3586,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1097,
+      "id": 4066,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
@@ -3365,7 +3600,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1098,
+      "id": 4067,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
@@ -3379,7 +3614,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1099,
+      "id": 4068,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
@@ -3393,7 +3628,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1100,
+      "id": 4069,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
@@ -3407,7 +3642,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1101,
+      "id": 4070,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
@@ -3421,7 +3656,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1102,
+      "id": 4071,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
@@ -3435,7 +3670,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1103,
+      "id": 4072,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
@@ -3449,7 +3684,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1104,
+      "id": 4073,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
@@ -3463,7 +3698,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1105,
+      "id": 4074,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
@@ -3477,7 +3712,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1106,
+      "id": 4075,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
@@ -3491,7 +3726,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1107,
+      "id": 4076,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
@@ -3505,7 +3740,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1108,
+      "id": 4077,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
@@ -3519,7 +3754,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1109,
+      "id": 4078,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
@@ -3533,7 +3768,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1110,
+      "id": 4079,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
@@ -3547,7 +3782,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1111,
+      "id": 4080,
       "topic": "3. עקרונות השחזת שיניים וגאומטריה שיקומית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
@@ -3561,9 +3796,9 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     }
   ],
-  "4": [
+  "5": [
     {
-      "id": 1,
+      "id": 5001,
       "difficulty": "קל",
       "question": "איזה חומר מטבע נחשב להידרופילי ביותר באופן טבעי (ללא צורך בהוספת סורפקטנטים)?",
       "options": [
@@ -3576,7 +3811,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8) ושילינבורג, פוליאתר (Polyether) הוא חומר מטבע הידרופילי מובהק מטבעו עקב קבוצות האתר בשרשרת הפולימר, בעוד סיליקונים דורשים תוספת סורפקטנט כדי להפחית זווית מגע."
     },
     {
-      "id": 2,
+      "id": 5002,
       "difficulty": "בינוני",
       "question": "מהו תוצר הלוואי שנפלט במהלך תגובת המצליב (Polymerization) בחומר מטבע מסוג Condensation Silicone?",
       "options": [
@@ -3589,7 +3824,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סיליקון בדחיסה (Condensation silicone) פולט אתנול כתוצר לוואי. התאיידות האתנול גורמת להתכווצות מימדית משמעותית לאורך זמן, ולכן יש ליצוק את הגבס מיד."
     },
     {
-      "id": 3,
+      "id": 5003,
       "difficulty": "קשה",
       "question": "מדוע מומלץ להמתין לפחות 30-60 דקות לפני יציקת גבס במטבע מסוג Addition Silicone (PVS) שאינו מכיל Hydrogen Scavenger?",
       "options": [
@@ -3602,7 +3837,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, תגובת המשנה ב-Addition silicone שאינו מכיל קולט הידרוגן משחררת גז הידרוגן. יציקה מיידית גורמת לבועות קטנות וחללים בשטח פנים מודל הגבס."
     },
     {
-      "id": 4,
+      "id": 5004,
       "difficulty": "מומחה",
       "question": "כיצד משפיעה ספיגת מים (Water imbibition) על מטבע Polyether אם הוא מאוחסן בסביבה רטובה ממושכת?",
       "options": [
@@ -3615,7 +3850,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ושילינבורג, בשל היותו הידרופילי, Polyether סופג מים בסביבה לחה (Imbibition) ועלול להתפשט ולעוות את המטבע, ולכן יש לאחסנו בסביבה יבשה."
     },
     {
-      "id": 401,
+      "id": 5005,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "איזה חומר מטבע נחשב להידרופילי מבין חומרי המטבע האלסטומריים?",
@@ -3629,7 +3864,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרקים 5-8), פוליאתר (Impregum) הוא חומר הידרופילי טבעי, מה שמאפשר הרטבה טובה של רקמות הפה והגבס, אך מחייב זהירות מספיגת מים (Imbibition) בעת אחסון."
     },
     {
-      "id": 402,
+      "id": 5006,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהו תוצר הלוואי שנפלט בעת התקשות Condensation Silicone ומה השפעתו על יציבות המידות?",
@@ -3643,7 +3878,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), סיליקון בדחיסה פולט אתנול כתוצר לוואי של תגובת המצליב (Cross-linking). התאדות האתנול גורמת להתכווצות מימדית משמעותית ולכן מחייבת יציקה מיידית."
     },
     {
-      "id": 403,
+      "id": 5007,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהי הסיבה שבגללה מומלץ להמתין כ-30 עד 60 דקות לפני יציקת גבס במטבע מסוג Addition Silicone (PVS) ללא פלטינום/פלאדיום סורבנט?",
@@ -3657,7 +3892,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), PVS עשוי להפריש גז מימן כתגובת לוואי של קבוצות Silane הידריד. אם יוצקים גבס מייד, גז המימן יוצר בועות קטנות (Pits) על פני מודל הגבס."
     },
     {
-      "id": 404,
+      "id": 5008,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "איזה חומר סילוק חניכיים (Retraction solution) מבוסס אדרנלין כרוך בסכנה למערכת הלבו-ווקולרית (Epinephrine Racemic Syndrome)?",
@@ -3671,7 +3906,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ושילינבורג, חוט ספיגה המושרה ב-8% Racemic Epinephrine עלול להיספג סיסטמית ברירית פצועה ולגרום לתופעות לוואי קשות (Epinephrine syndrome) כגון עליית דופק ולחץ דם, ולכן קיימת התווית נגד במטופלי קרדיו."
     },
     {
-      "id": 1112,
+      "id": 5009,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 3 - קל)",
@@ -3685,7 +3920,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1113,
+      "id": 5010,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 4 - קל)",
@@ -3699,7 +3934,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1114,
+      "id": 5011,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 5 - קל)",
@@ -3713,7 +3948,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1115,
+      "id": 5012,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 6 - קל)",
@@ -3727,7 +3962,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1116,
+      "id": 5013,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 7 - קל)",
@@ -3741,7 +3976,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1117,
+      "id": 5014,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 8 - קל)",
@@ -3755,7 +3990,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1118,
+      "id": 5015,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 9 - קל)",
@@ -3769,7 +4004,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1119,
+      "id": 5016,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 10 - קל)",
@@ -3783,7 +4018,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1120,
+      "id": 5017,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 11 - קל)",
@@ -3797,7 +4032,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1121,
+      "id": 5018,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 12 - קל)",
@@ -3811,7 +4046,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1122,
+      "id": 5019,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 13 - קל)",
@@ -3825,7 +4060,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1123,
+      "id": 5020,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 14 - קל)",
@@ -3839,7 +4074,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1124,
+      "id": 5021,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 15 - קל)",
@@ -3853,7 +4088,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1125,
+      "id": 5022,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 16 - קל)",
@@ -3867,7 +4102,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1126,
+      "id": 5023,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 17 - קל)",
@@ -3881,7 +4116,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1127,
+      "id": 5024,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 18 - קל)",
@@ -3895,7 +4130,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1128,
+      "id": 5025,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 19 - קל)",
@@ -3909,7 +4144,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1129,
+      "id": 5026,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קל",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 20 - קל)",
@@ -3923,7 +4158,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1130,
+      "id": 5027,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 3 - בינוני)",
@@ -3937,7 +4172,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1131,
+      "id": 5028,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 4 - בינוני)",
@@ -3951,7 +4186,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1132,
+      "id": 5029,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 5 - בינוני)",
@@ -3965,7 +4200,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1133,
+      "id": 5030,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 6 - בינוני)",
@@ -3979,7 +4214,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1134,
+      "id": 5031,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 7 - בינוני)",
@@ -3993,7 +4228,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1135,
+      "id": 5032,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 8 - בינוני)",
@@ -4007,7 +4242,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1136,
+      "id": 5033,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 9 - בינוני)",
@@ -4021,7 +4256,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1137,
+      "id": 5034,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 10 - בינוני)",
@@ -4035,7 +4270,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1138,
+      "id": 5035,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 11 - בינוני)",
@@ -4049,7 +4284,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1139,
+      "id": 5036,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 12 - בינוני)",
@@ -4063,7 +4298,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1140,
+      "id": 5037,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 13 - בינוני)",
@@ -4077,7 +4312,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1141,
+      "id": 5038,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 14 - בינוני)",
@@ -4091,7 +4326,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1142,
+      "id": 5039,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 15 - בינוני)",
@@ -4105,7 +4340,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1143,
+      "id": 5040,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 16 - בינוני)",
@@ -4119,7 +4354,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1144,
+      "id": 5041,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 17 - בינוני)",
@@ -4133,7 +4368,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1145,
+      "id": 5042,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 18 - בינוני)",
@@ -4147,7 +4382,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1146,
+      "id": 5043,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 19 - בינוני)",
@@ -4161,7 +4396,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1147,
+      "id": 5044,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "בינוני",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 20 - בינוני)",
@@ -4175,7 +4410,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1148,
+      "id": 5045,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 3 - קשה)",
@@ -4189,7 +4424,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1149,
+      "id": 5046,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 4 - קשה)",
@@ -4203,7 +4438,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1150,
+      "id": 5047,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 5 - קשה)",
@@ -4217,7 +4452,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1151,
+      "id": 5048,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 6 - קשה)",
@@ -4231,7 +4466,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1152,
+      "id": 5049,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 7 - קשה)",
@@ -4245,7 +4480,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1153,
+      "id": 5050,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 8 - קשה)",
@@ -4259,7 +4494,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1154,
+      "id": 5051,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 9 - קשה)",
@@ -4273,7 +4508,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1155,
+      "id": 5052,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 10 - קשה)",
@@ -4287,7 +4522,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1156,
+      "id": 5053,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 11 - קשה)",
@@ -4301,7 +4536,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1157,
+      "id": 5054,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 12 - קשה)",
@@ -4315,7 +4550,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1158,
+      "id": 5055,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 13 - קשה)",
@@ -4329,7 +4564,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1159,
+      "id": 5056,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 14 - קשה)",
@@ -4343,7 +4578,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1160,
+      "id": 5057,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 15 - קשה)",
@@ -4357,7 +4592,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1161,
+      "id": 5058,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 16 - קשה)",
@@ -4371,7 +4606,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1162,
+      "id": 5059,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 17 - קשה)",
@@ -4385,7 +4620,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1163,
+      "id": 5060,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 18 - קשה)",
@@ -4399,7 +4634,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1164,
+      "id": 5061,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 19 - קשה)",
@@ -4413,7 +4648,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1165,
+      "id": 5062,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "קשה",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 20 - קשה)",
@@ -4427,7 +4662,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1166,
+      "id": 5063,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 3 - מומחה)",
@@ -4441,7 +4676,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1167,
+      "id": 5064,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 4 - מומחה)",
@@ -4455,7 +4690,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1168,
+      "id": 5065,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 5 - מומחה)",
@@ -4469,7 +4704,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1169,
+      "id": 5066,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 6 - מומחה)",
@@ -4483,7 +4718,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1170,
+      "id": 5067,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 7 - מומחה)",
@@ -4497,7 +4732,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1171,
+      "id": 5068,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 8 - מומחה)",
@@ -4511,7 +4746,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1172,
+      "id": 5069,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 9 - מומחה)",
@@ -4525,7 +4760,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1173,
+      "id": 5070,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 10 - מומחה)",
@@ -4539,7 +4774,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1174,
+      "id": 5071,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 11 - מומחה)",
@@ -4553,7 +4788,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1175,
+      "id": 5072,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 12 - מומחה)",
@@ -4567,7 +4802,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1176,
+      "id": 5073,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 13 - מומחה)",
@@ -4581,7 +4816,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1177,
+      "id": 5074,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 14 - מומחה)",
@@ -4595,7 +4830,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1178,
+      "id": 5075,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 15 - מומחה)",
@@ -4609,7 +4844,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1179,
+      "id": 5076,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 16 - מומחה)",
@@ -4623,7 +4858,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1180,
+      "id": 5077,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 17 - מומחה)",
@@ -4637,7 +4872,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     },
     {
-      "id": 1181,
+      "id": 5078,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהם המאפיינים הביומכניים של חומר מטבע מסוג Polyether (כגון Impregum)? (שאלה 18 - מומחה)",
@@ -4651,7 +4886,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 8), פוליאתר הוא הידרופילי וקשיח במיוחד (Rigid), ולכן דורש זהירות בהוצאה מאזורים אנדרקאטיים."
     },
     {
-      "id": 1182,
+      "id": 5079,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהי התופעה של Imbibition בחומרי מטבע מסוג אלגציות (Hydrocolloids)? (שאלה 19 - מומחה)",
@@ -4665,7 +4900,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, Imbibition היא ספיגת מים והתפשטות המטבע ההידרוקולואידי בעת שהייה במים."
     },
     {
-      "id": 1183,
+      "id": 5080,
       "topic": "4. חומרי מטבע וטכניקות הטבעה בשיקום קבוע",
       "difficulty": "מומחה",
       "question": "מהו היתרון המרכזי של Addition Silicone (PVS) על פני Condensation Silicone? (שאלה 20 - מומחה)",
@@ -4679,9 +4914,9 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, PVS פולימר בסיפוח ללא תוצר לוואי (שלא כמו קונדנסציה שפולט אתנול), ולכן בעל יציבות מימדית מעולה."
     }
   ],
-  "5": [
+  "6": [
     {
-      "id": 1,
+      "id": 7001,
       "difficulty": "קל",
       "question": "איזה צמנט דנטלי מציג קישור כימי ישיר (Chemical adhesion) לזגוגית ולדנטין ע\"י קישור קבוצות קרבוקסיל ליוני סידן?",
       "options": [
@@ -4694,7 +4929,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 14-15), צמנט פוליקרבוקסילאט ו-Glass Ionomer מכילים חומצה פוליאקרילית הנקשרת כימית ליוני הסידן בהידרוקסיאפטיט של השן."
     },
     {
-      "id": 2,
+      "id": 7002,
       "difficulty": "בינוני",
       "question": "איזה רכיב בצמנט Zinc Oxide Eugenol (ZOE) אחראי לעיכוב הפולימריזציה של צמנטים שרפיים וקומפוזיטים?",
       "options": [
@@ -4707,7 +4942,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, האוגנול הוא Free radical scavenger המעכב פולימריזציה של שרפים קומפוזיטיים וצמנטים שרפיים, ולכן אסור לשימוש לפני הדבקה שרפית."
     },
     {
-      "id": 3,
+      "id": 7003,
       "difficulty": "קשה",
       "question": "מהי התכונה המכנית הבולטת של זירקוניה מיוצבת איטריום (Y-TZP) המונעת התפשטות סדקים (Transformation Toughening)?",
       "options": [
@@ -4720,7 +4955,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, מנגנון ה-Transformation toughening ב-Y-TZP מתבסס על כך שמאמץ בשיא הסדק גורם לשינוי פאזה מטטרגונלית למונוקלינית עם גידול נפחי בשיעור 3-5%, מה שיוצר כוחות לחיצה הסוגרים את הסדק."
     },
     {
-      "id": 4,
+      "id": 7004,
       "difficulty": "מומחה",
       "question": "כיצד מתבצעת הכנת השטח הפנימי של שרף סרמי חומצי (זכוכיתי/ליתיום דיסיליקט) לפני הדבקה שרפית (Adhesive luting)?",
       "options": [
@@ -4733,7 +4968,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, חרסינות זכוכיתיות (Lithium disilicate / Feldspathic) דורשות צריבה ב-HF ליצירת מיקרו-רפורוזיות, ולאחריה Silane לקישור כימי בין המטריצה השרפית לזכוכית."
     },
     {
-      "id": 501,
+      "id": 7005,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "איזה צמנט מבין הבאים משחרר פלואוריד באופן מתמשך לרקמות השן?",
@@ -4747,7 +4982,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 16), גלאס איונומר משחרר פלואוריד המסיק מניעת עששת משנית ובעל קישור כימי (Chelation) ליוני סידן באמייל ובדנטין."
     },
     {
-      "id": 502,
+      "id": 7006,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מהו מנגנון הקישור הראשי של צמנט Zinc Phosphate לשן ולשיקום?",
@@ -4761,7 +4996,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 16), אבץ פוספט אינו יוצר קישור כימי לשן או למתכת, אלא מסתמך באופן מוחלט על Mechanical interlocking (מיקרו-אחיזה מכנית)."
     },
     {
-      "id": 503,
+      "id": 7007,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מהו מנגנון ה-Transformation Toughening המעניק לזירקוניה (Y-TZP) את חוזקה המכני הגבוה למניעת התפשטות סדקים?",
@@ -4775,7 +5010,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס (פרק 21) ורוזנסטיל (פרק 23), Transformation toughening בזירקוניה Y-TZP מתרחש כאשר מאמץ בקצה סדק גורם למעבר מפאזה טטרגונלית למונוקלינית. התרחבות הנפח (3-5%) יוצרת מאמצי לחיצה הנועלים את הסדק מלהתפשט."
     },
     {
-      "id": 504,
+      "id": 7008,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "איזו סגסוגת דנטלית מוגדרת כ-High Noble Alloy על פי ה-ADA (American Dental Association)?",
@@ -4789,7 +5024,7 @@ ALL_QUESTIONS = {
       "explanation": "סיווג ה-ADA מגדיר High Noble כסגסוגת בעלת תכולת מתכות אצילות של 60% ומעלה, כשמתוכם לפחות 40% חייב להיות זהב (Au)."
     },
     {
-      "id": 1184,
+      "id": 7009,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 3 - קל)",
@@ -4803,7 +5038,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1185,
+      "id": 7010,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 4 - קל)",
@@ -4817,7 +5052,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1186,
+      "id": 7011,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 5 - קל)",
@@ -4831,7 +5066,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1187,
+      "id": 7012,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 6 - קל)",
@@ -4845,7 +5080,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1188,
+      "id": 7013,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 7 - קל)",
@@ -4859,7 +5094,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1189,
+      "id": 7014,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 8 - קל)",
@@ -4873,7 +5108,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1190,
+      "id": 7015,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 9 - קל)",
@@ -4887,7 +5122,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1191,
+      "id": 7016,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 10 - קל)",
@@ -4901,7 +5136,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1192,
+      "id": 7017,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 11 - קל)",
@@ -4915,7 +5150,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1193,
+      "id": 7018,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 12 - קל)",
@@ -4929,7 +5164,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1194,
+      "id": 7019,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 13 - קל)",
@@ -4943,7 +5178,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1195,
+      "id": 7020,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 14 - קל)",
@@ -4957,7 +5192,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1196,
+      "id": 7021,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 15 - קל)",
@@ -4971,7 +5206,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1197,
+      "id": 7022,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 16 - קל)",
@@ -4985,7 +5220,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1198,
+      "id": 7023,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 17 - קל)",
@@ -4999,7 +5234,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1199,
+      "id": 7024,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 18 - קל)",
@@ -5013,7 +5248,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1200,
+      "id": 7025,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 19 - קל)",
@@ -5027,7 +5262,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1201,
+      "id": 7026,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קל",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 20 - קל)",
@@ -5041,7 +5276,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1202,
+      "id": 7027,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 3 - בינוני)",
@@ -5055,7 +5290,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1203,
+      "id": 7028,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 4 - בינוני)",
@@ -5069,7 +5304,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1204,
+      "id": 7029,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 5 - בינוני)",
@@ -5083,7 +5318,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1205,
+      "id": 7030,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 6 - בינוני)",
@@ -5097,7 +5332,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1206,
+      "id": 7031,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 7 - בינוני)",
@@ -5111,7 +5346,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1207,
+      "id": 7032,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 8 - בינוני)",
@@ -5125,7 +5360,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1208,
+      "id": 7033,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 9 - בינוני)",
@@ -5139,7 +5374,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1209,
+      "id": 7034,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 10 - בינוני)",
@@ -5153,7 +5388,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1210,
+      "id": 7035,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 11 - בינוני)",
@@ -5167,7 +5402,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1211,
+      "id": 7036,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 12 - בינוני)",
@@ -5181,7 +5416,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1212,
+      "id": 7037,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 13 - בינוני)",
@@ -5195,7 +5430,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1213,
+      "id": 7038,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 14 - בינוני)",
@@ -5209,7 +5444,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1214,
+      "id": 7039,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 15 - בינוני)",
@@ -5223,7 +5458,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1215,
+      "id": 7040,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 16 - בינוני)",
@@ -5237,7 +5472,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1216,
+      "id": 7041,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 17 - בינוני)",
@@ -5251,7 +5486,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1217,
+      "id": 7042,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 18 - בינוני)",
@@ -5265,7 +5500,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1218,
+      "id": 7043,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 19 - בינוני)",
@@ -5279,7 +5514,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1219,
+      "id": 7044,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "בינוני",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 20 - בינוני)",
@@ -5293,7 +5528,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1220,
+      "id": 7045,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 3 - קשה)",
@@ -5307,7 +5542,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1221,
+      "id": 7046,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 4 - קשה)",
@@ -5321,7 +5556,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1222,
+      "id": 7047,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 5 - קשה)",
@@ -5335,7 +5570,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1223,
+      "id": 7048,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 6 - קשה)",
@@ -5349,7 +5584,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1224,
+      "id": 7049,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 7 - קשה)",
@@ -5363,7 +5598,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1225,
+      "id": 7050,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 8 - קשה)",
@@ -5377,7 +5612,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1226,
+      "id": 7051,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 9 - קשה)",
@@ -5391,7 +5626,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1227,
+      "id": 7052,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 10 - קשה)",
@@ -5405,7 +5640,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1228,
+      "id": 7053,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 11 - קשה)",
@@ -5419,7 +5654,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1229,
+      "id": 7054,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 12 - קשה)",
@@ -5433,7 +5668,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1230,
+      "id": 7055,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 13 - קשה)",
@@ -5447,7 +5682,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1231,
+      "id": 7056,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 14 - קשה)",
@@ -5461,7 +5696,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1232,
+      "id": 7057,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 15 - קשה)",
@@ -5475,7 +5710,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1233,
+      "id": 7058,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 16 - קשה)",
@@ -5489,7 +5724,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1234,
+      "id": 7059,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 17 - קשה)",
@@ -5503,7 +5738,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1235,
+      "id": 7060,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 18 - קשה)",
@@ -5517,7 +5752,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1236,
+      "id": 7061,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 19 - קשה)",
@@ -5531,7 +5766,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1237,
+      "id": 7062,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "קשה",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 20 - קשה)",
@@ -5545,7 +5780,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1238,
+      "id": 7063,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 3 - מומחה)",
@@ -5559,7 +5794,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1239,
+      "id": 7064,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 4 - מומחה)",
@@ -5573,7 +5808,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1240,
+      "id": 7065,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 5 - מומחה)",
@@ -5587,7 +5822,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1241,
+      "id": 7066,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 6 - מומחה)",
@@ -5601,7 +5836,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1242,
+      "id": 7067,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 7 - מומחה)",
@@ -5615,7 +5850,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1243,
+      "id": 7068,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 8 - מומחה)",
@@ -5629,7 +5864,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1244,
+      "id": 7069,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 9 - מומחה)",
@@ -5643,7 +5878,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1245,
+      "id": 7070,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 10 - מומחה)",
@@ -5657,7 +5892,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1246,
+      "id": 7071,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 11 - מומחה)",
@@ -5671,7 +5906,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1247,
+      "id": 7072,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 12 - מומחה)",
@@ -5685,7 +5920,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1248,
+      "id": 7073,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 13 - מומחה)",
@@ -5699,7 +5934,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1249,
+      "id": 7074,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 14 - מומחה)",
@@ -5713,7 +5948,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1250,
+      "id": 7075,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 15 - מומחה)",
@@ -5727,7 +5962,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1251,
+      "id": 7076,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 16 - מומחה)",
@@ -5741,7 +5976,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1252,
+      "id": 7077,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 17 - מומחה)",
@@ -5755,7 +5990,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     },
     {
-      "id": 1253,
+      "id": 7078,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 18 - מומחה)",
@@ -5769,7 +6004,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
     },
     {
-      "id": 1254,
+      "id": 7079,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 19 - מומחה)",
@@ -5783,7 +6018,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
     },
     {
-      "id": 1255,
+      "id": 7080,
       "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
       "difficulty": "מומחה",
       "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 20 - מומחה)",
@@ -5797,9 +6032,1127 @@ ALL_QUESTIONS = {
       "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
     }
   ],
-  "6": [
+  "7": [
     {
-      "id": 1,
+      "id": 7001,
+      "difficulty": "קל",
+      "question": "איזה צמנט דנטלי מציג קישור כימי ישיר (Chemical adhesion) לזגוגית ולדנטין ע\"י קישור קבוצות קרבוקסיל ליוני סידן?",
+      "options": [
+        "א. EBA Cement. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. Glass Ionomer Cement (GIC) / Polycarboxylate Cement.",
+        "ג. Zinc Phosphate Cement. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. Zinc Oxide Eugenol (ZOE). כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+      ],
+      "correct": "ב. Glass Ionomer Cement (GIC) / Polycarboxylate Cement.",
+      "explanation": "לפי פיליפס (פרק 14-15), צמנט פוליקרבוקסילאט ו-Glass Ionomer מכילים חומצה פוליאקרילית הנקשרת כימית ליוני הסידן בהידרוקסיאפטיט של השן."
+    },
+    {
+      "id": 7002,
+      "difficulty": "בינוני",
+      "question": "איזה רכיב בצמנט Zinc Oxide Eugenol (ZOE) אחראי לעיכוב הפולימריזציה של צמנטים שרפיים וקומפוזיטים?",
+      "options": [
+        "א. Zinc acetate.",
+        "ב. Acetic acid.",
+        "ג. Eugenol (אוגנול).",
+        "ד. Zinc oxide. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+      ],
+      "correct": "ג. Eugenol (אוגנול).",
+      "explanation": "לפי פיליפס, האוגנול הוא Free radical scavenger המעכב פולימריזציה של שרפים קומפוזיטיים וצמנטים שרפיים, ולכן אסור לשימוש לפני הדבקה שרפית."
+    },
+    {
+      "id": 7003,
+      "difficulty": "קשה",
+      "question": "מהי התכונה המכנית הבולטת של זירקוניה מיוצבת איטריום (Y-TZP) המונעת התפשטות סדקים (Transformation Toughening)?",
+      "options": [
+        "א. התכווצות נפחית של 10% בראש הסדק. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. אלסטיות גבוהה הדומה לרירית החך. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. מעבר פאזה מ-Cubic ל-Amorphous המייצר כוחות מתיחה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. מעבר פאזה מ-Tetragonal ל-Monoclinic המלווה בהתרחבות נפחית של כ-3-5% הנגרמת ממאמץ בשיא הסדק."
+      ],
+      "correct": "ד. מעבר פאזה מ-Tetragonal ל-Monoclinic המלווה בהתרחבות נפחית של כ-3-5% הנגרמת ממאמץ בשיא הסדק.",
+      "explanation": "לפי פיליפס ורוזנסטיל, מנגנון ה-Transformation toughening ב-Y-TZP מתבסס על כך שמאמץ בשיא הסדק גורם לשינוי פאזה מטטרגונלית למונוקלינית עם גידול נפחי בשיעור 3-5%, מה שיוצר כוחות לחיצה הסוגרים את הסדק."
+    },
+    {
+      "id": 7004,
+      "difficulty": "מומחה",
+      "question": "כיצד מתבצעת הכנת השטח הפנימי של שרף סרמי חומצי (זכוכיתי/ליתיום דיסיליקט) לפני הדבקה שרפית (Adhesive luting)?",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (Hydrofluoric acid 5-9%) ולאחריה יישום סילאן (Silane coupling agent).",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) בלבד ללא סילאן. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ג. שטיפה במים מזוקקים ללא שום טיפול כימי. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
+        "ד. התזת סילוקסן בלחץ גבוה בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (Hydrofluoric acid 5-9%) ולאחריה יישום סילאן (Silane coupling agent).",
+      "explanation": "לפי פיליפס ורוזנסטיל, חרסינות זכוכיתיות (Lithium disilicate / Feldspathic) דורשות צריבה ב-HF ליצירת מיקרו-רפורוזיות, ולאחריה Silane לקישור כימי בין המטריצה השרפית לזכוכית."
+    },
+    {
+      "id": 7005,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "איזה צמנט מבין הבאים משחרר פלואוריד באופן מתמשך לרקמות השן?",
+      "options": [
+        "א. Composite Resin Cement (צמנט רזין). כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. Glass Ionomer Cement (GIC / RMGI), המשחרר יוני פלואוריד ומקשר כימית לזגוגית ולדנטין.",
+        "ג. Zinc Phosphate Cement (צמנט אבץ-פוספט). כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. Zinc Oxide Eugenol (ZOE). כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+      ],
+      "correct": "ב. Glass Ionomer Cement (GIC / RMGI), המשחרר יוני פלואוריד ומקשר כימית לזגוגית ולדנטין.",
+      "explanation": "לפי פיליפס (פרק 16), גלאס איונומר משחרר פלואוריד המסיק מניעת עששת משנית ובעל קישור כימי (Chelation) ליוני סידן באמייל ובדנטין."
+    },
+    {
+      "id": 7006,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מהו מנגנון הקישור הראשי של צמנט Zinc Phosphate לשן ולשיקום?",
+      "options": [
+        "א. אינטגרציה אופטית ואטימה הידראולית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. קישור קובלנטי חזק לקולגן בדנטין. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. אחיזה מכנית בלבד (Mechanical interlocking) לתוך אי-סדירויות המשטח המשוחז והשיקום.",
+        "ד. קישור אידיאלי המבוסס על חומצה מתקרילית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+      ],
+      "correct": "ג. אחיזה מכנית בלבד (Mechanical interlocking) לתוך אי-סדירויות המשטח המשוחז והשיקום.",
+      "explanation": "לפי פיליפס (פרק 16), אבץ פוספט אינו יוצר קישור כימי לשן או למתכת, אלא מסתמך באופן מוחלט על Mechanical interlocking (מיקרו-אחיזה מכנית)."
+    },
+    {
+      "id": 7007,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מהו מנגנון ה-Transformation Toughening המעניק לזירקוניה (Y-TZP) את חוזקה המכני הגבוה למניעת התפשטות סדקים?",
+      "options": [
+        "א. גידול של קריסטלים מסוג Leucite בתוך המטריצה הזכוכיתית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. המסה חלקית של פאזת הזכוכית ע\"י חומצה הידרופלואורית (HF). כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. מעבר פאזה מקריסטל מונוקליני לפאזה טטרגונלית תוך התכווצות נפח. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. מעבר פאזה מיוזם מאמץ מפאזה טטרגונלית (T-phase) לפאזה מונוקלינית (M-phase) באזור קצה הסדק, המלווה בהתרחבות נפחית של 3-5% אשר 'פוקקת' ונועלת את הסדק."
+      ],
+      "correct": "ד. מעבר פאזה מיוזם מאמץ מפאזה טטרגונלית (T-phase) לפאזה מונוקלינית (M-phase) באזור קצה הסדק, המלווה בהתרחבות נפחית של 3-5% אשר 'פוקקת' ונועלת את הסדק.",
+      "explanation": "לפי פיליפס (פרק 21) ורוזנסטיל (פרק 23), Transformation toughening בזירקוניה Y-TZP מתרחש כאשר מאמץ בקצה סדק גורם למעבר מפאזה טטרגונלית למונוקלינית. התרחבות הנפח (3-5%) יוצרת מאמצי לחיצה הנועלים את הסדק מלהתפשט."
+    },
+    {
+      "id": 7008,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "איזו סגסוגת דנטלית מוגדרת כ-High Noble Alloy על פי ה-ADA (American Dental Association)?",
+      "options": [
+        "א. סגסוגת המכילה תכולת מתכות אצילות (Noble metals: Au, Pt, Pd) של 60% לפחות מתוכם לפחות 40% זהב (Au).",
+        "ב. סגסוגת מבוססת ניקל-כרום (Ni-Cr) ללא זהב. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
+        "ג. טיטניום דרגה 4 טהור ללא מתכות נוספות. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
+        "ד. סגסוגת המכילה לפחות 25% מתכות אצילות בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
+      ],
+      "correct": "א. סגסוגת המכילה תכולת מתכות אצילות (Noble metals: Au, Pt, Pd) של 60% לפחות מתוכם לפחות 40% זהב (Au).",
+      "explanation": "סיווג ה-ADA מגדיר High Noble כסגסוגת בעלת תכולת מתכות אצילות של 60% ומעלה, כשמתוכם לפחות 40% חייב להיות זהב (Au)."
+    },
+    {
+      "id": 7009,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 3 - קל)",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ג. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7010,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 4 - קל)",
+      "options": [
+        "א. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ב. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7011,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 5 - קל)",
+      "options": [
+        "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ב. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ג. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7012,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 6 - קל)",
+      "options": [
+        "א. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ב. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7013,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 7 - קל)",
+      "options": [
+        "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ב. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ג. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7014,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 8 - קל)",
+      "options": [
+        "א. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ב. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7015,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 9 - קל)",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ג. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7016,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 10 - קל)",
+      "options": [
+        "א. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ב. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7017,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 11 - קל)",
+      "options": [
+        "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ב. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ג. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7018,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 12 - קל)",
+      "options": [
+        "א. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ב. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7019,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 13 - קל)",
+      "options": [
+        "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ב. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ג. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7020,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 14 - קל)",
+      "options": [
+        "א. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ב. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7021,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 15 - קל)",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ג. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7022,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 16 - קל)",
+      "options": [
+        "א. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ב. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7023,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 17 - קל)",
+      "options": [
+        "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ב. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ג. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7024,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 18 - קל)",
+      "options": [
+        "א. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ב. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7025,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 19 - קל)",
+      "options": [
+        "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ב. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ג. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7026,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קל",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 20 - קל)",
+      "options": [
+        "א. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ב. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7027,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 3 - בינוני)",
+      "options": [
+        "א. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ב. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7028,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 4 - בינוני)",
+      "options": [
+        "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ב. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ג. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7029,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 5 - בינוני)",
+      "options": [
+        "א. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ב. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7030,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 6 - בינוני)",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ג. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7031,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 7 - בינוני)",
+      "options": [
+        "א. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ב. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7032,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 8 - בינוני)",
+      "options": [
+        "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ב. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ג. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7033,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 9 - בינוני)",
+      "options": [
+        "א. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ב. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7034,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 10 - בינוני)",
+      "options": [
+        "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ב. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ג. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7035,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 11 - בינוני)",
+      "options": [
+        "א. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ב. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7036,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 12 - בינוני)",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ג. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7037,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 13 - בינוני)",
+      "options": [
+        "א. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ב. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7038,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 14 - בינוני)",
+      "options": [
+        "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ב. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ג. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7039,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 15 - בינוני)",
+      "options": [
+        "א. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ב. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7040,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 16 - בינוני)",
+      "options": [
+        "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ב. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ג. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7041,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 17 - בינוני)",
+      "options": [
+        "א. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ב. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7042,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 18 - בינוני)",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ג. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7043,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 19 - בינוני)",
+      "options": [
+        "א. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ב. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7044,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "בינוני",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 20 - בינוני)",
+      "options": [
+        "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ב. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ג. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7045,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 3 - קשה)",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ג. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7046,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 4 - קשה)",
+      "options": [
+        "א. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ב. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7047,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 5 - קשה)",
+      "options": [
+        "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ב. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ג. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7048,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 6 - קשה)",
+      "options": [
+        "א. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ב. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7049,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 7 - קשה)",
+      "options": [
+        "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ב. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ג. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7050,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 8 - קשה)",
+      "options": [
+        "א. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ב. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7051,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 9 - קשה)",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ג. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7052,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 10 - קשה)",
+      "options": [
+        "א. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ב. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7053,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 11 - קשה)",
+      "options": [
+        "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ב. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ג. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7054,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 12 - קשה)",
+      "options": [
+        "א. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ב. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7055,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 13 - קשה)",
+      "options": [
+        "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ב. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ג. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7056,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 14 - קשה)",
+      "options": [
+        "א. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ב. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7057,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 15 - קשה)",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ג. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7058,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 16 - קשה)",
+      "options": [
+        "א. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ב. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7059,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 17 - קשה)",
+      "options": [
+        "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ב. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ג. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7060,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 18 - קשה)",
+      "options": [
+        "א. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ב. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7061,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 19 - קשה)",
+      "options": [
+        "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ב. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ג. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7062,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "קשה",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 20 - קשה)",
+      "options": [
+        "א. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ב. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7063,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 3 - מומחה)",
+      "options": [
+        "א. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ב. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7064,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 4 - מומחה)",
+      "options": [
+        "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ב. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ג. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7065,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 5 - מומחה)",
+      "options": [
+        "א. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ב. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7066,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 6 - מומחה)",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ג. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7067,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 7 - מומחה)",
+      "options": [
+        "א. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ב. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7068,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 8 - מומחה)",
+      "options": [
+        "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ב. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ג. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7069,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 9 - מומחה)",
+      "options": [
+        "א. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ב. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7070,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 10 - מומחה)",
+      "options": [
+        "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ב. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ג. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7071,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 11 - מומחה)",
+      "options": [
+        "א. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ב. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7072,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 12 - מומחה)",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ג. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7073,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 13 - מומחה)",
+      "options": [
+        "א. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ב. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7074,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 14 - מומחה)",
+      "options": [
+        "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ב. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ג. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7075,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 15 - מומחה)",
+      "options": [
+        "א. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ב. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "ג. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7076,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 16 - מומחה)",
+      "options": [
+        "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ב. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ג. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "א. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7077,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 17 - מומחה)",
+      "options": [
+        "א. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ב. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "ג. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    },
+    {
+      "id": 7078,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "כיצד מתבצע הכנה כימית לקישור סרמיקה מסוג Lithium Disilicate (E-max)? (שאלה 18 - מומחה)",
+      "options": [
+        "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+        "ב. צריבה בחומצה זרחתית (Phosphoric acid 37%) למשך 2 דקות בלבד.",
+        "ג. התזת תחמוצת אלומיניום (Sandblasting) בלבד ללא שימוש בחומצה.",
+        "ד. אפליקציית צמנט אבץ-פוספט ללא שום הכנה מקדימה."
+      ],
+      "correct": "א. צריבה בחומצה הידרופלואורית (HF 4.9%-9.5%) למשך 20-20 שניות ואחריה אפליקציית Silane.",
+      "explanation": "לפי פיליפס ורוזנסטיל, סרמיקות זכוכיתיות (E-max) נצרבות ב-HF ליצירת מיקרו-אנדרקאטים ומצופות ב-Silane לקישור כימי."
+    },
+    {
+      "id": 7079,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי צמנט מסוג Resin-Modified Glass Ionomer (RMGI)? (שאלה 19 - מומחה)",
+      "options": [
+        "א. אינו משחרר פלואוריד כלל ורגיש מאוד ללחות בשעות הראשונות.",
+        "ב. מתאים אך ורק להדבקת וינירים דקים מחרסינה.",
+        "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+        "ד. בעל התפשטות מים מוגזמת שגורמת לסדקים בכל כתר זירקוניה."
+      ],
+      "correct": "ג. משלב שחרור פלואוריד עם חוזק מתוח וקישור משופר הודות לרכיב השרף (Resin).",
+      "explanation": "לפי פיליפס, RMGI משלב את יתרונות ה-GI (שחרור פלואוריד) עם חוזק מוגבר ורגישות מופחתת למים בזכות הפולימריזציה."
+    },
+    {
+      "id": 7080,
+      "topic": "5. צמנטים דנטליים, מתכות וסרמיקות",
+      "difficulty": "מומחה",
+      "question": "מהו המנגנון הפיזיקלי של Passivation בסגסוגות מתכת אצילות למחצה (Base metals)? (שאלה 20 - מומחה)",
+      "options": [
+        "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+        "ב. התכה של פני המתכת בעת מגע עם רוק חומצי.",
+        "ג. שחרור יוני זהב ופלטינה אל ריקמת החניכיים.",
+        "ד. התגבשות מחדש של גבישי המתכת תחת עומס אוקלוזלי."
+      ],
+      "correct": "א. יצירת שכבת תחמוצת דקה וצפופה (כגון Chromium oxide) המגינה על המתכת מפני קורוזיה.",
+      "explanation": "לפי פיליפס, סגסוגות כרומיום-קובלט/ניקל יוצרות שכבת פסיבציה דקה של כרומיום אוקסיד המונעת חמצון וקורוזיה."
+    }
+  ],
+  "8": [
+    {
+      "id": 8001,
       "difficulty": "קל",
       "question": "מהו התפקיד המרכזי של מחבר ראשי (Major Connector) בתותבת חלקית נשלפת (RPD)?",
       "options": [
@@ -5812,7 +7165,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי מקרקן (פרק 3-5) וזארב, המחבר הראשי קושר את רכיבי התותבת מצד אחד לצד השני. תכונתו הקריטית ביותר היא קשיחות (Rigidity) כדי לפזר כוחות באופן שווה על הרכסים והשיניים."
     },
     {
-      "id": 2,
+      "id": 8002,
       "difficulty": "בינוני",
       "question": "מהו המרחק המינימלי הנדרש בין הגבול העליון של מחבר ראשי מנדיבולרי מסוג Lingual Bar לבין שולי החניכיים החופשיים (Free gingival margin)?",
       "options": [
@@ -5825,7 +7178,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי מקרקן, הגבול העליון של Lingual Bar חייב להיות במרחק של לפחות 3-4 מ\"מ משולי החניכיים כדי למנוע גירוי, איסכמיה ופגיעה פריודונטלית. עובי הבר עצמו הוא 4-5 מ\"מ (סה\"כ דרוש עומק רצפת פה של 7-8 מ\"מ)."
     },
     {
-      "id": 3,
+      "id": 8003,
       "difficulty": "קשה",
       "question": "במצב של עומק רצפת פה מוגבל (פחות מ-7 מ\"מ ממרחק החניכיים לרצפת הפה), איזה מחבר ראשי מנדיבולרי מותווה לשימוש?",
       "options": [
@@ -5838,7 +7191,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי מקרקן, כאשר עומק רצפת הפה קטן מ-7-8 מ\"מ או כאשר יש טורוס לינגואלי/ספיגה קשה, Lingual Bar מנוע ומתווה שימוש ב-Lingual Plate המכסה את המשטחים הלינגואליים של השיניים הקדמיות."
     },
     {
-      "id": 4,
+      "id": 8004,
       "difficulty": "מומחה",
       "question": "איזה מחבר ראשי מקסילרי נחשב לקשיח ביותר ולבעל פיזור העומסים הפיזיולוגי הטוב ביותר בשיקומים נרחבים (Class I / Class II)?",
       "options": [
@@ -5851,7 +7204,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי מקרקן, פלטה חכית שלמה (Complete Palatal Plate) או AP Palatal Strap מעניקות את הקשיחות המרבית ופיזור עומסים אופטימלי, בעוד U-shaped (Horseshoe) נחשב למחבר הכי פחות קשיח ונוטה להתכופפות תחת עומס."
     },
     {
-      "id": 601,
+      "id": 8005,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מה מנחה את סיווג קנדי (Kennedy Classification) לתותבות חלקיות נשלפות (RPD)?",
@@ -5865,7 +7218,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי מקרקן (פרק 3), סיווג קנדי מבוסס על האזורים מחוסרי השיניים, כאשר לפי חוקי Applegate האזור מחוסר השיניים האחורי ביותר הוא שמحدد את הסיווג הראשי (Class I-IV)."
     },
     {
-      "id": 602,
+      "id": 8006,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מהו המרווח האנכי המינימלי הנדרש בין השוליים הג Gingival Margin של השיניים התחתונות לבין הרצפה בעת תכנון Lingual Bar כמחבר מז'ורי מנדיבולרי?",
@@ -5879,7 +7232,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי מקרקן (פרק 5), Lingual bar דורש לפחות 8 מ\"מ של מרווח אנכי: 3 מ\"מ שולי בטיחות משולי החניכיים ו-5 מ\"מ רוחב עבור הבר עצמו. אם המרווח קטן מ-8 מ\"מ, מתוכנן Lingual Plate."
     },
     {
-      "id": 603,
+      "id": 8007,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מה תפקידו של המאחז הישיר המשני / המאחז הבלתי-ישיר (Indirect Retaining Element) בתותבת נשלפת מסוג Kennedy Class I או II?",
@@ -5893,7 +7246,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי מקרקן (פרק 8), המאחז הבלתי ישיר ממוקם בצד הנגדי לקו הפולקרום ומונע רוטציה והתרוממות של הבסיס המשתרע דיסטלית (Distal extension) הרחק מהרקמה."
     },
     {
-      "id": 604,
+      "id": 8008,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "איזה מחבר מז'ורי מקסילרי נחשב לקשיח ביותר (Most Rigid) ומומלץ במקרים של Kennedy Class I עם רכסים ספוגים מאוד או חך קשה שטוח?",
@@ -5907,7 +7260,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי מקרקן (פרק 5), Full Palatal Plate מציעה את הקשיחות הגבוהה ביותר ופיזור עומסים מקסימלי (Mucosal support) לרכסים ספוגים. U-shaped connector הוא הפחות קשיח מביניהם."
     },
     {
-      "id": 1256,
+      "id": 8009,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
@@ -5921,7 +7274,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1257,
+      "id": 8010,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
@@ -5935,7 +7288,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1258,
+      "id": 8011,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
@@ -5949,7 +7302,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1259,
+      "id": 8012,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
@@ -5963,7 +7316,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1260,
+      "id": 8013,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
@@ -5977,7 +7330,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1261,
+      "id": 8014,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
@@ -5991,7 +7344,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1262,
+      "id": 8015,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
@@ -6005,7 +7358,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1263,
+      "id": 8016,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
@@ -6019,7 +7372,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1264,
+      "id": 8017,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
@@ -6033,7 +7386,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1265,
+      "id": 8018,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
@@ -6047,7 +7400,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1266,
+      "id": 8019,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
@@ -6061,7 +7414,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1267,
+      "id": 8020,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
@@ -6075,7 +7428,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1268,
+      "id": 8021,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
@@ -6089,7 +7442,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1269,
+      "id": 8022,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
@@ -6103,7 +7456,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1270,
+      "id": 8023,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
@@ -6117,7 +7470,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1271,
+      "id": 8024,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
@@ -6131,7 +7484,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1272,
+      "id": 8025,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
@@ -6145,7 +7498,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1273,
+      "id": 8026,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
@@ -6159,7 +7512,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1274,
+      "id": 8027,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
@@ -6173,7 +7526,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1275,
+      "id": 8028,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
@@ -6187,7 +7540,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1276,
+      "id": 8029,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
@@ -6201,7 +7554,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1277,
+      "id": 8030,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
@@ -6215,7 +7568,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1278,
+      "id": 8031,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
@@ -6229,7 +7582,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1279,
+      "id": 8032,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
@@ -6243,7 +7596,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1280,
+      "id": 8033,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
@@ -6257,7 +7610,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1281,
+      "id": 8034,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
@@ -6271,7 +7624,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1282,
+      "id": 8035,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
@@ -6285,7 +7638,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1283,
+      "id": 8036,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
@@ -6299,7 +7652,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1284,
+      "id": 8037,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
@@ -6313,7 +7666,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1285,
+      "id": 8038,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
@@ -6327,7 +7680,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1286,
+      "id": 8039,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
@@ -6341,7 +7694,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1287,
+      "id": 8040,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
@@ -6355,7 +7708,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1288,
+      "id": 8041,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
@@ -6369,7 +7722,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1289,
+      "id": 8042,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
@@ -6383,7 +7736,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1290,
+      "id": 8043,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
@@ -6397,7 +7750,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1291,
+      "id": 8044,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
@@ -6411,7 +7764,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1292,
+      "id": 8045,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
@@ -6425,7 +7778,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1293,
+      "id": 8046,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
@@ -6439,7 +7792,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1294,
+      "id": 8047,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
@@ -6453,7 +7806,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1295,
+      "id": 8048,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
@@ -6467,7 +7820,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1296,
+      "id": 8049,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
@@ -6481,7 +7834,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1297,
+      "id": 8050,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
@@ -6495,7 +7848,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1298,
+      "id": 8051,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
@@ -6509,7 +7862,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1299,
+      "id": 8052,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
@@ -6523,7 +7876,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1300,
+      "id": 8053,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
@@ -6537,7 +7890,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1301,
+      "id": 8054,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
@@ -6551,7 +7904,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1302,
+      "id": 8055,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
@@ -6565,7 +7918,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1303,
+      "id": 8056,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
@@ -6579,7 +7932,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1304,
+      "id": 8057,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
@@ -6593,7 +7946,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1305,
+      "id": 8058,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
@@ -6607,7 +7960,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1306,
+      "id": 8059,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
@@ -6621,7 +7974,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1307,
+      "id": 8060,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
@@ -6635,7 +7988,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1308,
+      "id": 8061,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
@@ -6649,7 +8002,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1309,
+      "id": 8062,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
@@ -6663,7 +8016,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1310,
+      "id": 8063,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
@@ -6677,7 +8030,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1311,
+      "id": 8064,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
@@ -6691,7 +8044,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1312,
+      "id": 8065,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
@@ -6705,7 +8058,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1313,
+      "id": 8066,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
@@ -6719,7 +8072,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1314,
+      "id": 8067,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
@@ -6733,7 +8086,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1315,
+      "id": 8068,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
@@ -6747,7 +8100,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1316,
+      "id": 8069,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
@@ -6761,7 +8114,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1317,
+      "id": 8070,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
@@ -6775,7 +8128,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1318,
+      "id": 8071,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
@@ -6789,7 +8142,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1319,
+      "id": 8072,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
@@ -6803,7 +8156,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1320,
+      "id": 8073,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
@@ -6817,7 +8170,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1321,
+      "id": 8074,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
@@ -6831,7 +8184,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1322,
+      "id": 8075,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
@@ -6845,7 +8198,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1323,
+      "id": 8076,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
@@ -6859,7 +8212,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1324,
+      "id": 8077,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
@@ -6873,7 +8226,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1325,
+      "id": 8078,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
@@ -6887,7 +8240,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1326,
+      "id": 8079,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
@@ -6901,2244 +8254,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1327,
+      "id": 8080,
       "topic": "6. תותבות חלקיות נשלפות (RPD): ביומכניקה ומחברים",
-      "difficulty": "מומחה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    }
-  ],
-  "7": [
-    {
-      "id": 1,
-      "difficulty": "קל",
-      "question": "מהם שלושת הרכיבים המרכיבים את קומפלקס ה-RPI בתותבת חלקית נשלפת?",
-      "options": [
-        "א. Retentive arm, Post, Inlay. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. Rest (מסעד מסיאלי), Proximal plate (פלטה פרוקסימלית דיסטלית), I-bar (זרוע אחיזה היקפית I).",
-        "ג. Reciprocal arm, Pinhole, Impression tray. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. Ring clasp, Pontic, Implant. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
-      ],
-      "correct": "ב. Rest (מסעד מסיאלי), Proximal plate (פלטה פרוקסימלית דיסטלית), I-bar (זרוע אחיזה היקפית I).",
-      "explanation": "לפי מקרקן (פרק 6) וזארב, RPI מורכב מ: Rest מסיאלי, Proximal plate במישור ההדרכה הדיסטלי, וזרוע אחיזה מסוג I-bar בשיא הקעירות הבוקאלית."
-    },
-    {
-      "id": 2,
-      "difficulty": "בינוני",
-      "question": "מהי המשמעות הביומכנית של מיקום ה-Rest בצד המסיאלי (Mesial Rest) בקומפלקס RPI בתותבת מסוג Class I / Class II (שלוחה חופשית)?",
-      "options": [
-        "א. השן המאחזת נמשכת דיסטלית בחוזה וסובלת מטראומה אוקלוזלית קשה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. אין שום הבדל בין Rest מסיאלי לדיסטלי בשלוחה חופשית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. בעת עומס סגרי על הבסיס, השן המאחזת מסתובבת מסיאלית (קדימה) אל עבר השן השכנה, וה-I-bar זז אנטרו-אפיקלית ומשתחרר מהשן.",
-        "ד. ה-I-bar ננעל עוד יותר על השן ומפעיל כוח עקירה זוויתי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
-      ],
-      "correct": "ג. בעת עומס סגרי על הבסיס, השן המאחזת מסתובבת מסיאלית (קדימה) אל עבר השן השכנה, וה-I-bar זז אנטרו-אפיקלית ומשתחרר מהשן.",
-      "explanation": "לפי מקרקן וזארב (Kratochvil / Kratochvil-Arstad / Berg), Rest מסיאלי מעביר את ציר הסיבוב קדימה. בעת שקילת התותבת, ה-I-bar והפלטה הפרוקסימלית נעים אל אזור השחרור (Relief) ואינם מפעילים כוח מנוף הרסני על השן."
-    },
-    {
-      "id": 3,
-      "difficulty": "קשה",
-      "question": "מהו התפקיד המרכזי של מישורי הדרכה (Guiding Planes) שהוכנו על גבי השיניים המאחזות?",
-      "options": [
-        "א. מניעת הצטברות אבנית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. מניעת צורך במסעדים אוקלוזליים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. הגדלת האחיזה החיכוך ב-80% ללא צורך בזרועות אחיזה. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
-        "ד. הקשרת מסלול ההכנסה וההוצאה (Path of insertion) של התותבת והבטחת הדדיות (Reciprocity)."
-      ],
-      "correct": "ד. הקשרת מסלול ההכנסה וההוצאה (Path of insertion) של התותבת והבטחת הדדיות (Reciprocity).",
-      "explanation": "לפי מקרקן, מישורי הדרכה מקבילים מכתיבים מסלול הכנסה והוצאה אחיד, משפרים יציבות, מונעים כוחות רוחביים על השיניים ומבטיחים פונקציית Reciprocity תקינה."
-    },
-    {
-      "id": 4,
-      "difficulty": "מומחה",
-      "question": "באילו תנאים אנטומיים מנוע (Contraindicated) שימוש בזרוע אחיזה מסוג I-bar בקומפלקס RPI?",
-      "options": [
-        "א. כאשר קיימת קעירות שרשית/רירית עמוקה (Tissue Undercut) של מעל 2 מ\"מ במרחק 3 מ\"מ משולי החניכיים, או חסר Vestibule.",
-        "ב. כאשר יש מגע אוקלוזלי ב-MI. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. כאשר השיקום מבוצע במקסילה בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ד. כאשר השן המאחזת היא ניב תחתון בריא. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
-      ],
-      "correct": "א. כאשר קיימת קעירות שרשית/רירית עמוקה (Tissue Undercut) של מעל 2 מ\"מ במרחק 3 מ\"מ משולי החניכיים, או חסר Vestibule.",
-      "explanation": "לפי מקרקן, I-bar מנוע כאשר יש Tissue undercut עמוק (אז ה-I-bar יבלוט ויפצע את הלחי/שפה או יילכד מזון) או בעומק וסטיבולרי נמוך מ-4 מ\"מ."
-    },
-    {
-      "id": 701,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "ממה מורכב קומפלקס ה-RPI המיועד לשן מאחזת הסמוכה לאזור מחוסר שיניים דיסטלי (Distal Extension)?",
-      "options": [
-        "א. Ring clasp, Palatal rest, I-bar. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. Rest מסיאלי (Rest mesial), Proximal plate דיסטלי, וזרוע I-bar הממוקמת בערעור תחתון (Undercut) בוקאלי-מסיאלי או במרכז השן.",
-        "ג. Reciprocal arm, Proximal plate, I-bar. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. Rest דיסטלי, Proximal plate מסיאלי, I-bar בוקאלי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
-      ],
-      "correct": "ב. Rest מסיאלי (Rest mesial), Proximal plate דיסטלי, וזרוע I-bar הממוקמת בערעור תחתון (Undercut) בוקאלי-מסיאלי או במרכז השן.",
-      "explanation": "לפי מקרקן (פרק 6) וזארב, RPI מורכב מ: Rest מסיאלי, Proximal plate דיסטלי, ו-I-bar בוקאלי. תכנון זה משחרר עומסים מהשן המאחזת בעת שקיעת התותבת על הרקמה הרכה."
-    },
-    {
-      "id": 702,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מהן הדרישות האנטומיות להכנת בית מסעד אוקלוזלי (Occlusal Rest Seat) בשן אחורית לפי מקרקן?",
-      "options": [
-        "א. קילוף אמייל מלא במשטח הבוקאלי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. חריץ שטוח של 0.5 מ\"מ על גבי אמייל בלבד ללא שיפוע. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ג. צורה כפיתית (Spoon-shaped) קעורה, בעומק 1.0-1.5 מ\"מ, ברוחב 1/2 המרחק הבין-תלוליתי, עם זווית קטנה מ-90 מעלות בין המסעד למחבר המינורי.",
-        "ד. צורה מלבנית עמוקה של 3 מ\"מ עם זווית חדה של 110 מעלות. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
-      ],
-      "correct": "ג. צורה כפיתית (Spoon-shaped) קעורה, בעומק 1.0-1.5 מ\"מ, ברוחב 1/2 המרחק הבין-תלוליתי, עם זווית קטנה מ-90 מעלות בין המסעד למחבר המינורי.",
-      "explanation": "לפי מקרקן (פרק 6), בית מסעד אוקלוזלי מיוצר בצורת כפית קעורה בעומק 1-1.5 מ\"מ והזווית בין המחבר המינורי למסעד חייבת להיות קטנה מ-90 מעלות כדי לכוון את הכוחות לאורך הציר האורך של השן."
-    },
-    {
-      "id": 703,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מהי התוויית הנגד המרכזית (Contraindication) לשימוש בזרוע אחיזה מסוג I-bar?",
-      "options": [
-        "א. חוסר שיניים מסוג Class III. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. שן המאחזת היא מולר עליון. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. מציאות Undercut מסיאלי בשן המאחזת. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. קיום Undercut רמה/עמוקה ברקמה הרכה (Severe tissue undercut) או פרוזדור פה (Vestibule) רדוד מ-3 מ\"מ אפיקלית לשולי החניכיים."
-      ],
-      "correct": "ד. קיום Undercut רמה/עמוקה ברקמה הרכה (Severe tissue undercut) או פרוזדור פה (Vestibule) רדוד מ-3 מ\"מ אפיקלית לשולי החניכיים.",
-      "explanation": "לפי מקרקן (פרק 6), עקוף תאית/תלולית רקמה רכה (Tissue undercut) מתחת לשן המאחזת או וסטיבולום רדוד מונעים מעבר תקין של זרוע ה-I-bar וגורמים לפציעת הרירית. במצב זה מעדיפים RPA (Wrought wire)."
-    },
-    {
-      "id": 704,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מה תפקידו של מישור ההדרכה (Guiding Plane) שמוכן על המשטחים הפרוקסימליים של השיניים המאחזות?",
-      "options": [
-        "א. יצירת אחיזה חיכוכית, הכוונת נתיב ההכנסה וההוצאה (Path of insertion) של התותבת, והקטנת מרווחים מתים (Dead spaces).",
-        "ב. החלפת התפקיד של המאחז הבלתי ישיר. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. מניעת שחיקה אוקלוזלית של המסיעים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. הגדלת התנועתיות האופקית של התותבת. כפי שמוגדר במנח האנטומי של בסיס הגולגולת ומישור הסגר."
-      ],
-      "correct": "א. יצירת אחיזה חיכוכית, הכוונת נתיב ההכנסה וההוצאה (Path of insertion) של התותבת, והקטנת מרווחים מתים (Dead spaces).",
-      "explanation": "לפי מקרקן (פרק 11), מישורי הדרכה מקבילים מכוונים את נתיב ההכנסה/הוצאה, מעניקים יציבות אופקית (Reciprocation), ומפחיתים לכידת מזון."
-    },
-    {
-      "id": 1328,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1329,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1330,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1331,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1332,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1333,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1334,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1335,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1336,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1337,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1338,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1339,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1340,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1341,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1342,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1343,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1344,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1345,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קל",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1346,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1347,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1348,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1349,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1350,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1351,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1352,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1353,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1354,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1355,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1356,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1357,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1358,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1359,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1360,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1361,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1362,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1363,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "בינוני",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1364,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1365,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1366,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1367,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1368,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1369,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1370,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1371,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1372,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1373,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1374,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1375,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1376,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1377,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1378,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1379,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1380,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1381,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "קשה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1382,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1383,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1384,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1385,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1386,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1387,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1388,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1389,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1390,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1391,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1392,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1393,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1394,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1395,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1396,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1397,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1398,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1399,
-      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
-      "difficulty": "מומחה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    }
-  ],
-  "8": [
-    {
-      "id": 1,
-      "difficulty": "קל",
-      "question": "איזה מבנה אנטומי במנדיבולה נחשב לאזור התמיכה הראשוני (Primary Stress Bearing Area) בתותבת שלמה תחתאנית?",
-      "options": [
-        "א. Sublingual fossa. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. Buccal Shelf (המדף הבוקאלי).",
-        "ג. Sharp crest of the residual ridge (שיא הרכס השארי).",
-        "ד. Mylohyoid ridge. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
-      ],
-      "correct": "ב. Buccal Shelf (המדף הבוקאלי).",
-      "explanation": "לפי זארב (פרק 16) ונטר (Boucher), המדף הבוקאלי (Buccal Shelf) מורכב מעצם דחוסה הקבילה לכוחות מאונכים, והוא משמש אזור תמיכה ראשוני במנדיבולה."
-    },
-    {
-      "id": 2,
-      "difficulty": "בינוני",
-      "question": "מהו הגבול האחורי המרכזי של תותבת שלמה עליונה המשמש ליצירת איטום אחורי (Posterior Palatal Seal / PPS)?",
-      "options": [
-        "א. Incisive papilla. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. Rugae palatinae. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. Vibrating line (הקו הרוטט) באזור המעבר בין החך הקשה לחך הרך.",
-        "ד. Fovea palatina בכיפה המרכזית בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
-      ],
-      "correct": "ג. Vibrating line (הקו הרוטט) באזור המעבר בין החך הקשה לחך הרך.",
-      "explanation": "לפי זארב ונטר, ה-Vibrating line הוא קו אנטומי-פונקציונלי המציין את תחילת תנועת החך הרך. עליו ומעט אנטריורית לו ממוקם ה-Posterior Palatal Seal ליצירת איטום היקפי ושמירת אחיזה (Retention)."
-    },
-    {
-      "id": 3,
-      "difficulty": "קשה",
-      "question": "מהו התפקיד הביולוגי והקליני של הגבול האנטומי Retromolar Pad במטופל חסר שיניים מוחלט?",
-      "options": [
-        "א. עובר ספיגה עצמית מהירה תוך חודש מעקירת השיניים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. אסור לכסותו בתותבת מחשש לנזק עצבי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. יש להשחיזו קלינית למניעת מגע בתותבת העליונה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. משמש גבול אחורי קריטי לתותבת התחתונה, מכיל סיבי שרירים ובלוטות, ואינו עובר ספיגת עצם משמעותית."
-      ],
-      "correct": "ד. משמש גבול אחורי קריטי לתותבת התחתונה, מכיל סיבי שרירים ובלוטות, ואינו עובר ספיגת עצם משמעותית.",
-      "explanation": "לפי זארב ונטר, ה-Retromolar pad מכיל את ה-Pterygomandibular raphe, סיבי בוקסינטור וקונסטריקטור עליון. הוא יציב מבחינה עצמית ומהווה נקודת ייחוס קריטית לקביעת מישור הסגר והגבול האחורי."
-    },
-    {
-      "id": 4,
-      "difficulty": "מומחה",
-      "question": "איזה שריר מגביל את עומק והיקף הגבול הלינגואלי של תותבת שלמה תחתונה באזור ה-Mylohyoid Ridge בעת בליעה ובלטת לשון?",
-      "options": [
-        "א. Mylohyoid Muscle.",
-        "ב. Superior Pharyngeal Constrictor.",
-        "ג. Genioglossus Muscle.",
-        "ד. Masseter Muscle."
-      ],
-      "correct": "א. Mylohyoid Muscle.",
-      "explanation": "לפי זארב ונטר, שריר ה-Mylohyoid מהווה את רצפת הפה. בעת התכווצות ובליעה הוא מתרומם ומכתיב את אורך ה-Lingual flange של התותבת באזור הלינגואלי-אמצעי."
-    },
-    {
-      "id": 801,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "איזה מבנה אנטומי בלסת התחתונה נחשב לאזור התמיכה הראשוני (Primary Stress-Bearing Area) בתותבת שלמה מנדיבולרית?",
-      "options": [
-        "א. Alveolar ridge crest (שיא הרכס האלבאולרי) בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ב. Buccal Shelf (מדף בוקאלי), עקב מבנה עצם קורטיקלית דחוסה הניצבת לכוחות הסגירה.",
-        "ג. Lingual frenum. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. Sublingual gland. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
-      ],
-      "correct": "ב. Buccal Shelf (מדף בוקאלי), עקב מבנה עצם קורטיקלית דחוסה הניצבת לכוחות הסגירה.",
-      "explanation": "לפי זארב (פרקים 1-6) ובאוצ'ר, ה-Buccal Shelf מורכב מעצם קורטיקלית עבה והוא ניצב לכוחות הלעיסה האנכיים, ולכן מהווה את אזור התמיכה הראשי בתותבת תחתונה."
-    },
-    {
-      "id": 802,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מהו ה-Vibrating Line (AH-Line) בלסת העליונה ומה חשיבותו הקלינית בתותבות שלמות?",
-      "options": [
-        "א. שולי החצוצרה השמעתית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. הקו המפריד בין הציפוי הגרמי של החך הקשה לבין הרכס האלבאולרי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. קו דמיוני העובר בחך הרך ומפריד בין רקמה ניידת לרקמה בלתי ניידת בעת אמירת 'אה', והוא קובע את הגבול האחורי של התותבת (Posterior Palatal Seal / Post-Dam).",
-        "ד. הקו המחבר בין שתי ה-Incisive papillae. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
-      ],
-      "correct": "ג. קו דמיוני העובר בחך הרך ומפריד בין רקמה ניידת לרקמה בלתי ניידת בעת אמירת 'אה', והוא קובע את הגבול האחורי של התותבת (Posterior Palatal Seal / Post-Dam).",
-      "explanation": "לפי זארב (פרק 14) ונשר/נטר, ה-Vibrating line ממוקם בחך הרך ומסמן את גבול ה-Post-dam המבטיח אטימה היקפית (Peripheral seal) ואחיזה לתותבת העליונה."
-    },
-    {
-      "id": 803,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "איזה אזור אנטומי בלסת העליונה חייב לעבור שיחרור (Relief Area) בתותבת השלמה כדי למנוע כאב, צריבה או הפרעה לאספקת הדם והעצבים?",
-      "options": [
-        "א. Rugae palatinae. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. Tuberosity. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. Buccal frenum. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. Incisive Papilla (פיפטת החותכות), עקב מעבר העצב והכלי דם ה-Nasopalatine תחתיה."
-      ],
-      "correct": "ד. Incisive Papilla (פיפטת החותכות), עקב מעבר העצב והכלי דם ה-Nasopalatine תחתיה.",
-      "explanation": "לפי זארב, ה-Incisive Papilla מכסה את ה-Nasopalatine foramen. ספיגת רכס קשה מביאה אותה לשיא הרכס, וללא Relief עומס התותבת יגרום לתחושת צריבה וכאב."
-    },
-    {
-      "id": 804,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מה קובע את הגבול הדיסטו-לינגואלי של התותבת התחתונה (Retromylohyoid Curtain / Neil's Lateral Throat Form)?",
-      "options": [
-        "א. פעולת שריר ה-Superior Constrictor Pharyngis, שריר ה-Palatoglossus, ושריר ה-Mylohyoid בעת בליעה והנעת הלשון.",
-        "ב. מיקום ה-Mental foramen. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. שריר ה-Masseter בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ד. גודל ה-Retromolar pad בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
-      ],
-      "correct": "א. פעולת שריר ה-Superior Constrictor Pharyngis, שריר ה-Palatoglossus, ושריר ה-Mylohyoid בעת בליעה והנעת הלשון.",
-      "explanation": "לפי זארב (פרק 6) ובאוצ'ר, אזור הרטרו-מיילוהיואיד מוגבל ע\"י ה-Palatoglossus קדימה, ה-Superior Constrictor אחורה, וה-Mylohyoid למטה. עיצוב שוליים מדויק (Border molding) חיוני לאיחזת התותבת."
-    },
-    {
-      "id": 1400,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1401,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1402,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1403,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1404,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1405,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1406,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1407,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1408,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1409,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1410,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1411,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1412,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1413,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1414,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1415,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1416,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1417,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קל",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1418,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1419,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1420,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1421,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1422,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1423,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1424,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1425,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1426,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1427,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1428,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1429,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1430,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1431,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1432,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1433,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1434,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1435,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "בינוני",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1436,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1437,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1438,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1439,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1440,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1441,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1442,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1443,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1444,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1445,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1446,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1447,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1448,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1449,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1450,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1451,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1452,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1453,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "קשה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1454,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1455,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1456,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1457,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1458,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1459,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1460,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1461,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1462,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1463,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1464,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1465,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
-      "options": [
-        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1466,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
-      "options": [
-        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1467,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
-      "options": [
-        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1468,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
-      "options": [
-        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
-        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
-        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
-      ],
-      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
-      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
-    },
-    {
-      "id": 1469,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
-      "options": [
-        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
-        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
-        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
-      ],
-      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
-      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
-    },
-    {
-      "id": 1470,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
-      "difficulty": "מומחה",
-      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
-      "options": [
-        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
-        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
-        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
-      ],
-      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
-      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
-    },
-    {
-      "id": 1471,
-      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
       "options": [
@@ -9153,116 +8270,116 @@ ALL_QUESTIONS = {
   ],
   "9": [
     {
-      "id": 1,
+      "id": 9001,
       "difficulty": "קל",
-      "question": "מהו המאפיין המרכזי של אוקלוזיה מאוזנת (Bilateral Balanced Occlusion) בתותבות שלמות?",
+      "question": "מהם שלושת הרכיבים המרכיבים את קומפלקס ה-RPI בתותבת חלקית נשלפת?",
       "options": [
-        "א. מגע בשיניים הטוחנות בלבד ב-Centric Relation. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ב. מגעים אוקלוזליים סימולטניים ורציפים בכל השיניים הקדמיות והאחוריות בצד העובד והלא-עובד בעת תנועות גלישה.",
-        "ג. Disclusion מלא של השיניים האחוריות בתנועה לטרלית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. מגעים בניבים בלבד בלטרליזציה. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
+        "א. Retentive arm, Post, Inlay. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. Rest (מסעד מסיאלי), Proximal plate (פלטה פרוקסימלית דיסטלית), I-bar (זרוע אחיזה היקפית I).",
+        "ג. Reciprocal arm, Pinhole, Impression tray. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. Ring clasp, Pontic, Implant. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ב. מגעים אוקלוזליים סימולטניים ורציפים בכל השיניים הקדמיות והאחוריות בצד העובד והלא-עובד בעת תנועות גלישה.",
-      "explanation": "לפי זארב (פרק 18) ונטר, סגר מאוזן דו-צדדי מיועד למנוע הטיות והתנתקות של בסיסי התותבות השלמות בעת תנועות לעיסה וגלישה אקסצנטריות."
+      "correct": "ב. Rest (מסעד מסיאלי), Proximal plate (פלטה פרוקסימלית דיסטלית), I-bar (זרוע אחיזה היקפית I).",
+      "explanation": "לפי מקרקן (פרק 6) וזארב, RPI מורכב מ: Rest מסיאלי, Proximal plate במישור ההדרכה הדיסטלי, וזרוע אחיזה מסוג I-bar בשיא הקעירות הבוקאלית."
     },
     {
-      "id": 2,
+      "id": 9002,
       "difficulty": "בינוני",
-      "question": "כיצד מוגדר ה-Vertical Dimension of Rest (VDR) ביחס ל-Vertical Dimension of Occlusion (VDO)?",
+      "question": "מהי המשמעות הביומכנית של מיקום ה-Rest בצד המסיאלי (Mesial Rest) בקומפלקס RPI בתותבת מסוג Class I / Class II (שלוחה חופשית)?",
       "options": [
-        "א. VDR ו-VDO זהים לחלוטין ללא שום מרווח. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
-        "ב. VDR משתנה ב-10 מ\"מ בעת סגירת המנשך. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. VDR גדול ב-2 עד 4 מ\"מ מ-VDO (כאשר ההפרש הוא ה-Interocclusal Rest Space / Freeway Space).",
-        "ד. VDO גדול ב-5 מ\"מ מ-VDR. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. השן המאחזת נמשכת דיסטלית בחוזה וסובלת מטראומה אוקלוזלית קשה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. אין שום הבדל בין Rest מסיאלי לדיסטלי בשלוחה חופשית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. בעת עומס סגרי על הבסיס, השן המאחזת מסתובבת מסיאלית (קדימה) אל עבר השן השכנה, וה-I-bar זז אנטרו-אפיקלית ומשתחרר מהשן.",
+        "ד. ה-I-bar ננעל עוד יותר על השן ומפעיל כוח עקירה זוויתי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ג. VDR גדול ב-2 עד 4 מ\"מ מ-VDO (כאשר ההפרש הוא ה-Interocclusal Rest Space / Freeway Space).",
-      "explanation": "לפי זארב ונטר, עמדת המנוחה (VDR) גבוהה יותר מעמדת הסגר (VDO). המרווח הבין-סגרי במנוחה (Freeway space) נע בדרך כלל בין 2 ל-4 מ\"מ. VDO = VDR - Freeway Space."
+      "correct": "ג. בעת עומס סגרי על הבסיס, השן המאחזת מסתובבת מסיאלית (קדימה) אל עבר השן השכנה, וה-I-bar זז אנטרו-אפיקלית ומשתחרר מהשן.",
+      "explanation": "לפי מקרקן וזארב (Kratochvil / Kratochvil-Arstad / Berg), Rest מסיאלי מעביר את ציר הסיבוב קדימה. בעת שקילת התותבת, ה-I-bar והפלטה הפרוקסימלית נעים אל אזור השחרור (Relief) ואינם מפעילים כוח מנוף הרסני על השן."
     },
     {
-      "id": 3,
+      "id": 9003,
       "difficulty": "קשה",
-      "question": "איזה סימפטום קליני אופייני יופיע אצל מטופל עם תותבות שלמות שבו נקבע VDO מופרז (Overestimated VDO / מנשך מורם)?",
+      "question": "מהו התפקיד המרכזי של מישורי הדרכה (Guiding Planes) שהוכנו על גבי השיניים המאחזות?",
       "options": [
-        "א. חוסר יכולת ללסוס מזון עקב חופש מופרז. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. מראה פנים זקן עם קמטים בזוויות הפה (Angular cheilitis).",
-        "ג. נשירת התותבת העליונה בעת חיוך. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. נקישת שיניים בעת דיבור (Clicking teeth), עייפות שרירי לעיסה וספיגת עצם מואצת."
+        "א. מניעת הצטברות אבנית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. מניעת צורך במסעדים אוקלוזליים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. הגדלת האחיזה החיכוך ב-80% ללא צורך בזרועות אחיזה. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
+        "ד. הקשרת מסלול ההכנסה וההוצאה (Path of insertion) של התותבת והבטחת הדדיות (Reciprocity)."
       ],
-      "correct": "ד. נקישת שיניים בעת דיבור (Clicking teeth), עייפות שרירי לעיסה וספיגת עצם מואצת.",
-      "explanation": "לפי זארב, VDO מופרז מבטל את ה-Freeway space. כתוצאה מכך השיניים נוקשות בדיבור, שרירי הלעיסה סובלים ממאמץ מתמיד והרכסים השאריים נחשפים לעומס לחיצה הֶרסני."
+      "correct": "ד. הקשרת מסלול ההכנסה וההוצאה (Path of insertion) של התותבת והבטחת הדדיות (Reciprocity).",
+      "explanation": "לפי מקרקן, מישורי הדרכה מקבילים מכתיבים מסלול הכנסה והוצאה אחיד, משפרים יציבות, מונעים כוחות רוחביים על השיניים ומבטיחים פונקציית Reciprocity תקינה."
     },
     {
-      "id": 4,
+      "id": 9004,
       "difficulty": "מומחה",
-      "question": "מהי הגישה האוקלוזלית מסוג Lingualized Occlusion בתותבות שלמות, ולאילו מטופלים היא מומלצת?",
+      "question": "באילו תנאים אנטומיים מנוע (Contraindicated) שימוש בזרוע אחיזה מסוג I-bar בקומפלקס RPI?",
       "options": [
-        "א. תלוליות לינגואליות בלבד של השיניים העליונות עומדות במגע עם הפוסה המרכזית של התחתונות; מומלצת לרכסים ספוגים קשה.",
-        "ב. תלוליות בוקאליות בלבד עומדות במגע. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ג. שימוש בשיניים שטוחות לחלוטין (Monoplane 0 degrees) ללא שום הדרכה. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
-        "ד. סגר מסוג Class III עם מוצלבת מלאה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. כאשר קיימת קעירות שרשית/רירית עמוקה (Tissue Undercut) של מעל 2 מ\"מ במרחק 3 מ\"מ משולי החניכיים, או חסר Vestibule.",
+        "ב. כאשר יש מגע אוקלוזלי ב-MI. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. כאשר השיקום מבוצע במקסילה בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ד. כאשר השן המאחזת היא ניב תחתון בריא. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "א. תלוליות לינגואליות בלבד של השיניים העליונות עומדות במגע עם הפוסה המרכזית של התחתונות; מומלצת לרכסים ספוגים קשה.",
-      "explanation": "לפי זארב, Lingualized Occlusion משלבת את היתרונות האסתטיים של שיניים אנטומיות עליונות עם היתרונות הביומכניים של ריכוז כוחות אנכי במרכז הרכס התחתון, והיא מומלצת במקרים של רכסים ספוגים קשה."
+      "correct": "א. כאשר קיימת קעירות שרשית/רירית עמוקה (Tissue Undercut) של מעל 2 מ\"מ במרחק 3 מ\"מ משולי החניכיים, או חסר Vestibule.",
+      "explanation": "לפי מקרקן, I-bar מנוע כאשר יש Tissue undercut עמוק (אז ה-I-bar יבלוט ויפצע את הלחי/שפה או יילכד מזון) או בעומק וסטיבולרי נמוך מ-4 מ\"מ."
     },
     {
-      "id": 901,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9005,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
-      "question": "מהו המונח המגדיר סגר מאוזן (Balanced Occlusion) בתותבות שלמות?",
+      "question": "ממה מורכב קומפלקס ה-RPI המיועד לשן מאחזת הסמוכה לאזור מחוסר שיניים דיסטלי (Distal Extension)?",
       "options": [
-        "א. מגעים בלעדיים בניבים בעת תנועה לטרלית כמו במשנן טבעי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. מגעים אוקלוזליים בשני צדי הקשת (Working and Non-working) וגם באזור הקדמי בו זמנית בכל התנועות האקסצנטריות למניעת התהפכות התותבת.",
-        "ג. מגעים קדמיים חזקים בזמן פתיחת פה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. מגעים אחוריים בעמדת MI בלבד ללא מגע אקסצנטרי. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
+        "א. Ring clasp, Palatal rest, I-bar. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. Rest מסיאלי (Rest mesial), Proximal plate דיסטלי, וזרוע I-bar הממוקמת בערעור תחתון (Undercut) בוקאלי-מסיאלי או במרכז השן.",
+        "ג. Reciprocal arm, Proximal plate, I-bar. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. Rest דיסטלי, Proximal plate מסיאלי, I-bar בוקאלי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ב. מגעים אוקלוזליים בשני צדי הקשת (Working and Non-working) וגם באזור הקדמי בו זמנית בכל התנועות האקסצנטריות למניעת התהפכות התותבת.",
-      "explanation": "לפי זארב ובאוצ'ר, סגר מאוזן (Balanced occlusion) בתותבות שלמות נועד לשמור על יציבות התותבות ברקמה ע\"י מגעים סימולטניים דו-צדיים בכל תנועה לטרלית ופרוטרוזיבית."
+      "correct": "ב. Rest מסיאלי (Rest mesial), Proximal plate דיסטלי, וזרוע I-bar הממוקמת בערעור תחתון (Undercut) בוקאלי-מסיאלי או במרכז השן.",
+      "explanation": "לפי מקרקן (פרק 6) וזארב, RPI מורכב מ: Rest מסיאלי, Proximal plate דיסטלי, ו-I-bar בוקאלי. תכנון זה משחרר עומסים מהשן המאחזת בעת שקיעת התותבת על הרקמה הרכה."
     },
     {
-      "id": 902,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9006,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
-      "question": "מהו המרווח החופשי במנוחה (Freeway Space / Interocclusal Rest Space) ומהו ערכו התקין במטופל?",
+      "question": "מהן הדרישות האנטומיות להכנת בית מסעד אוקלוזלי (Occlusal Rest Seat) בשן אחורית לפי מקרקן?",
       "options": [
-        "א. המרחק בין החותכות בעת דיבור שרקות, וערכו 10 מ\"מ.",
-        "ב. עובי בסיס השעווה ברשם המנשך, וערכו 0.5 מ\"מ.",
-        "ג. ההפרש בין VDO ל-VDR, וערכו התקין נע בין 2 ל-4 מ\"מ.",
-        "ד. המרחק בין הקונדילים לפוסה בעת פתיחה מקסימלית."
+        "א. קילוף אמייל מלא במשטח הבוקאלי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. חריץ שטוח של 0.5 מ\"מ על גבי אמייל בלבד ללא שיפוע. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ג. צורה כפיתית (Spoon-shaped) קעורה, בעומק 1.0-1.5 מ\"מ, ברוחב 1/2 המרחק הבין-תלוליתי, עם זווית קטנה מ-90 מעלות בין המסעד למחבר המינורי.",
+        "ד. צורה מלבנית עמוקה של 3 מ\"מ עם זווית חדה של 110 מעלות. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ג. ההפרש בין VDO ל-VDR, וערכו התקין נע בין 2 ל-4 מ\"מ.",
-      "explanation": "Freeway Space מתקבל מהנוסחה: VDR - VDO = 2-4 mm. שמירה על מרווח זה חיונית למנוחת שרירי הלעיסה ולמניעת ספיגת עצם מואצת."
+      "correct": "ג. צורה כפיתית (Spoon-shaped) קעורה, בעומק 1.0-1.5 מ\"מ, ברוחב 1/2 המרחק הבין-תלוליתי, עם זווית קטנה מ-90 מעלות בין המסעד למחבר המינורי.",
+      "explanation": "לפי מקרקן (פרק 6), בית מסעד אוקלוזלי מיוצר בצורת כפית קעורה בעומק 1-1.5 מ\"מ והזווית בין המחבר המינורי למסעד חייבת להיות קטנה מ-90 מעלות כדי לכוון את הכוחות לאורך הציר האורך של השן."
     },
     {
-      "id": 903,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9007,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
-      "question": "מהן התופעות הקליניות האופייניות לקביעת מימד אנכי סגורי מופרז (Excessive VDO) בתותבות שלמות?",
+      "question": "מהי התוויית הנגד המרכזית (Contraindication) לשימוש בזרוע אחיזה מסוג I-bar?",
       "options": [
-        "א. מראה פנים שקוע, דלקת בזוויות הפה (Angular Cheilitis) וירידה ביעילות הלעיסה.",
-        "ב. נשיכת לחיים בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ג. הפרשה מוגברת של רוק. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. נקישת שיניים בעת דיבור (Clicking teeth), עייפות שרירים, רגישות ברכס השארי וספיגת עצם מואצת עקב לחץ מתמיד."
+        "א. חוסר שיניים מסוג Class III. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. שן המאחזת היא מולר עליון. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. מציאות Undercut מסיאלי בשן המאחזת. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. קיום Undercut רמה/עמוקה ברקמה הרכה (Severe tissue undercut) או פרוזדור פה (Vestibule) רדוד מ-3 מ\"מ אפיקלית לשולי החניכיים."
       ],
-      "correct": "ד. נקישת שיניים בעת דיבור (Clicking teeth), עייפות שרירים, רגישות ברכס השארי וספיגת עצם מואצת עקב לחץ מתמיד.",
-      "explanation": "מימד אנכי מופרז (Excessive VDO) מבטל את ה-Freeway space, מה שגורם לשרירים להיות מתוחים, לנקישת שיניים בדיבור וללחץ קבוע המאיץ ספיגת עצם."
+      "correct": "ד. קיום Undercut רמה/עמוקה ברקמה הרכה (Severe tissue undercut) או פרוזדור פה (Vestibule) רדוד מ-3 מ\"מ אפיקלית לשולי החניכיים.",
+      "explanation": "לפי מקרקן (פרק 6), עקוף תאית/תלולית רקמה רכה (Tissue undercut) מתחת לשן המאחזת או וסטיבולום רדוד מונעים מעבר תקין של זרוע ה-I-bar וגורמים לפציעת הרירית. במצב זה מעדיפים RPA (Wrought wire)."
     },
     {
-      "id": 904,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9008,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
-      "question": "איזה מושג אוקלוזלי בתותבות שלמות מבוסס על תלוליות פלטינליות עליונות בולטות המשתלבות במשטח אוקלוזלי רדוד/שטוח בתחתון (Lingualized Occlusion)?",
+      "question": "מה תפקידו של מישור ההדרכה (Guiding Plane) שמוכן על המשטחים הפרוקסימליים של השיניים המאחזות?",
       "options": [
-        "א. Lingualized Occlusion, המרכזת את כוחות הלעיסה לינגואלית לרכס התחתון ומפחיתה כוחות גזירה אופקיים.",
-        "ב. Reverse Articulation. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. Organic Occlusion. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. Monoplane Occlusion שטוחה לחלוטין. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. יצירת אחיזה חיכוכית, הכוונת נתיב ההכנסה וההוצאה (Path of insertion) של התותבת, והקטנת מרווחים מתים (Dead spaces).",
+        "ב. החלפת התפקיד של המאחז הבלתי ישיר. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. מניעת שחיקה אוקלוזלית של המסיעים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. הגדלת התנועתיות האופקית של התותבת. כפי שמוגדר במנח האנטומי של בסיס הגולגולת ומישור הסגר."
       ],
-      "correct": "א. Lingualized Occlusion, המרכזת את כוחות הלעיסה לינגואלית לרכס התחתון ומפחיתה כוחות גזירה אופקיים.",
-      "explanation": "Lingualized Occlusion משלבת את היתרונות האסתטיים של שיניים אנטומיות בעליון עם ריכוז כוחות אנכיים על שיניים שטוחות/רדודות בתחתון, ומפחיתה כוחות הרסניים על הרכס התחתון."
+      "correct": "א. יצירת אחיזה חיכוכית, הכוונת נתיב ההכנסה וההוצאה (Path of insertion) של התותבת, והקטנת מרווחים מתים (Dead spaces).",
+      "explanation": "לפי מקרקן (פרק 11), מישורי הדרכה מקבילים מכוונים את נתיב ההכנסה/הוצאה, מעניקים יציבות אופקית (Reciprocation), ומפחיתים לכידת מזון."
     },
     {
-      "id": 1472,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9009,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
       "options": [
@@ -9275,8 +8392,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1473,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9010,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
       "options": [
@@ -9289,8 +8406,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1474,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9011,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
       "options": [
@@ -9303,8 +8420,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1475,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9012,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
       "options": [
@@ -9317,8 +8434,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1476,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9013,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
       "options": [
@@ -9331,8 +8448,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1477,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9014,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
       "options": [
@@ -9345,8 +8462,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1478,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9015,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
       "options": [
@@ -9359,8 +8476,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1479,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9016,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
       "options": [
@@ -9373,8 +8490,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1480,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9017,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
       "options": [
@@ -9387,8 +8504,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1481,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9018,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
       "options": [
@@ -9401,8 +8518,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1482,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9019,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
       "options": [
@@ -9415,8 +8532,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1483,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9020,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
       "options": [
@@ -9429,8 +8546,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1484,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9021,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
       "options": [
@@ -9443,8 +8560,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1485,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9022,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
       "options": [
@@ -9457,8 +8574,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1486,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9023,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
       "options": [
@@ -9471,8 +8588,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1487,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9024,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
       "options": [
@@ -9485,8 +8602,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1488,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9025,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
       "options": [
@@ -9499,8 +8616,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1489,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9026,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
       "options": [
@@ -9513,8 +8630,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1490,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9027,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
       "options": [
@@ -9527,8 +8644,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1491,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9028,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
       "options": [
@@ -9541,8 +8658,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1492,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9029,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
       "options": [
@@ -9555,8 +8672,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1493,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9030,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
       "options": [
@@ -9569,8 +8686,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1494,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9031,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
       "options": [
@@ -9583,8 +8700,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1495,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9032,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
       "options": [
@@ -9597,8 +8714,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1496,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9033,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
       "options": [
@@ -9611,8 +8728,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1497,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9034,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
       "options": [
@@ -9625,8 +8742,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1498,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9035,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
       "options": [
@@ -9639,8 +8756,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1499,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9036,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
       "options": [
@@ -9653,8 +8770,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1500,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9037,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
       "options": [
@@ -9667,8 +8784,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1501,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9038,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
       "options": [
@@ -9681,8 +8798,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1502,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9039,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
       "options": [
@@ -9695,8 +8812,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1503,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9040,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
       "options": [
@@ -9709,8 +8826,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1504,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9041,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
       "options": [
@@ -9723,8 +8840,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1505,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9042,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
       "options": [
@@ -9737,8 +8854,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1506,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9043,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
       "options": [
@@ -9751,8 +8868,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1507,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9044,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
       "options": [
@@ -9765,8 +8882,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1508,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9045,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
       "options": [
@@ -9779,8 +8896,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1509,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9046,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
       "options": [
@@ -9793,8 +8910,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1510,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9047,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
       "options": [
@@ -9807,8 +8924,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1511,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9048,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
       "options": [
@@ -9821,8 +8938,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1512,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9049,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
       "options": [
@@ -9835,8 +8952,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1513,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9050,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
       "options": [
@@ -9849,8 +8966,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1514,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9051,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
       "options": [
@@ -9863,8 +8980,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1515,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9052,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
       "options": [
@@ -9877,8 +8994,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1516,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9053,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
       "options": [
@@ -9891,8 +9008,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1517,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9054,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
       "options": [
@@ -9905,8 +9022,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1518,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9055,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
       "options": [
@@ -9919,8 +9036,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1519,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9056,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
       "options": [
@@ -9933,8 +9050,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1520,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9057,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
       "options": [
@@ -9947,8 +9064,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1521,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9058,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
       "options": [
@@ -9961,8 +9078,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1522,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9059,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
       "options": [
@@ -9975,8 +9092,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1523,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9060,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
       "options": [
@@ -9989,8 +9106,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1524,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9061,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
       "options": [
@@ -10003,8 +9120,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1525,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9062,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
       "options": [
@@ -10017,8 +9134,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1526,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9063,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
       "options": [
@@ -10031,8 +9148,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1527,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9064,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
       "options": [
@@ -10045,8 +9162,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1528,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9065,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
       "options": [
@@ -10059,8 +9176,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1529,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9066,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
       "options": [
@@ -10073,8 +9190,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1530,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9067,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
       "options": [
@@ -10087,8 +9204,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1531,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9068,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
       "options": [
@@ -10101,8 +9218,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1532,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9069,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
       "options": [
@@ -10115,8 +9232,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1533,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9070,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
       "options": [
@@ -10129,8 +9246,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1534,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9071,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
       "options": [
@@ -10143,8 +9260,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1535,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9072,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
       "options": [
@@ -10157,8 +9274,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1536,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9073,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
       "options": [
@@ -10171,8 +9288,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1537,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9074,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
       "options": [
@@ -10185,8 +9302,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1538,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9075,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
       "options": [
@@ -10199,8 +9316,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1539,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9076,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
       "options": [
@@ -10213,8 +9330,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1540,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9077,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
       "options": [
@@ -10227,8 +9344,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1541,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9078,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
       "options": [
@@ -10241,8 +9358,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1542,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9079,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
       "options": [
@@ -10255,8 +9372,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1543,
-      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
+      "id": 9080,
+      "topic": "7. RPD: מאחזים, מסעדים וקומפלקס RPI",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
       "options": [
@@ -10271,7 +9388,1123 @@ ALL_QUESTIONS = {
   ],
   "10": [
     {
-      "id": 1,
+      "id": 10001,
+      "difficulty": "קל",
+      "question": "איזה מבנה אנטומי במנדיבולה נחשב לאזור התמיכה הראשוני (Primary Stress Bearing Area) בתותבת שלמה תחתאנית?",
+      "options": [
+        "א. Sublingual fossa. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. Buccal Shelf (המדף הבוקאלי).",
+        "ג. Sharp crest of the residual ridge (שיא הרכס השארי).",
+        "ד. Mylohyoid ridge. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+      ],
+      "correct": "ב. Buccal Shelf (המדף הבוקאלי).",
+      "explanation": "לפי זארב (פרק 16) ונטר (Boucher), המדף הבוקאלי (Buccal Shelf) מורכב מעצם דחוסה הקבילה לכוחות מאונכים, והוא משמש אזור תמיכה ראשוני במנדיבולה."
+    },
+    {
+      "id": 10002,
+      "difficulty": "בינוני",
+      "question": "מהו הגבול האחורי המרכזי של תותבת שלמה עליונה המשמש ליצירת איטום אחורי (Posterior Palatal Seal / PPS)?",
+      "options": [
+        "א. Incisive papilla. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. Rugae palatinae. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. Vibrating line (הקו הרוטט) באזור המעבר בין החך הקשה לחך הרך.",
+        "ד. Fovea palatina בכיפה המרכזית בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
+      ],
+      "correct": "ג. Vibrating line (הקו הרוטט) באזור המעבר בין החך הקשה לחך הרך.",
+      "explanation": "לפי זארב ונטר, ה-Vibrating line הוא קו אנטומי-פונקציונלי המציין את תחילת תנועת החך הרך. עליו ומעט אנטריורית לו ממוקם ה-Posterior Palatal Seal ליצירת איטום היקפי ושמירת אחיזה (Retention)."
+    },
+    {
+      "id": 10003,
+      "difficulty": "קשה",
+      "question": "מהו התפקיד הביולוגי והקליני של הגבול האנטומי Retromolar Pad במטופל חסר שיניים מוחלט?",
+      "options": [
+        "א. עובר ספיגה עצמית מהירה תוך חודש מעקירת השיניים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. אסור לכסותו בתותבת מחשש לנזק עצבי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. יש להשחיזו קלינית למניעת מגע בתותבת העליונה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. משמש גבול אחורי קריטי לתותבת התחתונה, מכיל סיבי שרירים ובלוטות, ואינו עובר ספיגת עצם משמעותית."
+      ],
+      "correct": "ד. משמש גבול אחורי קריטי לתותבת התחתונה, מכיל סיבי שרירים ובלוטות, ואינו עובר ספיגת עצם משמעותית.",
+      "explanation": "לפי זארב ונטר, ה-Retromolar pad מכיל את ה-Pterygomandibular raphe, סיבי בוקסינטור וקונסטריקטור עליון. הוא יציב מבחינה עצמית ומהווה נקודת ייחוס קריטית לקביעת מישור הסגר והגבול האחורי."
+    },
+    {
+      "id": 10004,
+      "difficulty": "מומחה",
+      "question": "איזה שריר מגביל את עומק והיקף הגבול הלינגואלי של תותבת שלמה תחתונה באזור ה-Mylohyoid Ridge בעת בליעה ובלטת לשון?",
+      "options": [
+        "א. Mylohyoid Muscle.",
+        "ב. Superior Pharyngeal Constrictor.",
+        "ג. Genioglossus Muscle.",
+        "ד. Masseter Muscle."
+      ],
+      "correct": "א. Mylohyoid Muscle.",
+      "explanation": "לפי זארב ונטר, שריר ה-Mylohyoid מהווה את רצפת הפה. בעת התכווצות ובליעה הוא מתרומם ומכתיב את אורך ה-Lingual flange של התותבת באזור הלינגואלי-אמצעי."
+    },
+    {
+      "id": 10005,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "איזה מבנה אנטומי בלסת התחתונה נחשב לאזור התמיכה הראשוני (Primary Stress-Bearing Area) בתותבת שלמה מנדיבולרית?",
+      "options": [
+        "א. Alveolar ridge crest (שיא הרכס האלבאולרי) בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ב. Buccal Shelf (מדף בוקאלי), עקב מבנה עצם קורטיקלית דחוסה הניצבת לכוחות הסגירה.",
+        "ג. Lingual frenum. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. Sublingual gland. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+      ],
+      "correct": "ב. Buccal Shelf (מדף בוקאלי), עקב מבנה עצם קורטיקלית דחוסה הניצבת לכוחות הסגירה.",
+      "explanation": "לפי זארב (פרקים 1-6) ובאוצ'ר, ה-Buccal Shelf מורכב מעצם קורטיקלית עבה והוא ניצב לכוחות הלעיסה האנכיים, ולכן מהווה את אזור התמיכה הראשי בתותבת תחתונה."
+    },
+    {
+      "id": 10006,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מהו ה-Vibrating Line (AH-Line) בלסת העליונה ומה חשיבותו הקלינית בתותבות שלמות?",
+      "options": [
+        "א. שולי החצוצרה השמעתית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. הקו המפריד בין הציפוי הגרמי של החך הקשה לבין הרכס האלבאולרי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. קו דמיוני העובר בחך הרך ומפריד בין רקמה ניידת לרקמה בלתי ניידת בעת אמירת 'אה', והוא קובע את הגבול האחורי של התותבת (Posterior Palatal Seal / Post-Dam).",
+        "ד. הקו המחבר בין שתי ה-Incisive papillae. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+      ],
+      "correct": "ג. קו דמיוני העובר בחך הרך ומפריד בין רקמה ניידת לרקמה בלתי ניידת בעת אמירת 'אה', והוא קובע את הגבול האחורי של התותבת (Posterior Palatal Seal / Post-Dam).",
+      "explanation": "לפי זארב (פרק 14) ונשר/נטר, ה-Vibrating line ממוקם בחך הרך ומסמן את גבול ה-Post-dam המבטיח אטימה היקפית (Peripheral seal) ואחיזה לתותבת העליונה."
+    },
+    {
+      "id": 10007,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "איזה אזור אנטומי בלסת העליונה חייב לעבור שיחרור (Relief Area) בתותבת השלמה כדי למנוע כאב, צריבה או הפרעה לאספקת הדם והעצבים?",
+      "options": [
+        "א. Rugae palatinae. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. Tuberosity. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. Buccal frenum. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. Incisive Papilla (פיפטת החותכות), עקב מעבר העצב והכלי דם ה-Nasopalatine תחתיה."
+      ],
+      "correct": "ד. Incisive Papilla (פיפטת החותכות), עקב מעבר העצב והכלי דם ה-Nasopalatine תחתיה.",
+      "explanation": "לפי זארב, ה-Incisive Papilla מכסה את ה-Nasopalatine foramen. ספיגת רכס קשה מביאה אותה לשיא הרכס, וללא Relief עומס התותבת יגרום לתחושת צריבה וכאב."
+    },
+    {
+      "id": 10008,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מה קובע את הגבול הדיסטו-לינגואלי של התותבת התחתונה (Retromylohyoid Curtain / Neil's Lateral Throat Form)?",
+      "options": [
+        "א. פעולת שריר ה-Superior Constrictor Pharyngis, שריר ה-Palatoglossus, ושריר ה-Mylohyoid בעת בליעה והנעת הלשון.",
+        "ב. מיקום ה-Mental foramen. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. שריר ה-Masseter בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ד. גודל ה-Retromolar pad בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
+      ],
+      "correct": "א. פעולת שריר ה-Superior Constrictor Pharyngis, שריר ה-Palatoglossus, ושריר ה-Mylohyoid בעת בליעה והנעת הלשון.",
+      "explanation": "לפי זארב (פרק 6) ובאוצ'ר, אזור הרטרו-מיילוהיואיד מוגבל ע\"י ה-Palatoglossus קדימה, ה-Superior Constrictor אחורה, וה-Mylohyoid למטה. עיצוב שוליים מדויק (Border molding) חיוני לאיחזת התותבת."
+    },
+    {
+      "id": 10009,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10010,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10011,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10012,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10013,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10014,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10015,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10016,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10017,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10018,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10019,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10020,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10021,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10022,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10023,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10024,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10025,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10026,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קל",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10027,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10028,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10029,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10030,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10031,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10032,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10033,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10034,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10035,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10036,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10037,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10038,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10039,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10040,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10041,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10042,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10043,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10044,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "בינוני",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10045,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10046,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10047,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10048,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10049,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10050,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10051,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10052,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10053,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10054,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10055,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10056,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10057,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10058,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10059,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10060,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10061,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10062,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "קשה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10063,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10064,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10065,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10066,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10067,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10068,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10069,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10070,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10071,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10072,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10073,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10074,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10075,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10076,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10077,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10078,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 10079,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 10080,
+      "topic": "8. תותבות שלמות: גבולות אנטומיים ואזורי תמיכה",
+      "difficulty": "מומחה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 10081,
       "difficulty": "קל",
       "question": "מהו קצב ודפוס ספיגת העצם האלבאולרית (Residual Ridge Resorption) הטיפוסי במקסילה לעומת המנדיבולה לאחר עקירת שיניים?",
       "options": [
@@ -10284,7 +10517,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי זארב (Atwood / Tallgren), ספיגת העצם במנדיבולה מהירה פי 4 מאינטנסיביות הספיגה במקסילה. המקסילה הופכת קטנה ומוצרת (Centripetal), בעוד המנדיבולה הופכת רחבה יותר (Centrifugal)."
     },
     {
-      "id": 2,
+      "id": 10082,
       "difficulty": "בינוני",
       "question": "מהי האטיולוגיה המרכזית להתפתחות Denture Stomatitis (דלקת רירית תחת תותבת) בדרגה II/III?",
       "options": [
@@ -10297,7 +10530,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי זארב ונטר (Newton Class I-III), Denture stomatitis נגרמת בעיקר ע\"י שגשוג קנדידה אלביקנס תחת בסיס התותבת, בעיקר במטופלים שאינם מוציאים את התותבת בלילה."
     },
     {
-      "id": 3,
+      "id": 10083,
       "difficulty": "קשה",
       "question": "מה מבין הבאים מתאר נכונה את התופעה הקלינית הנקראת Epulis Fissuratum (Inflammatory Fibrous Hyperplasia)?",
       "options": [
@@ -10310,7 +10543,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי זארב ונטר, Epulis Fissuratum היא תגובה הילפרפלסטית פיברוטית של הרירית הנגרמת מגירוי מכני כרוני של גבול תותבת עודף/חד בפתחת הווסטיבולום."
     },
     {
-      "id": 4,
+      "id": 10084,
       "difficulty": "מומחה",
       "question": "מהו סיווג Atwood למבנה הרכס השארי (Order I to Order VI)?",
       "options": [
@@ -10323,7 +10556,7 @@ ALL_QUESTIONS = {
       "explanation": "סיווג Atwood (Order I to VI) הוא הסיווג הקלאסי בספרות (זארב/בוצ'ר) המתאר את מורפולוגיית הרכס השארי מציון Order I (לפני עקירה) ועד Order VI (ספיגה שטוחה/קעורה עמוקה)."
     },
     {
-      "id": 1001,
+      "id": 10085,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "כיצד משפיע דפוס ספיגת העצם האלבאולרית (Atwood / Tallgren) על היחס בין הלסתות במטופל מחוסר שיניים ממושך?",
@@ -10337,7 +10570,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי אטווד וזארב, המקסילה נספגת צנטריפטלית (למעלה ופנימה) והמנדיבולה צנטריפוגלית (למטה והחוצה), מה שגורם להרחבת המאזן המנדיבולרי ופרופיל דמוי Class III."
     },
     {
-      "id": 1002,
+      "id": 10086,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מהו הגורם האטיולוגי המרכזי להתפתחות Denture Stomatitis (דלקת רירית תחת תותבת) מסוג Newton Class I-III?",
@@ -10351,7 +10584,7 @@ ALL_QUESTIONS = {
       "explanation": "Denture Stomatitis נגרמת בעיקר ע\"י Candida albicans, ומוחמרת ע\"י הרכבה רציפה בלילה, חוסר היגיינה של התותבת וטראומה מכנית."
     },
     {
-      "id": 1003,
+      "id": 10087,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מהי הפתולוגיה הרירית הידועה כ-Epulis Fissuratum וכיצד נוהגים לטפל בה?",
@@ -10365,7 +10598,7 @@ ALL_QUESTIONS = {
       "explanation": "Epulis Fissuratum מתרחש בווסטיבולום עקב גירוי כרוני משולי תותבת עודפים. הטיפול הראשוני הוא הורדת הגירוי המכני (Relief/Shortening) וכריתה במידת הצורך."
     },
     {
-      "id": 1004,
+      "id": 10088,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מהי התופעה הקלינית המכונה Kelly's Combination Syndrome במטופלים עם תותבת שלמה עליונה מול שיניים טבעיות קדמיות תחתונות ו-RPD אחורי?",
@@ -10379,7 +10612,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי קלי (Combination Syndrome), עומס יתר של החותכות התחתונות על קדמת המקסילה גורם לספיגת עצם קדמית עליונה, ציפה של הרקמה (Flabby ridge), הגדלת התוברסיטיס ופפילרי היפרפלזיה בחך."
     },
     {
-      "id": 1544,
+      "id": 10089,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
@@ -10393,7 +10626,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1545,
+      "id": 10090,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
@@ -10407,7 +10640,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1546,
+      "id": 10091,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
@@ -10421,7 +10654,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1547,
+      "id": 10092,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
@@ -10435,7 +10668,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1548,
+      "id": 10093,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
@@ -10449,7 +10682,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1549,
+      "id": 10094,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
@@ -10463,7 +10696,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1550,
+      "id": 10095,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
@@ -10477,7 +10710,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1551,
+      "id": 10096,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
@@ -10491,7 +10724,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1552,
+      "id": 10097,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
@@ -10505,7 +10738,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1553,
+      "id": 10098,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
@@ -10519,7 +10752,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1554,
+      "id": 10099,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
@@ -10533,7 +10766,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1555,
+      "id": 10100,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
@@ -10547,7 +10780,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1556,
+      "id": 10101,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
@@ -10561,7 +10794,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1557,
+      "id": 10102,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
@@ -10575,7 +10808,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1558,
+      "id": 10103,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
@@ -10589,7 +10822,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1559,
+      "id": 10104,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
@@ -10603,7 +10836,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1560,
+      "id": 10105,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
@@ -10617,7 +10850,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1561,
+      "id": 10106,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
@@ -10631,7 +10864,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1562,
+      "id": 10107,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
@@ -10645,7 +10878,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1563,
+      "id": 10108,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
@@ -10659,7 +10892,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1564,
+      "id": 10109,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
@@ -10673,7 +10906,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1565,
+      "id": 10110,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
@@ -10687,7 +10920,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1566,
+      "id": 10111,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
@@ -10701,7 +10934,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1567,
+      "id": 10112,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
@@ -10715,7 +10948,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1568,
+      "id": 10113,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
@@ -10729,7 +10962,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1569,
+      "id": 10114,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
@@ -10743,7 +10976,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1570,
+      "id": 10115,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
@@ -10757,7 +10990,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1571,
+      "id": 10116,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
@@ -10771,7 +11004,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1572,
+      "id": 10117,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
@@ -10785,7 +11018,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1573,
+      "id": 10118,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
@@ -10799,7 +11032,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1574,
+      "id": 10119,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
@@ -10813,7 +11046,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1575,
+      "id": 10120,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
@@ -10827,7 +11060,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1576,
+      "id": 10121,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
@@ -10841,7 +11074,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1577,
+      "id": 10122,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
@@ -10855,7 +11088,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1578,
+      "id": 10123,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
@@ -10869,7 +11102,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1579,
+      "id": 10124,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
@@ -10883,7 +11116,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1580,
+      "id": 10125,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
@@ -10897,7 +11130,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1581,
+      "id": 10126,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
@@ -10911,7 +11144,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1582,
+      "id": 10127,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
@@ -10925,7 +11158,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1583,
+      "id": 10128,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
@@ -10939,7 +11172,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1584,
+      "id": 10129,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
@@ -10953,7 +11186,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1585,
+      "id": 10130,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
@@ -10967,7 +11200,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1586,
+      "id": 10131,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
@@ -10981,7 +11214,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1587,
+      "id": 10132,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
@@ -10995,7 +11228,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1588,
+      "id": 10133,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
@@ -11009,7 +11242,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1589,
+      "id": 10134,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
@@ -11023,7 +11256,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1590,
+      "id": 10135,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
@@ -11037,7 +11270,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1591,
+      "id": 10136,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
@@ -11051,7 +11284,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1592,
+      "id": 10137,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
@@ -11065,7 +11298,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1593,
+      "id": 10138,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
@@ -11079,7 +11312,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1594,
+      "id": 10139,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
@@ -11093,7 +11326,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1595,
+      "id": 10140,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
@@ -11107,7 +11340,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1596,
+      "id": 10141,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
@@ -11121,7 +11354,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1597,
+      "id": 10142,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
@@ -11135,7 +11368,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1598,
+      "id": 10143,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
@@ -11149,7 +11382,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1599,
+      "id": 10144,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
@@ -11163,7 +11396,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1600,
+      "id": 10145,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
@@ -11177,7 +11410,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1601,
+      "id": 10146,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
@@ -11191,7 +11424,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1602,
+      "id": 10147,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
@@ -11205,7 +11438,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1603,
+      "id": 10148,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
@@ -11219,7 +11452,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1604,
+      "id": 10149,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
@@ -11233,7 +11466,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1605,
+      "id": 10150,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
@@ -11247,7 +11480,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1606,
+      "id": 10151,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
@@ -11261,7 +11494,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1607,
+      "id": 10152,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
@@ -11275,7 +11508,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1608,
+      "id": 10153,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
@@ -11289,7 +11522,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1609,
+      "id": 10154,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
@@ -11303,7 +11536,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1610,
+      "id": 10155,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
@@ -11317,7 +11550,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1611,
+      "id": 10156,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
@@ -11331,7 +11564,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1612,
+      "id": 10157,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
@@ -11345,7 +11578,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1613,
+      "id": 10158,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
@@ -11359,7 +11592,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1614,
+      "id": 10159,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
@@ -11373,7 +11606,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1615,
+      "id": 10160,
       "topic": "10. ספיגת עצם אלבאולרית ופתולוגיות רירית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
@@ -11389,116 +11622,116 @@ ALL_QUESTIONS = {
   ],
   "11": [
     {
-      "id": 1,
+      "id": 11001,
       "difficulty": "קל",
-      "question": "מהי הגדרת איכות עצם מסוג D1 לפי סיווג Misch, באיזה אזור אנטומי היא שכיחה ביותר?",
+      "question": "מהו המאפיין המרכזי של אוקלוזיה מאוזנת (Bilateral Balanced Occlusion) בתותבות שלמות?",
       "options": [
-        "א. עצם שעברה ספיגה פתולוגית מלאה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. עצם קורטיקלית דחוסה כמעט לחלוטין; שכיחה בעיקר בקדמת המנדיבולה הספוגה.",
-        "ג. עצם טרבקולרית רכה ופתוחה; שכיחה במקסילה האחורית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. עצם ספוגית בלבד ללא מעטפת קורטיקלית. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
+        "א. מגע בשיניים הטוחנות בלבד ב-Centric Relation. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ב. מגעים אוקלוזליים סימולטניים ורציפים בכל השיניים הקדמיות והאחוריות בצד העובד והלא-עובד בעת תנועות גלישה.",
+        "ג. Disclusion מלא של השיניים האחוריות בתנועה לטרלית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. מגעים בניבים בלבד בלטרליזציה. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
       ],
-      "correct": "ב. עצם קורטיקלית דחוסה כמעט לחלוטין; שכיחה בעיקר בקדמת המנדיבולה הספוגה.",
-      "explanation": "לפי מיש (מהדורה 2, פרק 5/7), עצם D1 מורכבת כמעט כולה מעצם קורטיקלית דחוסה (Dense cortical bone), והיא שכיחה בקדמת המנדיבולה הספוגה (Anterior mandible)."
+      "correct": "ב. מגעים אוקלוזליים סימולטניים ורציפים בכל השיניים הקדמיות והאחוריות בצד העובד והלא-עובד בעת תנועות גלישה.",
+      "explanation": "לפי זארב (פרק 18) ונטר, סגר מאוזן דו-צדדי מיועד למנוע הטיות והתנתקות של בסיסי התותבות השלמות בעת תנועות לעיסה וגלישה אקסצנטריות."
     },
     {
-      "id": 2,
+      "id": 11002,
       "difficulty": "בינוני",
-      "question": "כיצד משפיע קוטר השתל (Implant Diameter) ביחס לאורכו על פיזור כוחות הלחיצה והגזירה בעצם הקורטיקלית העליונה?",
+      "question": "כיצד מוגדר ה-Vertical Dimension of Rest (VDR) ביחס ל-Vertical Dimension of Occlusion (VDO)?",
       "options": [
-        "א. לקוטר השתל אין שום השפעה ביומכנית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. קוטר רחב מפתח כוחות גזירה הרסניים בצוואר השתל. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. הגדלת קוטר השתל מפתחת שטחי פנים ומפחיתה עומסי לחיצה בשיא הרכס בצורה משמעותית יותר מאשר הגדלת אורך השתל.",
-        "ד. הגדלת אורך השתל מ-10 ל-15 מ\"מ מורידה את העומס בצוואר השתל ב-90%. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. VDR ו-VDO זהים לחלוטין ללא שום מרווח. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
+        "ב. VDR משתנה ב-10 מ\"מ בעת סגירת המנשך. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. VDR גדול ב-2 עד 4 מ\"מ מ-VDO (כאשר ההפרש הוא ה-Interocclusal Rest Space / Freeway Space).",
+        "ד. VDO גדול ב-5 מ\"מ מ-VDR. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ג. הגדלת קוטר השתל מפתחת שטחי פנים ומפחיתה עומסי לחיצה בשיא הרכס בצורה משמעותית יותר מאשר הגדלת אורך השתל.",
-      "explanation": "לפי מיש (פרק 12-13), רוב העומס האוקלוזלי מתרכז ב-3-5 המילימטרים העליונים של העצם הקורטיקלית. הגדלת הקוטר מגדל את שטח הפנים במישור הקריטי ומפחית מאמצים בצורה אפקטיבית בהרבה מהארכת השתל."
+      "correct": "ג. VDR גדול ב-2 עד 4 מ\"מ מ-VDO (כאשר ההפרש הוא ה-Interocclusal Rest Space / Freeway Space).",
+      "explanation": "לפי זארב ונטר, עמדת המנוחה (VDR) גבוהה יותר מעמדת הסגר (VDO). המרווח הבין-סגרי במנוחה (Freeway space) נע בדרך כלל בין 2 ל-4 מ\"מ. VDO = VDR - Freeway Space."
     },
     {
-      "id": 3,
+      "id": 11003,
       "difficulty": "קשה",
-      "question": "מהו המרחק המינימלי הנדרש בין שני שתלים סמוכים, ובין שתל לשן טבעית סמוכה, לשמירה על הפפילה והעצם הבין-דנטלית?",
+      "question": "איזה סימפטום קליני אופייני יופיע אצל מטופל עם תותבות שלמות שבו נקבע VDO מופרז (Overestimated VDO / מנשך מורם)?",
       "options": [
-        "א. 0.5 מ\"מ בלבד בין שתלים. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ב. 5 מ\"מ בין שתל לשן טבעית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. אין שום מגבלת מרחק כל עוד השתלים לא נוגעים זה בזה.",
-        "ד. לפחות 3 מ\"מ בין שתל לשתל, ולפחות 1.5 מ\"מ בין שתל לשן טבעית."
+        "א. חוסר יכולת ללסוס מזון עקב חופש מופרז. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. מראה פנים זקן עם קמטים בזוויות הפה (Angular cheilitis).",
+        "ג. נשירת התותבת העליונה בעת חיוך. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. נקישת שיניים בעת דיבור (Clicking teeth), עייפות שרירי לעיסה וספיגת עצם מואצת."
       ],
-      "correct": "ד. לפחות 3 מ\"מ בין שתל לשתל, ולפחות 1.5 מ\"מ בין שתל לשן טבעית.",
-      "explanation": "לפי מיש וזארב (Tarnow et al.), דרוש מרחק של לפחות 3 מ\"מ בין שתל לשתל כדי למנוע חפיפה של ספיגת העצם המקורית (Biological width/microgap), ו-1.5 מ\"מ בין שתל לשן לשמירה על העצם הבין-דנטלית והפפילה."
+      "correct": "ד. נקישת שיניים בעת דיבור (Clicking teeth), עייפות שרירי לעיסה וספיגת עצם מואצת.",
+      "explanation": "לפי זארב, VDO מופרז מבטל את ה-Freeway space. כתוצאה מכך השיניים נוקשות בדיבור, שרירי הלעיסה סובלים ממאמץ מתמיד והרכסים השאריים נחשפים לעומס לחיצה הֶרסני."
     },
     {
-      "id": 4,
+      "id": 11004,
       "difficulty": "מומחה",
-      "question": "מהי ההגדרה של אוסטאואינטגרציה (Osseointegration) לפי Brånemark ברמה המיקרוסקופית והקלינית?",
+      "question": "מהי הגישה האוקלוזלית מסוג Lingualized Occlusion בתותבות שלמות, ולאילו מטופלים היא מומלצת?",
       "options": [
-        "א. מגע ישיר, תפקודי ומבני בין עצם חיה לפני שטח השתל הטעון עומס, ללא התערבות רקמת חיבור פיברוטית.",
-        "ב. חיבור ע\"י סיבי ליגמנט פריודונטלי מלאכותי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. יצירת סחוס היאליני סביב הטיטניום. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. התחברות כימית של אבקת הידרוקסיאפטיט בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
+        "א. תלוליות לינגואליות בלבד של השיניים העליונות עומדות במגע עם הפוסה המרכזית של התחתונות; מומלצת לרכסים ספוגים קשה.",
+        "ב. תלוליות בוקאליות בלבד עומדות במגע. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ג. שימוש בשיניים שטוחות לחלוטין (Monoplane 0 degrees) ללא שום הדרכה. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
+        "ד. סגר מסוג Class III עם מוצלבת מלאה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "א. מגע ישיר, תפקודי ומבני בין עצם חיה לפני שטח השתל הטעון עומס, ללא התערבות רקמת חיבור פיברוטית.",
-      "explanation": "אוסטאואינטגרציה (Brånemark / Misch / Zarb) מוגדרת כחיבור מבני ותפקודי ישיר בין עצם חיה ומאורגנת לבין פני שטח השתל הטעון עומס ללא שכבת רקמת חיבור ביניהם."
+      "correct": "א. תלוליות לינגואליות בלבד של השיניים העליונות עומדות במגע עם הפוסה המרכזית של התחתונות; מומלצת לרכסים ספוגים קשה.",
+      "explanation": "לפי זארב, Lingualized Occlusion משלבת את היתרונות האסתטיים של שיניים אנטומיות עליונות עם היתרונות הביומכניים של ריכוז כוחות אנכי במרכז הרכס התחתון, והיא מומלצת במקרים של רכסים ספוגים קשה."
     },
     {
-      "id": 1101,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11005,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
-      "question": "כיצד מוגדרת איכות עצם D1 לפי סיווג Misch (מיש) ואיפה היא שכיחה ביותר אנטומית?",
+      "question": "מהו המונח המגדיר סגר מאוזן (Balanced Occlusion) בתותבות שלמות?",
       "options": [
-        "א. עצם קורטיקלית דקה עם ספוגית צפופה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. עצם קורטיקלית דחוסה מאוד (Dense cortical bone), השכיחה בעיקר בחלק הקדמי של המנדיבולה.",
-        "ג. עצם שעברה רדיותרפיה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. עצם ספוגית רכה מאוד (Loose trabecular) השכיחה במקסילה האחורית."
+        "א. מגעים בלעדיים בניבים בעת תנועה לטרלית כמו במשנן טבעי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. מגעים אוקלוזליים בשני צדי הקשת (Working and Non-working) וגם באזור הקדמי בו זמנית בכל התנועות האקסצנטריות למניעת התהפכות התותבת.",
+        "ג. מגעים קדמיים חזקים בזמן פתיחת פה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. מגעים אחוריים בעמדת MI בלבד ללא מגע אקסצנטרי. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
       ],
-      "correct": "ב. עצם קורטיקלית דחוסה מאוד (Dense cortical bone), השכיחה בעיקר בחלק הקדמי של המנדיבולה.",
-      "explanation": "לפי מיש (פרק 8), עצם D1 היא עצם קורטיקלית דחוסה, שכיחה בקדמת המנדיבולה, מעניקה יציבות ראשונית מצוינת אך בעלת אספקת דם מופחתת."
+      "correct": "ב. מגעים אוקלוזליים בשני צדי הקשת (Working and Non-working) וגם באזור הקדמי בו זמנית בכל התנועות האקסצנטריות למניעת התהפכות התותבת.",
+      "explanation": "לפי זארב ובאוצ'ר, סגר מאוזן (Balanced occlusion) בתותבות שלמות נועד לשמור על יציבות התותבות ברקמה ע\"י מגעים סימולטניים דו-צדיים בכל תנועה לטרלית ופרוטרוזיבית."
     },
     {
-      "id": 1102,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11006,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
-      "question": "מהי ההגדרה המקובלת של אוסטאואינטגרציה (Osseointegration) לפי Bränemark?",
+      "question": "מהו המרווח החופשי במנוחה (Freeway Space / Interocclusal Rest Space) ומהו ערכו התקין במטופל?",
       "options": [
-        "א. התקשרות כימית של יוני סידן מתוך הרוק. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. חיבור של רקמת חיבור סיבית בין השתל לעצם. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. חיבור מבני ותפקודי ישיר בין עצם חיים לבין פני שטח של שתל טיטניום נושא עומס, ללא תיווך רקמה רכה.",
-        "ד. ציפוי השתל בסחוס היאליני. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. המרחק בין החותכות בעת דיבור שרקות, וערכו 10 מ\"מ.",
+        "ב. עובי בסיס השעווה ברשם המנשך, וערכו 0.5 מ\"מ.",
+        "ג. ההפרש בין VDO ל-VDR, וערכו התקין נע בין 2 ל-4 מ\"מ.",
+        "ד. המרחק בין הקונדילים לפוסה בעת פתיחה מקסימלית."
       ],
-      "correct": "ג. חיבור מבני ותפקודי ישיר בין עצם חיים לבין פני שטח של שתל טיטניום נושא עומס, ללא תיווך רקמה רכה.",
-      "explanation": "אוסטאואינטגרציה לפי ברנמרק מוגדרת כמגע ישיר ברמת מיקרוסקופ האור בין עצם חיה לפני השטח של הטיטניום תחת עומס תפקודי."
+      "correct": "ג. ההפרש בין VDO ל-VDR, וערכו התקין נע בין 2 ל-4 מ\"מ.",
+      "explanation": "Freeway Space מתקבל מהנוסחה: VDR - VDO = 2-4 mm. שמירה על מרווח זה חיונית למנוחת שרירי הלעיסה ולמניעת ספיגת עצם מואצת."
     },
     {
-      "id": 1103,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11007,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
-      "question": "מהי ספיגת העצם הקרסטלית הממוצעת הנחשבת לתקינה בשנה הראשונה לאחר העמסת שתל לפי הקריטריונים של Albrektsson & Zarb?",
+      "question": "מהן התופעות הקליניות האופייניות לקביעת מימד אנכי סגורי מופרז (Excessive VDO) בתותבות שלמות?",
       "options": [
-        "א. אפס ספיגת עצם לחלוטין כל חיי השתל. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. 0.5 מ\"מ בכל חודש. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. 3.0 מ\"מ בשנה הראשונה ו-1.0 מ\"מ בכל שנה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. עד 1.5 מ\"מ בשנה הראשונה, ולאחר מכן פחות מ-0.2 מ\"מ לכל שנה נוספת."
+        "א. מראה פנים שקוע, דלקת בזוויות הפה (Angular Cheilitis) וירידה ביעילות הלעיסה.",
+        "ב. נשיכת לחיים בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ג. הפרשה מוגברת של רוק. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. נקישת שיניים בעת דיבור (Clicking teeth), עייפות שרירים, רגישות ברכס השארי וספיגת עצם מואצת עקב לחץ מתמיד."
       ],
-      "correct": "ד. עד 1.5 מ\"מ בשנה הראשונה, ולאחר מכן פחות מ-0.2 מ\"מ לכל שנה נוספת.",
-      "explanation": "לפי אלברקטסון וזארב (מיש פרק 5), הצלחת שתל מוגדרת כאשר ספיגת העצם הקרסטלית אינה עולה על 1.5 מ\"מ בשנה הראשונה ולאחר מכן פחות מ-0.2 מ\"מ לשנה."
+      "correct": "ד. נקישת שיניים בעת דיבור (Clicking teeth), עייפות שרירים, רגישות ברכס השארי וספיגת עצם מואצת עקב לחץ מתמיד.",
+      "explanation": "מימד אנכי מופרז (Excessive VDO) מבטל את ה-Freeway space, מה שגורם לשרירים להיות מתוחים, לנקישת שיניים בדיבור וללחץ קבוע המאיץ ספיגת עצם."
     },
     {
-      "id": 1104,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11008,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
-      "question": "כיצד משפיע קוטר השתל (Implant Diameter) לעומת אורך השתל (Implant Length) על פיזור מאמצי הגזירה והלחיצה בצוואר השתל לפי מיש?",
+      "question": "איזה מושג אוקלוזלי בתותבות שלמות מבוסס על תלוליות פלטינליות עליונות בולטות המשתלבות במשטח אוקלוזלי רדוד/שטוח בתחתון (Lingualized Occlusion)?",
       "options": [
-        "א. הגדלת הקוטר ב-1 מ\"מ מגדלת את שטח הפנים בצוואר השתל ומפחיתה עומסים קרסטליים ב-20-30%, בעוד שהארכת השתל משפיעה בעיקר על היציבות הראשונית ופחות על העומס הקרסטלי.",
-        "ב. אורך השתל הוא המשתנה היחיד הקובע עמידות בפני כוחות כפיפה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. הגדלת האורך משפרת את פיזור המאמצים הקרסטליים פי 4 מהגדלת הקוטר. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. אין שום הבדל בין קוטר לאורך. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. Lingualized Occlusion, המרכזת את כוחות הלעיסה לינגואלית לרכס התחתון ומפחיתה כוחות גזירה אופקיים.",
+        "ב. Reverse Articulation. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. Organic Occlusion. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. Monoplane Occlusion שטוחה לחלוטין. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "א. הגדלת הקוטר ב-1 מ\"מ מגדלת את שטח הפנים בצוואר השתל ומפחיתה עומסים קרסטליים ב-20-30%, בעוד שהארכת השתל משפיעה בעיקר על היציבות הראשונית ופחות על העומס הקרסטלי.",
-      "explanation": "לפי מיש (פרק 7), רוב העומס הביומכני מתרכז ב-3-5 המ\"מ הראשונים של צוואר השתל. לכן, הגדלת הקוטר מורידה מאמצים קרסטליים באופן משמעותי הרבה יותר מהארכת השתל."
+      "correct": "א. Lingualized Occlusion, המרכזת את כוחות הלעיסה לינגואלית לרכס התחתון ומפחיתה כוחות גזירה אופקיים.",
+      "explanation": "Lingualized Occlusion משלבת את היתרונות האסתטיים של שיניים אנטומיות בעליון עם ריכוז כוחות אנכיים על שיניים שטוחות/רדודות בתחתון, ומפחיתה כוחות הרסניים על הרכס התחתון."
     },
     {
-      "id": 1616,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11009,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
       "options": [
@@ -11511,8 +11744,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1617,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11010,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
       "options": [
@@ -11525,8 +11758,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1618,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11011,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
       "options": [
@@ -11539,8 +11772,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1619,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11012,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
       "options": [
@@ -11553,8 +11786,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1620,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11013,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
       "options": [
@@ -11567,8 +11800,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1621,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11014,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
       "options": [
@@ -11581,8 +11814,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1622,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11015,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
       "options": [
@@ -11595,8 +11828,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1623,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11016,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
       "options": [
@@ -11609,8 +11842,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1624,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11017,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
       "options": [
@@ -11623,8 +11856,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1625,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11018,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
       "options": [
@@ -11637,8 +11870,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1626,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11019,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
       "options": [
@@ -11651,8 +11884,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1627,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11020,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
       "options": [
@@ -11665,8 +11898,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1628,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11021,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
       "options": [
@@ -11679,8 +11912,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1629,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11022,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
       "options": [
@@ -11693,8 +11926,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1630,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11023,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
       "options": [
@@ -11707,8 +11940,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1631,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11024,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
       "options": [
@@ -11721,8 +11954,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1632,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11025,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
       "options": [
@@ -11735,8 +11968,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1633,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11026,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
       "options": [
@@ -11749,8 +11982,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1634,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11027,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
       "options": [
@@ -11763,8 +11996,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1635,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11028,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
       "options": [
@@ -11777,8 +12010,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1636,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11029,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
       "options": [
@@ -11791,8 +12024,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1637,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11030,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
       "options": [
@@ -11805,8 +12038,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1638,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11031,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
       "options": [
@@ -11819,8 +12052,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1639,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11032,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
       "options": [
@@ -11833,8 +12066,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1640,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11033,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
       "options": [
@@ -11847,8 +12080,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1641,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11034,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
       "options": [
@@ -11861,8 +12094,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1642,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11035,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
       "options": [
@@ -11875,8 +12108,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1643,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11036,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
       "options": [
@@ -11889,8 +12122,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1644,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11037,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
       "options": [
@@ -11903,8 +12136,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1645,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11038,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
       "options": [
@@ -11917,8 +12150,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1646,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11039,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
       "options": [
@@ -11931,8 +12164,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1647,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11040,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
       "options": [
@@ -11945,8 +12178,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1648,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11041,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
       "options": [
@@ -11959,8 +12192,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1649,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11042,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
       "options": [
@@ -11973,8 +12206,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1650,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11043,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
       "options": [
@@ -11987,8 +12220,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1651,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11044,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
       "options": [
@@ -12001,8 +12234,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1652,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11045,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
       "options": [
@@ -12015,8 +12248,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1653,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11046,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
       "options": [
@@ -12029,8 +12262,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1654,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11047,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
       "options": [
@@ -12043,8 +12276,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1655,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11048,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
       "options": [
@@ -12057,8 +12290,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1656,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11049,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
       "options": [
@@ -12071,8 +12304,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1657,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11050,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
       "options": [
@@ -12085,8 +12318,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1658,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11051,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
       "options": [
@@ -12099,8 +12332,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1659,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11052,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
       "options": [
@@ -12113,8 +12346,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1660,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11053,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
       "options": [
@@ -12127,8 +12360,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1661,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11054,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
       "options": [
@@ -12141,8 +12374,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1662,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11055,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
       "options": [
@@ -12155,8 +12388,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1663,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11056,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
       "options": [
@@ -12169,8 +12402,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1664,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11057,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
       "options": [
@@ -12183,8 +12416,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1665,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11058,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
       "options": [
@@ -12197,8 +12430,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1666,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11059,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
       "options": [
@@ -12211,8 +12444,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1667,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11060,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
       "options": [
@@ -12225,8 +12458,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1668,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11061,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
       "options": [
@@ -12239,8 +12472,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1669,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11062,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
       "options": [
@@ -12253,8 +12486,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1670,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11063,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
       "options": [
@@ -12267,8 +12500,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1671,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11064,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
       "options": [
@@ -12281,8 +12514,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1672,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11065,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
       "options": [
@@ -12295,8 +12528,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1673,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11066,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
       "options": [
@@ -12309,8 +12542,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1674,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11067,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
       "options": [
@@ -12323,8 +12556,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1675,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11068,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
       "options": [
@@ -12337,8 +12570,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1676,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11069,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
       "options": [
@@ -12351,8 +12584,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1677,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11070,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
       "options": [
@@ -12365,8 +12598,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1678,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11071,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
       "options": [
@@ -12379,8 +12612,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1679,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11072,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
       "options": [
@@ -12393,8 +12626,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1680,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11073,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
       "options": [
@@ -12407,8 +12640,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1681,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11074,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
       "options": [
@@ -12421,8 +12654,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1682,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11075,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
       "options": [
@@ -12435,8 +12668,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1683,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11076,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
       "options": [
@@ -12449,8 +12682,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1684,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11077,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
       "options": [
@@ -12463,8 +12696,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1685,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11078,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
       "options": [
@@ -12477,8 +12710,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1686,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11079,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
       "options": [
@@ -12491,8 +12724,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1687,
-      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
+      "id": 11080,
+      "topic": "9. תותבות שלמות: אוקלוזיה, מימד אנכי ויחס בין-לסתי",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
       "options": [
@@ -12507,116 +12740,116 @@ ALL_QUESTIONS = {
   ],
   "12": [
     {
-      "id": 1,
+      "id": 12001,
       "difficulty": "קל",
-      "question": "איזו שיטת חיבור שיקום על גבי שתלים (Screw-retained vs. Cement-retained) מעניקה יתרון מובהק של פריקות (Retrievability) וגובה אקסאלי מצומצם?",
+      "question": "מהי הגדרת איכות עצם מסוג D1 לפי סיווג Misch, באיזה אזור אנטומי היא שכיחה ביותר?",
       "options": [
-        "א. שיקום בהדבקה בלתי הפיכה עם אקריל.",
-        "ב. שיקום מוברג (Screw-retained).",
-        "ג. שיקום מודבק (Cement-retained).",
-        "ד. שיקום שרפי ישיר. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. עצם שעברה ספיגה פתולוגית מלאה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. עצם קורטיקלית דחוסה כמעט לחלוטין; שכיחה בעיקר בקדמת המנדיבולה הספוגה.",
+        "ג. עצם טרבקולרית רכה ופתוחה; שכיחה במקסילה האחורית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. עצם ספוגית בלבד ללא מעטפת קורטיקלית. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
       ],
-      "correct": "ב. שיקום מוברג (Screw-retained).",
-      "explanation": "לפי מיש (פרק 14-15) וזארב, שיקום מוברג מאפשר פירוק קל (Retrievability) לצורך תחזוקה וטיפול, ומתאים למצבים של גובה בין-סגרי מצומצם ללא סכנת שאריות צמנט."
+      "correct": "ב. עצם קורטיקלית דחוסה כמעט לחלוטין; שכיחה בעיקר בקדמת המנדיבולה הספוגה.",
+      "explanation": "לפי מיש (מהדורה 2, פרק 5/7), עצם D1 מורכבת כמעט כולה מעצם קורטיקלית דחוסה (Dense cortical bone), והיא שכיחה בקדמת המנדיבולה הספוגה (Anterior mandible)."
     },
     {
-      "id": 2,
+      "id": 12002,
       "difficulty": "בינוני",
-      "question": "מהי הסכנה הפריודונטלית/פרי-אימפלנטרית המרכזית בשימוש בשיקום מודבק (Cement-retained) עם קו סיום תת-חניכי עמוק?",
+      "question": "כיצד משפיע קוטר השתל (Implant Diameter) ביחס לאורכו על פיזור כוחות הלחיצה והגזירה בעצם הקורטיקלית העליונה?",
       "options": [
-        "א. שבר של בורג השתל המרכזי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. התרופפות הבורג הפנימי ב-100% מהמקרים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. שאריות צמנט בלתי מפונות בתת-חניכיים המובילות לדלקת קשה, Peri-implantitis וספיגת עצם.",
-        "ד. שינוי צבע הכתר לצהוב. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. לקוטר השתל אין שום השפעה ביומכנית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. קוטר רחב מפתח כוחות גזירה הרסניים בצוואר השתל. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. הגדלת קוטר השתל מפתחת שטחי פנים ומפחיתה עומסי לחיצה בשיא הרכס בצורה משמעותית יותר מאשר הגדלת אורך השתל.",
+        "ד. הגדלת אורך השתל מ-10 ל-15 מ\"מ מורידה את העומס בצוואר השתל ב-90%. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ג. שאריות צמנט בלתי מפונות בתת-חניכיים המובילות לדלקת קשה, Peri-implantitis וספיגת עצם.",
-      "explanation": "לפי מיש וזארב, שאריות צמנט הדבקה תת-חניכיות סביב שתלים הן גורם אטיולוגי מרכזי להתפתחות פרי-אימפלנטיטיס ואיבוד עצם מהיר."
+      "correct": "ג. הגדלת קוטר השתל מפתחת שטחי פנים ומפחיתה עומסי לחיצה בשיא הרכס בצורה משמעותית יותר מאשר הגדלת אורך השתל.",
+      "explanation": "לפי מיש (פרק 12-13), רוב העומס האוקלוזלי מתרכז ב-3-5 המילימטרים העליונים של העצם הקורטיקלית. הגדלת הקוטר מגדל את שטח הפנים במישור הקריטי ומפחית מאמצים בצורה אפקטיבית בהרבה מהארכת השתל."
     },
     {
-      "id": 3,
+      "id": 12003,
       "difficulty": "קשה",
-      "question": "מהו מנגנון ה-Platform Switching בשיקום על גבי שתלים, ומהי תרומתו לשמירה על שיא עצם הרכס (Crestal Bone)?",
+      "question": "מהו המרחק המינימלי הנדרש בין שני שתלים סמוכים, ובין שתל לשן טבעית סמוכה, לשמירה על הפפילה והעצם הבין-דנטלית?",
       "options": [
-        "א. ביטול הבורג המרכזי ושימוש בפין פלדה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. חיבור מבנה רחב יותר מקוטר השתל להגדלת התמיכה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. הרחבת השתל ב-3 מ\"מ מעל החניכיים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. חיבור מבן (Abutment) בעל קוטר צר יותר מקוטר פלטפורמת צוואר השתל; מסיט את ה-Microgap פנימה והרחק משיא העצם הקורטיקלית."
+        "א. 0.5 מ\"מ בלבד בין שתלים. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ב. 5 מ\"מ בין שתל לשן טבעית. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. אין שום מגבלת מרחק כל עוד השתלים לא נוגעים זה בזה.",
+        "ד. לפחות 3 מ\"מ בין שתל לשתל, ולפחות 1.5 מ\"מ בין שתל לשן טבעית."
       ],
-      "correct": "ד. חיבור מבן (Abutment) בעל קוטר צר יותר מקוטר פלטפורמת צוואר השתל; מסיט את ה-Microgap פנימה והרחק משיא העצם הקורטיקלית.",
-      "explanation": "לפי מיש וזארב, Platform Switching מסיט את המפתח המיקרוסקופי (Microgap) והתגובה הדלקתית הנלווית אליו מרכזית פנימה, ובכך משמר את גובה עצם הרכס ה-Crestal bone."
+      "correct": "ד. לפחות 3 מ\"מ בין שתל לשתל, ולפחות 1.5 מ\"מ בין שתל לשן טבעית.",
+      "explanation": "לפי מיש וזארב (Tarnow et al.), דרוש מרחק של לפחות 3 מ\"מ בין שתל לשתל כדי למנוע חפיפה של ספיגת העצם המקורית (Biological width/microgap), ו-1.5 מ\"מ בין שתל לשן לשמירה על העצם הבין-דנטלית והפפילה."
     },
     {
-      "id": 4,
+      "id": 12004,
       "difficulty": "מומחה",
-      "question": "מהי התופעה הפיזיקלית של Preload בבורג המבנה (Abutment screw), ואיך היא מגינה מנפילת הבורג?",
+      "question": "מהי ההגדרה של אוסטאואינטגרציה (Osseointegration) לפי Brånemark ברמה המיקרוסקופית והקלינית?",
       "options": [
-        "א. מתיחה אלסטית פנימית של הבורג המופעלת בעת הידוק במומנט (Torque) מומלץ, המייצרת כוח לחיצה (Clamping force) בין השרכים.",
-        "ב. הדבקה כימית של הברגה בעזרת רוק. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. התפשטות תרמית של הברזל בבורג. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. שבירה מבוקרת של ראש הבורג. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. מגע ישיר, תפקודי ומבני בין עצם חיה לפני שטח השתל הטעון עומס, ללא התערבות רקמת חיבור פיברוטית.",
+        "ב. חיבור ע\"י סיבי ליגמנט פריודונטלי מלאכותי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. יצירת סחוס היאליני סביב הטיטניום. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. התחברות כימית של אבקת הידרוקסיאפטיט בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
       ],
-      "correct": "א. מתיחה אלסטית פנימית של הבורג המופעלת בעת הידוק במומנט (Torque) מומלץ, המייצרת כוח לחיצה (Clamping force) בין השרכים.",
-      "explanation": "לפי מיש וזארב, Preload הוא מתח המתיחה האלסטי שנוצר בבורג בעת הידוק במומנט הנכון (כגון 30-35 Ncm). מתח זה מייצר Clamping force המהדק את המבנה לשתל ומונע התרופפות תחת עומסים מחזוריים."
+      "correct": "א. מגע ישיר, תפקודי ומבני בין עצם חיה לפני שטח השתל הטעון עומס, ללא התערבות רקמת חיבור פיברוטית.",
+      "explanation": "אוסטאואינטגרציה (Brånemark / Misch / Zarb) מוגדרת כחיבור מבני ותפקודי ישיר בין עצם חיה ומאורגנת לבין פני שטח השתל הטעון עומס ללא שכבת רקמת חיבור ביניהם."
     },
     {
-      "id": 1201,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12005,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
-      "question": "מהו היתרון המרכזי של שחזור המוברג ישירות לשתל (Screw-Retained Crown) לעומת שחזור מודבק (Cement-Retained Crown)?",
+      "question": "כיצד מוגדרת איכות עצם D1 לפי סיווג Misch (מיש) ואיפה היא שכיחה ביותר אנטומית?",
       "options": [
-        "א. מחיר זול בהרבה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. פריקות ושליפות (Retrievability) קלה לצורך תחזוקה, והיעדר סיכון לדלקת סביב שתל (Peri-implantitis) מפתור עודפי צמנט תת-חניכיים.",
-        "ג. אין צורך בצילום רדיוגרפי לבדיקת ההתאמה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. אסתטיקה עדיפה באזור הקדמי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. עצם קורטיקלית דקה עם ספוגית צפופה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. עצם קורטיקלית דחוסה מאוד (Dense cortical bone), השכיחה בעיקר בחלק הקדמי של המנדיבולה.",
+        "ג. עצם שעברה רדיותרפיה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. עצם ספוגית רכה מאוד (Loose trabecular) השכיחה במקסילה האחורית."
       ],
-      "correct": "ב. פריקות ושליפות (Retrievability) קלה לצורך תחזוקה, והיעדר סיכון לדלקת סביב שתל (Peri-implantitis) מפתור עודפי צמנט תת-חניכיים.",
-      "explanation": "לפי מיש (פרקים 12-14), שחזור מוברג מונע לחלוטין דלקת פרי-אימפלנטיטיס הנגרמת מששארי צמנט ומאפשר פירוק קל לצורך תחזוקה."
+      "correct": "ב. עצם קורטיקלית דחוסה מאוד (Dense cortical bone), השכיחה בעיקר בחלק הקדמי של המנדיבולה.",
+      "explanation": "לפי מיש (פרק 8), עצם D1 היא עצם קורטיקלית דחוסה, שכיחה בקדמת המנדיבולה, מעניקה יציבות ראשונית מצוינת אך בעלת אספקת דם מופחתת."
     },
     {
-      "id": 1202,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12006,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
-      "question": "מהו ה-Preload בבורג המבנה (Abutment Screw) ומה חשיבות מומנט הסגירה (Torque) המומלץ ע\"י היצרן?",
+      "question": "מהי ההגדרה המקובלת של אוסטאואינטגרציה (Osseointegration) לפי Bränemark?",
       "options": [
-        "א. עובי מעטפת הטיטניום בצוואר השתל. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. מומנט ההחדרה של השתל בעת ההשתלה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. מתיחה אלסטית מבוקרת של הבורג המייצרת כוח הידוק (Clamping force) בין המבנה לשתל למניעת שחרור הבורג בעומסי לעיסה.",
-        "ד. כוח הדחיסה האנכי של השתל לתוך העצם. כפי שמוגדר במנח האנטומי של בסיס הגולגולת ומישור הסגר."
+        "א. התקשרות כימית של יוני סידן מתוך הרוק. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. חיבור של רקמת חיבור סיבית בין השתל לעצם. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. חיבור מבני ותפקודי ישיר בין עצם חיים לבין פני שטח של שתל טיטניום נושא עומס, ללא תיווך רקמה רכה.",
+        "ד. ציפוי השתל בסחוס היאליני. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ג. מתיחה אלסטית מבוקרת של הבורג המייצרת כוח הידוק (Clamping force) בין המבנה לשתל למניעת שחרור הבורג בעומסי לעיסה.",
-      "explanation": "הידוק הבורג במומנט הנכון (למשל 30-35 Ncm) יוצר Preload (מתיחה אלסטית) השומרת על ה-Clamping force ומונעת שחרור גראוויטציוני/דינמי של הבורג."
+      "correct": "ג. חיבור מבני ותפקודי ישיר בין עצם חיים לבין פני שטח של שתל טיטניום נושא עומס, ללא תיווך רקמה רכה.",
+      "explanation": "אוסטאואינטגרציה לפי ברנמרק מוגדרת כמגע ישיר ברמת מיקרוסקופ האור בין עצם חיה לפני השטח של הטיטניום תחת עומס תפקודי."
     },
     {
-      "id": 1203,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12007,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
-      "question": "איזה סיווג פרוסטודונטי לפי מיש (Misch Prosthetic Classification FP-1 to FP-3) מתאר כתר המשחזר את כותרת השן בלבד ללא שחזור של חניכיים אבודות?",
+      "question": "מהי ספיגת העצם הקרסטלית הממוצעת הנחשבת לתקינה בשנה הראשונה לאחר העמסת שתל לפי הקריטריונים של Albrektsson & Zarb?",
       "options": [
-        "א. FP-2, המשחזר כותרת וחלק מהשורש. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. FP-3, המשחזר כותרת ורקמה ורודה (Gingival acrylic/porcelain).",
-        "ג. RP-4, תותבת נשלפת נתמכת שתלים בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ד. FP-1 (Fixed Prosthesis 1), המשחזר את כותרת השן בלבד ונראה כטבעי לחלוטין."
+        "א. אפס ספיגת עצם לחלוטין כל חיי השתל. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. 0.5 מ\"מ בכל חודש. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. 3.0 מ\"מ בשנה הראשונה ו-1.0 מ\"מ בכל שנה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. עד 1.5 מ\"מ בשנה הראשונה, ולאחר מכן פחות מ-0.2 מ\"מ לכל שנה נוספת."
       ],
-      "correct": "ד. FP-1 (Fixed Prosthesis 1), המשחזר את כותרת השן בלבד ונראה כטבעי לחלוטין.",
-      "explanation": "לפי מיש, FP-1 משחזר רק את כותרת השן הטבעית. FP-2 משחזר כותרת וחלק מהשורש, ואילו FP-3 משחזר גם את הרקמה הורודה."
+      "correct": "ד. עד 1.5 מ\"מ בשנה הראשונה, ולאחר מכן פחות מ-0.2 מ\"מ לכל שנה נוספת.",
+      "explanation": "לפי אלברקטסון וזארב (מיש פרק 5), הצלחת שתל מוגדרת כאשר ספיגת העצם הקרסטלית אינה עולה על 1.5 מ\"מ בשנה הראשונה ולאחר מכן פחות מ-0.2 מ\"מ לשנה."
     },
     {
-      "id": 1204,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12008,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
-      "question": "מהי הסכנה המרכזית בשימוש בצמנט רזין קשיח להדבקת כתרים על גבי שתלים כאשר גבול ההדבקה ממוקם 2 מ\"מ תת-חניכית?",
+      "question": "כיצד משפיע קוטר השתל (Implant Diameter) לעומת אורך השתל (Implant Length) על פיזור מאמצי הגזירה והלחיצה בצוואר השתל לפי מיש?",
       "options": [
-        "א. קושי רב או חוסר יכולת לסלק עודפי צמנט נוקשים מהמרחב התת-חניכי, המוביל להתפתחות מואצת של Peri-implantitis ואובדן עצם קרסטלית.",
-        "ב. שבירה מיידית של השתל. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. המסה מהירה של הצמנט ע\"י הרוק. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. שינוי צבע החרסינה לצהוב. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. הגדלת הקוטר ב-1 מ\"מ מגדלת את שטח הפנים בצוואר השתל ומפחיתה עומסים קרסטליים ב-20-30%, בעוד שהארכת השתל משפיעה בעיקר על היציבות הראשונית ופחות על העומס הקרסטלי.",
+        "ב. אורך השתל הוא המשתנה היחיד הקובע עמידות בפני כוחות כפיפה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. הגדלת האורך משפרת את פיזור המאמצים הקרסטליים פי 4 מהגדלת הקוטר. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. אין שום הבדל בין קוטר לאורך. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "א. קושי רב או חוסר יכולת לסלק עודפי צמנט נוקשים מהמרחב התת-חניכי, המוביל להתפתחות מואצת של Peri-implantitis ואובדן עצם קרסטלית.",
-      "explanation": "שאריות צמנט תת-חניכיות סביב שתלים הן מהגורמים השכיחים ביותר לפרי-אימפלנטיטיס. צמנט רזין תת-חניכי עמוק קשה מאוד לזיהוי ולסילוק."
+      "correct": "א. הגדלת הקוטר ב-1 מ\"מ מגדלת את שטח הפנים בצוואר השתל ומפחיתה עומסים קרסטליים ב-20-30%, בעוד שהארכת השתל משפיעה בעיקר על היציבות הראשונית ופחות על העומס הקרסטלי.",
+      "explanation": "לפי מיש (פרק 7), רוב העומס הביומכני מתרכז ב-3-5 המ\"מ הראשונים של צוואר השתל. לכן, הגדלת הקוטר מורידה מאמצים קרסטליים באופן משמעותי הרבה יותר מהארכת השתל."
     },
     {
-      "id": 1688,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12009,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
       "options": [
@@ -12629,8 +12862,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1689,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12010,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
       "options": [
@@ -12643,8 +12876,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1690,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12011,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
       "options": [
@@ -12657,8 +12890,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1691,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12012,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
       "options": [
@@ -12671,8 +12904,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1692,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12013,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
       "options": [
@@ -12685,8 +12918,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1693,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12014,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
       "options": [
@@ -12699,8 +12932,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1694,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12015,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
       "options": [
@@ -12713,8 +12946,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1695,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12016,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
       "options": [
@@ -12727,8 +12960,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1696,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12017,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
       "options": [
@@ -12741,8 +12974,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1697,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12018,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
       "options": [
@@ -12755,8 +12988,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1698,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12019,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
       "options": [
@@ -12769,8 +13002,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1699,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12020,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
       "options": [
@@ -12783,8 +13016,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1700,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12021,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
       "options": [
@@ -12797,8 +13030,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1701,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12022,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
       "options": [
@@ -12811,8 +13044,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1702,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12023,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
       "options": [
@@ -12825,8 +13058,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1703,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12024,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
       "options": [
@@ -12839,8 +13072,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1704,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12025,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
       "options": [
@@ -12853,8 +13086,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1705,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12026,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
       "options": [
@@ -12867,8 +13100,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1706,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12027,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
       "options": [
@@ -12881,8 +13114,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1707,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12028,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
       "options": [
@@ -12895,8 +13128,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1708,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12029,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
       "options": [
@@ -12909,8 +13142,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1709,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12030,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
       "options": [
@@ -12923,8 +13156,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1710,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12031,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
       "options": [
@@ -12937,8 +13170,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1711,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12032,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
       "options": [
@@ -12951,8 +13184,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1712,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12033,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
       "options": [
@@ -12965,8 +13198,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1713,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12034,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
       "options": [
@@ -12979,8 +13212,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1714,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12035,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
       "options": [
@@ -12993,8 +13226,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1715,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12036,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
       "options": [
@@ -13007,8 +13240,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1716,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12037,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
       "options": [
@@ -13021,8 +13254,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1717,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12038,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
       "options": [
@@ -13035,8 +13268,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1718,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12039,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
       "options": [
@@ -13049,8 +13282,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1719,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12040,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
       "options": [
@@ -13063,8 +13296,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1720,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12041,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
       "options": [
@@ -13077,8 +13310,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1721,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12042,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
       "options": [
@@ -13091,8 +13324,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1722,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12043,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
       "options": [
@@ -13105,8 +13338,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1723,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12044,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
       "options": [
@@ -13119,8 +13352,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1724,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12045,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
       "options": [
@@ -13133,8 +13366,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1725,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12046,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
       "options": [
@@ -13147,8 +13380,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1726,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12047,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
       "options": [
@@ -13161,8 +13394,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1727,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12048,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
       "options": [
@@ -13175,8 +13408,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1728,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12049,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
       "options": [
@@ -13189,8 +13422,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1729,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12050,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
       "options": [
@@ -13203,8 +13436,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1730,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12051,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
       "options": [
@@ -13217,8 +13450,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1731,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12052,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
       "options": [
@@ -13231,8 +13464,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1732,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12053,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
       "options": [
@@ -13245,8 +13478,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1733,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12054,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
       "options": [
@@ -13259,8 +13492,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1734,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12055,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
       "options": [
@@ -13273,8 +13506,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1735,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12056,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
       "options": [
@@ -13287,8 +13520,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1736,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12057,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
       "options": [
@@ -13301,8 +13534,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1737,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12058,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
       "options": [
@@ -13315,8 +13548,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1738,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12059,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
       "options": [
@@ -13329,8 +13562,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1739,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12060,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
       "options": [
@@ -13343,8 +13576,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1740,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12061,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
       "options": [
@@ -13357,8 +13590,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1741,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12062,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
       "options": [
@@ -13371,8 +13604,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1742,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12063,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
       "options": [
@@ -13385,8 +13618,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1743,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12064,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
       "options": [
@@ -13399,8 +13632,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1744,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12065,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
       "options": [
@@ -13413,8 +13646,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1745,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12066,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
       "options": [
@@ -13427,8 +13660,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1746,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12067,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
       "options": [
@@ -13441,8 +13674,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1747,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12068,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
       "options": [
@@ -13455,8 +13688,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1748,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12069,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
       "options": [
@@ -13469,8 +13702,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1749,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12070,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
       "options": [
@@ -13483,8 +13716,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1750,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12071,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
       "options": [
@@ -13497,8 +13730,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1751,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12072,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
       "options": [
@@ -13511,8 +13744,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1752,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12073,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
       "options": [
@@ -13525,8 +13758,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1753,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12074,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
       "options": [
@@ -13539,8 +13772,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1754,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12075,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
       "options": [
@@ -13553,8 +13786,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1755,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12076,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
       "options": [
@@ -13567,8 +13800,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1756,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12077,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
       "options": [
@@ -13581,8 +13814,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1757,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12078,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
       "options": [
@@ -13595,8 +13828,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1758,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12079,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
       "options": [
@@ -13609,8 +13842,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1759,
-      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
+      "id": 12080,
+      "topic": "11. שתלים דנטליים: ביומכניקה, איכות עצם ותכנון",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
       "options": [
@@ -13625,116 +13858,116 @@ ALL_QUESTIONS = {
   ],
   "13": [
     {
-      "id": 1,
+      "id": 13001,
       "difficulty": "קל",
-      "question": "מהו הרוחב הביולוגי (Biological Width / Supracrestal Tissue Attachment) הממוצע סביב שן טבעית בריאה?",
+      "question": "איזו שיטת חיבור שיקום על גבי שתלים (Screw-retained vs. Cement-retained) מעניקה יתרון מובהק של פריקות (Retrievability) וגובה אקסאלי מצומצם?",
       "options": [
-        "א. 0.5 מ\"מ בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ב. כ-2.04 מ\"מ (מורכב מ-0.97 מ\"מ Junctional Epithelium ו-1.07 מ\"מ Connective Tissue attachment).",
-        "ג. 10 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. 5.0 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. שיקום בהדבקה בלתי הפיכה עם אקריל.",
+        "ב. שיקום מוברג (Screw-retained).",
+        "ג. שיקום מודבק (Cement-retained).",
+        "ד. שיקום שרפי ישיר. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ב. כ-2.04 מ\"מ (מורכב מ-0.97 מ\"מ Junctional Epithelium ו-1.07 מ\"מ Connective Tissue attachment).",
-      "explanation": "לפי לינדה (פרק 16) ושילינבורג (Gargiulo / Vacek), הרוחב הביולוגי סביב שן ממוצע ב-2.04 מ\"מ. חדירת שולי שחזור לתוך תחום זה גורמת לדלקת כרונית, נסיגת חניכיים או ספיגת עצם."
+      "correct": "ב. שיקום מוברג (Screw-retained).",
+      "explanation": "לפי מיש (פרק 14-15) וזארב, שיקום מוברג מאפשר פירוק קל (Retrievability) לצורך תחזוקה וטיפול, ומתאים למצבים של גובה בין-סגרי מצומצם ללא סכנת שאריות צמנט."
     },
     {
-      "id": 2,
+      "id": 13002,
       "difficulty": "בינוני",
-      "question": "מהו ההבדל המרכזי בין טראומה אוקלוזלית ראשונית (Primary Occlusal Trauma) לטראומה אוקלוזלית שניונית (Secondary Occlusal Trauma)?",
+      "question": "מהי הסכנה הפריודונטלית/פרי-אימפלנטרית המרכזית בשימוש בשיקום מודבק (Cement-retained) עם קו סיום תת-חניכי עמוק?",
       "options": [
-        "א. אין שום הבדל קליני ביניהן. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. הראשונית גורמת לאיבוד עצם אופקי בלבד והשניונית לאיבוד אנכי. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ג. הראשונית מתרחשת עקב כוחות סגר מופרזים על שן עם תמיכה פריודונטלית בריאה ורגילה; השניונית מתרחשת עקב כוחות סגר רגילים/מופרזים על שן עם תמיכה פריודונטלית מופחתת/חולה.",
-        "ד. הראשונית מופיעה רק בשיניים חלביות. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. שבר של בורג השתל המרכזי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. התרופפות הבורג הפנימי ב-100% מהמקרים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. שאריות צמנט בלתי מפונות בתת-חניכיים המובילות לדלקת קשה, Peri-implantitis וספיגת עצם.",
+        "ד. שינוי צבע הכתר לצהוב. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ג. הראשונית מתרחשת עקב כוחות סגר מופרזים על שן עם תמיכה פריודונטלית בריאה ורגילה; השניונית מתרחשת עקב כוחות סגר רגילים/מופרזים על שן עם תמיכה פריודונטלית מופחתת/חולה.",
-      "explanation": "לפי לינדה (פרק 17) ומיש, טראומה ראשונית היא כוח מופרז על מנגנון תמיכה שמור ובריא. טראומה שניונית היא הפעלת כוחות (אפילו פיזיולוגיים) על מנגנון אחיזה מופחת שסבל ממחלת חניכיים."
+      "correct": "ג. שאריות צמנט בלתי מפונות בתת-חניכיים המובילות לדלקת קשה, Peri-implantitis וספיגת עצם.",
+      "explanation": "לפי מיש וזארב, שאריות צמנט הדבקה תת-חניכיות סביב שתלים הן גורם אטיולוגי מרכזי להתפתחות פרי-אימפלנטיטיס ואיבוד עצם מהיר."
     },
     {
-      "id": 3,
+      "id": 13003,
       "difficulty": "קשה",
-      "question": "איזה ניתוח פריודונטלי מותווה לצורך יצירת מקום לרוחב ביולוגי ולפרול (Ferrule) בשן עם הרס כותרתי תת-חניכי?",
+      "question": "מהו מנגנון ה-Platform Switching בשיקום על גבי שתלים, ומהי תרומתו לשמירה על שיא עצם הרכס (Crestal Bone)?",
       "options": [
-        "א. Subgingival Curettage. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. Free Gingival Graft בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ג. Gingivectomy בלבד ללא נגיעה בעצם. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ד. Crown Lengthening Procedure (הארכת כותרת כירורגית הכוללת הסרת עצם)."
+        "א. ביטול הבורג המרכזי ושימוש בפין פלדה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. חיבור מבנה רחב יותר מקוטר השתל להגדלת התמיכה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. הרחבת השתל ב-3 מ\"מ מעל החניכיים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. חיבור מבן (Abutment) בעל קוטר צר יותר מקוטר פלטפורמת צוואר השתל; מסיט את ה-Microgap פנימה והרחק משיא העצם הקורטיקלית."
       ],
-      "correct": "ד. Crown Lengthening Procedure (הארכת כותרת כירורגית הכוללת הסרת עצם).",
-      "explanation": "לפי לינדה ושילינבורג, הארכת כותרת כירורגית (Crown Lengthening) דורשת אוסטאוטומיה/אוסטאופלסטיה כדי להרחיק את שיא העצם לפחות 3 מ\"מ משולי ההכנה המתוכננים לשמירה על הרוחב הביולוגי והפרול."
+      "correct": "ד. חיבור מבן (Abutment) בעל קוטר צר יותר מקוטר פלטפורמת צוואר השתל; מסיט את ה-Microgap פנימה והרחק משיא העצם הקורטיקלית.",
+      "explanation": "לפי מיש וזארב, Platform Switching מסיט את המפתח המיקרוסקופי (Microgap) והתגובה הדלקתית הנלווית אליו מרכזית פנימה, ובכך משמר את גובה עצם הרכס ה-Crestal bone."
     },
     {
-      "id": 4,
+      "id": 13004,
       "difficulty": "מומחה",
-      "question": "מהם המדדים הקליניים והרדיוגרפיים האופייניים לטראומה אוקלוזלית על שן טבעית?",
+      "question": "מהי התופעה הפיזיקלית של Preload בבורג המבנה (Abutment screw), ואיך היא מגינה מנפילת הבורג?",
       "options": [
-        "א. ניידות שן גוברת, התרחבות מרווח הליגמנט הפריודונטלי (PDL space widening), עיבוי Lamina dura, ורגישות לניקוש.",
-        "ב. אובדן חיוניות השן תוך 24 שעות. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. היווצרות כיס פריודונטלי דלקתי אמיתי בודד ללא חיידקים. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
-        "ד. נסיוג חניכיים ללא שום שינוי ברדיוגרפיה. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation."
+        "א. מתיחה אלסטית פנימית של הבורג המופעלת בעת הידוק במומנט (Torque) מומלץ, המייצרת כוח לחיצה (Clamping force) בין השרכים.",
+        "ב. הדבקה כימית של הברגה בעזרת רוק. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. התפשטות תרמית של הברזל בבורג. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. שבירה מבוקרת של ראש הבורג. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "א. ניידות שן גוברת, התרחבות מרווח הליגמנט הפריודונטלי (PDL space widening), עיבוי Lamina dura, ורגישות לניקוש.",
-      "explanation": "לפי לינדה ומיש, טראומה אוקלוזלית מתבטאת קלינית בניידות ורגישות, ורדיוגרפית בהתרחבות ה-PDL, עיבוי ה-Lamina Dura וספיגת עצם אופקית/זוויתית (אך אינה יוצרת כיס פריודונטלי ללא נוכחות פלאק חיידקי)."
+      "correct": "א. מתיחה אלסטית פנימית של הבורג המופעלת בעת הידוק במומנט (Torque) מומלץ, המייצרת כוח לחיצה (Clamping force) בין השרכים.",
+      "explanation": "לפי מיש וזארב, Preload הוא מתח המתיחה האלסטי שנוצר בבורג בעת הידוק במומנט הנכון (כגון 30-35 Ncm). מתח זה מייצר Clamping force המהדק את המבנה לשתל ומונע התרופפות תחת עומסים מחזוריים."
     },
     {
-      "id": 1301,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13005,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
-      "question": "מהו הרוחב הביולוגי (Biological Width) הממוצע סביב שן טבעית לפי Gargiulo / Lindhe?",
+      "question": "מהו היתרון המרכזי של שחזור המוברג ישירות לשתל (Screw-Retained Crown) לעומת שחזור מודבק (Cement-Retained Crown)?",
       "options": [
-        "א. 0.5 מ\"מ בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ב. כ-2.04 מ\"מ בסך הכל (כ-1.07 מ\"מ Junctional Epithelium + כ-0.97 מ\"מ Connective Tissue Attachment).",
-        "ג. 0.1 מ\"מ של אמייל. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. 5.0 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. מחיר זול בהרבה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. פריקות ושליפות (Retrievability) קלה לצורך תחזוקה, והיעדר סיכון לדלקת סביב שתל (Peri-implantitis) מפתור עודפי צמנט תת-חניכיים.",
+        "ג. אין צורך בצילום רדיוגרפי לבדיקת ההתאמה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. אסתטיקה עדיפה באזור הקדמי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ב. כ-2.04 מ\"מ בסך הכל (כ-1.07 מ\"מ Junctional Epithelium + כ-0.97 מ\"מ Connective Tissue Attachment).",
-      "explanation": "לפי גרג'יולו ולינדה (פרקים 16-17), הרוחב הביולוגי מורכב מאחיזת האפיתל והאחיזה המחברת ומסתכם ב-2.04 מ\"מ בממוצע. פגיעה בו ע\"י שולי כתר עמוקים גורמת לדלקת ואובדן עצם."
+      "correct": "ב. פריקות ושליפות (Retrievability) קלה לצורך תחזוקה, והיעדר סיכון לדלקת סביב שתל (Peri-implantitis) מפתור עודפי צמנט תת-חניכיים.",
+      "explanation": "לפי מיש (פרקים 12-14), שחזור מוברג מונע לחלוטין דלקת פרי-אימפלנטיטיס הנגרמת מששארי צמנט ומאפשר פירוק קל לצורך תחזוקה."
     },
     {
-      "id": 1302,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13006,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
-      "question": "מה מוגדר כטראומה אוקלוזלית ראשונית (Primary Occlusal Trauma)?",
+      "question": "מהו ה-Preload בבורג המבנה (Abutment Screw) ומה חשיבות מומנט הסגירה (Torque) המומלץ ע\"י היצרן?",
       "options": [
-        "א. עששת עמוקה בצוואר השן. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. ניידות שן הנגרמת עקב שבר שורש בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ג. כוחות אוקלוזליים מופרזים/חריגים המופעלים על שן בעלת מנגנון תמיכה פריודונטלי תקין ובריא.",
-        "ד. כוחות אוקלוזליים תקינים המופעלים על מנגנון תמיכה פריודונטלי מופחת עקב מחלת חניכיים."
+        "א. עובי מעטפת הטיטניום בצוואר השתל. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. מומנט ההחדרה של השתל בעת ההשתלה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. מתיחה אלסטית מבוקרת של הבורג המייצרת כוח הידוק (Clamping force) בין המבנה לשתל למניעת שחרור הבורג בעומסי לעיסה.",
+        "ד. כוח הדחיסה האנכי של השתל לתוך העצם. כפי שמוגדר במנח האנטומי של בסיס הגולגולת ומישור הסגר."
       ],
-      "correct": "ג. כוחות אוקלוזליים מופרזים/חריגים המופעלים על שן בעלת מנגנון תמיכה פריודונטלי תקין ובריא.",
-      "explanation": "לפי לינדה, טראומה אוקלוזלית ראשונית מתרחשת כאשר כוחות מופרזים פועלים על תמיכה פריודונטלית בריאה. טראומה משנית מתרחשת כאשר כוחות תקינים/חריגים פועלים על תמיכה מופחתת."
+      "correct": "ג. מתיחה אלסטית מבוקרת של הבורג המייצרת כוח הידוק (Clamping force) בין המבנה לשתל למניעת שחרור הבורג בעומסי לעיסה.",
+      "explanation": "הידוק הבורג במומנט הנכון (למשל 30-35 Ncm) יוצר Preload (מתיחה אלסטית) השומרת על ה-Clamping force ומונעת שחרור גראוויטציוני/דינמי של הבורג."
     },
     {
-      "id": 1303,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13007,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
-      "question": "מהו המרווח המינימלי הנדרש בין קו הסיום של השחזה (Margin) לבין שיא העצם האלבאולרית בעת ביצוע הארכת כותרת (Crown Lengthening)?",
+      "question": "איזה סיווג פרוסטודונטי לפי מיש (Misch Prosthetic Classification FP-1 to FP-3) מתאר כתר המשחזר את כותרת השן בלבד ללא שחזור של חניכיים אבודות?",
       "options": [
-        "א. 6.0 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. 1.0 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. 0.5 מ\"מ בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ד. לפחות 3.0 מ\"מ (2.0 מ\"מ לשמירת הרוחב הביולוגי + 1.0 מ\"מ עבור ה-Ferrule והשוליים)."
+        "א. FP-2, המשחזר כותרת וחלק מהשורש. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. FP-3, המשחזר כותרת ורקמה ורודה (Gingival acrylic/porcelain).",
+        "ג. RP-4, תותבת נשלפת נתמכת שתלים בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ד. FP-1 (Fixed Prosthesis 1), המשחזר את כותרת השן בלבד ונראה כטבעי לחלוטין."
       ],
-      "correct": "ד. לפחות 3.0 מ\"מ (2.0 מ\"מ לשמירת הרוחב הביולוגי + 1.0 מ\"מ עבור ה-Ferrule והשוליים).",
-      "explanation": "כדי למנוע פגיעה ברוחב הביולוגי ולהבטיח Ferrule תקין, הניתוח להארכת כותרת חייב לייצר מרחק של לפחות 3 מ\"מ משיא העצם עד לקו הסיום המתוכנן."
+      "correct": "ד. FP-1 (Fixed Prosthesis 1), המשחזר את כותרת השן בלבד ונראה כטבעי לחלוטין.",
+      "explanation": "לפי מיש, FP-1 משחזר רק את כותרת השן הטבעית. FP-2 משחזר כותרת וחלק מהשורש, ואילו FP-3 משחזר גם את הרקמה הורודה."
     },
     {
-      "id": 1304,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13008,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
-      "question": "מתי מתווית סדיקת שיניים (Splinting) כאמצעי טיפולי לפי הספרות הפריודונטלית-שיקומית?",
+      "question": "מהי הסכנה המרכזית בשימוש בצמנט רזין קשיח להדבקת כתרים על גבי שתלים כאשר גבול ההדבקה ממוקם 2 מ\"מ תת-חניכית?",
       "options": [
-        "א. כאשר ניידות השיניים היא פרוגרסיבית וגורמת לאי נוחות למטופל או מפריעה לתפקוד הלעיסה, לאחר שליטה בדלקת החניכיים ואיזון אוקלוזלי.",
-        "ב. בכל שן עם ניידות דרגה 1 בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ג. במקום טיפול חניכיים לחלוטין. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. רק לפני עקירת השיניים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. קושי רב או חוסר יכולת לסלק עודפי צמנט נוקשים מהמרחב התת-חניכי, המוביל להתפתחות מואצת של Peri-implantitis ואובדן עצם קרסטלית.",
+        "ב. שבירה מיידית של השתל. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. המסה מהירה של הצמנט ע\"י הרוק. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. שינוי צבע החרסינה לצהוב. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "א. כאשר ניידות השיניים היא פרוגרסיבית וגורמת לאי נוחות למטופל או מפריעה לתפקוד הלעיסה, לאחר שליטה בדלקת החניכיים ואיזון אוקלוזלי.",
-      "explanation": "סדיקה אינה מרפאת מחלת חניכיים, אלא מתווית רק כאשר יש ניידות מתקדמת המפריעה לנוחות/תפקוד המטופל, לאחר שבוצעה שליטה בדלקת ואיזון סגר."
+      "correct": "א. קושי רב או חוסר יכולת לסלק עודפי צמנט נוקשים מהמרחב התת-חניכי, המוביל להתפתחות מואצת של Peri-implantitis ואובדן עצם קרסטלית.",
+      "explanation": "שאריות צמנט תת-חניכיות סביב שתלים הן מהגורמים השכיחים ביותר לפרי-אימפלנטיטיס. צמנט רזין תת-חניכי עמוק קשה מאוד לזיהוי ולסילוק."
     },
     {
-      "id": 1760,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13009,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
       "options": [
@@ -13747,8 +13980,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1761,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13010,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
       "options": [
@@ -13761,8 +13994,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1762,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13011,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
       "options": [
@@ -13775,8 +14008,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1763,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13012,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
       "options": [
@@ -13789,8 +14022,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1764,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13013,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
       "options": [
@@ -13803,8 +14036,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1765,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13014,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
       "options": [
@@ -13817,8 +14050,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1766,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13015,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
       "options": [
@@ -13831,8 +14064,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1767,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13016,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
       "options": [
@@ -13845,8 +14078,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1768,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13017,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
       "options": [
@@ -13859,8 +14092,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1769,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13018,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
       "options": [
@@ -13873,8 +14106,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1770,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13019,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
       "options": [
@@ -13887,8 +14120,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1771,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13020,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
       "options": [
@@ -13901,8 +14134,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1772,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13021,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
       "options": [
@@ -13915,8 +14148,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1773,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13022,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
       "options": [
@@ -13929,8 +14162,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1774,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13023,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
       "options": [
@@ -13943,8 +14176,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1775,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13024,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
       "options": [
@@ -13957,8 +14190,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1776,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13025,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
       "options": [
@@ -13971,8 +14204,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1777,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13026,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
       "options": [
@@ -13985,8 +14218,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1778,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13027,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
       "options": [
@@ -13999,8 +14232,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1779,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13028,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
       "options": [
@@ -14013,8 +14246,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1780,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13029,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
       "options": [
@@ -14027,8 +14260,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1781,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13030,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
       "options": [
@@ -14041,8 +14274,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1782,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13031,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
       "options": [
@@ -14055,8 +14288,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1783,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13032,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
       "options": [
@@ -14069,8 +14302,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1784,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13033,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
       "options": [
@@ -14083,8 +14316,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1785,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13034,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
       "options": [
@@ -14097,8 +14330,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1786,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13035,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
       "options": [
@@ -14111,8 +14344,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1787,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13036,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
       "options": [
@@ -14125,8 +14358,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1788,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13037,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
       "options": [
@@ -14139,8 +14372,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1789,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13038,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
       "options": [
@@ -14153,8 +14386,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1790,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13039,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
       "options": [
@@ -14167,8 +14400,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1791,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13040,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
       "options": [
@@ -14181,8 +14414,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1792,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13041,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
       "options": [
@@ -14195,8 +14428,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1793,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13042,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
       "options": [
@@ -14209,8 +14442,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1794,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13043,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
       "options": [
@@ -14223,8 +14456,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1795,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13044,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
       "options": [
@@ -14237,8 +14470,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1796,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13045,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
       "options": [
@@ -14251,8 +14484,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1797,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13046,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
       "options": [
@@ -14265,8 +14498,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1798,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13047,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
       "options": [
@@ -14279,8 +14512,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1799,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13048,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
       "options": [
@@ -14293,8 +14526,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1800,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13049,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
       "options": [
@@ -14307,8 +14540,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1801,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13050,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
       "options": [
@@ -14321,8 +14554,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1802,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13051,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
       "options": [
@@ -14335,8 +14568,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1803,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13052,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
       "options": [
@@ -14349,8 +14582,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1804,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13053,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
       "options": [
@@ -14363,8 +14596,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1805,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13054,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
       "options": [
@@ -14377,8 +14610,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1806,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13055,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
       "options": [
@@ -14391,8 +14624,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1807,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13056,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
       "options": [
@@ -14405,8 +14638,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1808,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13057,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
       "options": [
@@ -14419,8 +14652,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1809,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13058,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
       "options": [
@@ -14433,8 +14666,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1810,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13059,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
       "options": [
@@ -14447,8 +14680,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1811,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13060,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
       "options": [
@@ -14461,8 +14694,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1812,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13061,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
       "options": [
@@ -14475,8 +14708,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1813,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13062,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
       "options": [
@@ -14489,8 +14722,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1814,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13063,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
       "options": [
@@ -14503,8 +14736,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1815,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13064,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
       "options": [
@@ -14517,8 +14750,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1816,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13065,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
       "options": [
@@ -14531,8 +14764,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1817,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13066,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
       "options": [
@@ -14545,8 +14778,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1818,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13067,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
       "options": [
@@ -14559,8 +14792,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1819,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13068,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
       "options": [
@@ -14573,8 +14806,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1820,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13069,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
       "options": [
@@ -14587,8 +14820,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1821,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13070,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
       "options": [
@@ -14601,8 +14834,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1822,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13071,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
       "options": [
@@ -14615,8 +14848,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1823,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13072,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
       "options": [
@@ -14629,8 +14862,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1824,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13073,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
       "options": [
@@ -14643,8 +14876,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1825,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13074,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
       "options": [
@@ -14657,8 +14890,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1826,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13075,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
       "options": [
@@ -14671,8 +14904,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1827,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13076,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
       "options": [
@@ -14685,8 +14918,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1828,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13077,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
       "options": [
@@ -14699,8 +14932,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1829,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13078,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
       "options": [
@@ -14713,8 +14946,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1830,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13079,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
       "options": [
@@ -14727,8 +14960,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1831,
-      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
+      "id": 13080,
+      "topic": "12. שיקום על גבי שתלים: מבנים ואפשרויות שיקומיות",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
       "options": [
@@ -14743,116 +14976,116 @@ ALL_QUESTIONS = {
   ],
   "14": [
     {
-      "id": 1,
+      "id": 14001,
       "difficulty": "קל",
-      "question": "מהו היתרון הפיזיולוגי והאנטומי המרכזי של תותבת על על גבי שורשים (Tooth-supported Overdenture) בהשוואה לתותבת שלמה נתמכת רירית בלבד?",
+      "question": "מהו הרוחב הביולוגי (Biological Width / Supracrestal Tissue Attachment) הממוצע סביב שן טבעית בריאה?",
       "options": [
-        "א. מניעת היווצרות אבנית בשיניים העליונות. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. שימור עצם הרכס האלבאולרי סביב השורשים ושמירה על הפרופריוצפציה (Proprioception) של ה-PDL.",
-        "ג. אפשרות להקטין את עובי השיניים ב-80%. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. ביטול מוחלט של הצורך בניקוי התותבת. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. 0.5 מ\"מ בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ב. כ-2.04 מ\"מ (מורכב מ-0.97 מ\"מ Junctional Epithelium ו-1.07 מ\"מ Connective Tissue attachment).",
+        "ג. 10 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. 5.0 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ב. שימור עצם הרכס האלבאולרי סביב השורשים ושמירה על הפרופריוצפציה (Proprioception) של ה-PDL.",
-      "explanation": "לפי זארב (פרק 20) ומיש, השארת שורשים תחת תותבת על משמרת את עצם הרכס מספיגה מואצת ומשמרת את קולטני ה-PDL התחושתיים."
+      "correct": "ב. כ-2.04 מ\"מ (מורכב מ-0.97 מ\"מ Junctional Epithelium ו-1.07 מ\"מ Connective Tissue attachment).",
+      "explanation": "לפי לינדה (פרק 16) ושילינבורג (Gargiulo / Vacek), הרוחב הביולוגי סביב שן ממוצע ב-2.04 מ\"מ. חדירת שולי שחזור לתוך תחום זה גורמת לדלקת כרונית, נסיגת חניכיים או ספיגת עצם."
     },
     {
-      "id": 2,
+      "id": 14002,
       "difficulty": "בינוני",
-      "question": "כמה שתלים דנטליים נדרשים כמינימום המומלץ לתמיכה ואחיזה של תותבת על תחתונה (Mandibular Implant Overdenture) לפי קונצנזוס מקגיל (McGill Consensus)?",
+      "question": "מהו ההבדל המרכזי בין טראומה אוקלוזלית ראשונית (Primary Occlusal Trauma) לטראומה אוקלוזלית שניונית (Secondary Occlusal Trauma)?",
       "options": [
-        "א. שמונה שתלים ארוכים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. שישה שתלים קשיחים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. שני שתלים באזור הקדמי (Interforaminal region).",
-        "ד. שתל אחד בלבד במרכז המנדיבולה. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
+        "א. אין שום הבדל קליני ביניהן. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. הראשונית גורמת לאיבוד עצם אופקי בלבד והשניונית לאיבוד אנכי. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ג. הראשונית מתרחשת עקב כוחות סגר מופרזים על שן עם תמיכה פריודונטלית בריאה ורגילה; השניונית מתרחשת עקב כוחות סגר רגילים/מופרזים על שן עם תמיכה פריודונטלית מופחתת/חולה.",
+        "ד. הראשונית מופיעה רק בשיניים חלביות. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ג. שני שתלים באזור הקדמי (Interforaminal region).",
-      "explanation": "לפי קונצנזוס מקגיל (McGill Consensus Statement / Zarb / Misch), תותבת על תחתונה נתמכת 2 שתלים באזור האינטרפורמינלי היא סטנדרט הטיפול הטיפולי המינימלי למטופל חסר שיניים במנדיבולה."
+      "correct": "ג. הראשונית מתרחשת עקב כוחות סגר מופרזים על שן עם תמיכה פריודונטלית בריאה ורגילה; השניונית מתרחשת עקב כוחות סגר רגילים/מופרזים על שן עם תמיכה פריודונטלית מופחתת/חולה.",
+      "explanation": "לפי לינדה (פרק 17) ומיש, טראומה ראשונית היא כוח מופרז על מנגנון תמיכה שמור ובריא. טראומה שניונית היא הפעלת כוחות (אפילו פיזיולוגיים) על מנגנון אחיזה מופחת שסבל ממחלת חניכיים."
     },
     {
-      "id": 3,
+      "id": 14003,
       "difficulty": "קשה",
-      "question": "איזה סוג מחבר (Attachment) מעניק תנועתיות רוטציונית (Resilient Attachment) ומפחית עומסים ממוקדים מ-2 שתלים בודדים במנדיבולה?",
+      "question": "איזה ניתוח פריודונטלי מותווה לצורך יצירת מקום לרוחב ביולוגי ולפרול (Ferrule) בשן עם הרס כותרתי תת-חניכי?",
       "options": [
-        "א. מבנה יצוק בודד מוברג ללא שום חופש. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
-        "ב. צמנט זמני רך. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. Dolder Bar קשיח לחלוטין ללא שחרור. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
-        "ד. Stud Attachments (כגון Locator / Ball Attachment)."
+        "א. Subgingival Curettage. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. Free Gingival Graft בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ג. Gingivectomy בלבד ללא נגיעה בעצם. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ד. Crown Lengthening Procedure (הארכת כותרת כירורגית הכוללת הסרת עצם)."
       ],
-      "correct": "ד. Stud Attachments (כגון Locator / Ball Attachment).",
-      "explanation": "לפי זארב ומיש, מחברי Stud בודדים (Locator / Ball) הם Resilient attachments המאפשרים תנועה מסוימת של בסיס התותבת לכיוון הרירית ומפחיתים כוחות מנוף על השתלים."
+      "correct": "ד. Crown Lengthening Procedure (הארכת כותרת כירורגית הכוללת הסרת עצם).",
+      "explanation": "לפי לינדה ושילינבורג, הארכת כותרת כירורגית (Crown Lengthening) דורשת אוסטאוטומיה/אוסטאופלסטיה כדי להרחיק את שיא העצם לפחות 3 מ\"מ משולי ההכנה המתוכננים לשמירה על הרוחב הביולוגי והפרול."
     },
     {
-      "id": 4,
+      "id": 14004,
       "difficulty": "מומחה",
-      "question": "מהן הדרישות האנטומיות והביומכניות לתכנון מחבר מסוג Dolder Bar / Hader Bar בתותבת על נתמכת שתלים?",
+      "question": "מהם המדדים הקליניים והרדיוגרפיים האופייניים לטראומה אוקלוזלית על שן טבעית?",
       "options": [
-        "א. מרווח אנכי (Clearance) של לפחות 10-12 מ\"מ משיא העצם למישור הסגר, ומקבילות של הבר למישור הסיבוב.",
-        "ב. הדבקת הבר בצמנט אבץ פוספט. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. מרווח אנכי של 2 מ\"מ בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ד. הרכבת הבר ישירות על החניכיים ללא שום מרווח ניקוי. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation."
+        "א. ניידות שן גוברת, התרחבות מרווח הליגמנט הפריודונטלי (PDL space widening), עיבוי Lamina dura, ורגישות לניקוש.",
+        "ב. אובדן חיוניות השן תוך 24 שעות. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. היווצרות כיס פריודונטלי דלקתי אמיתי בודד ללא חיידקים. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
+        "ד. נסיוג חניכיים ללא שום שינוי ברדיוגרפיה. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation."
       ],
-      "correct": "א. מרווח אנכי (Clearance) של לפחות 10-12 מ\"מ משיא העצם למישור הסגר, ומקבילות של הבר למישור הסיבוב.",
-      "explanation": "לפי זארב ומיש, מחבר Bar מורכב דורש מרווח אנכי משמעותי (לפחות 10-12 מ\"מ) ליצירת מקום לשתלים, למבנים, לבר, לרוכבים (Riders), לבסיס האקרילי ולשיניים."
+      "correct": "א. ניידות שן גוברת, התרחבות מרווח הליגמנט הפריודונטלי (PDL space widening), עיבוי Lamina dura, ורגישות לניקוש.",
+      "explanation": "לפי לינדה ומיש, טראומה אוקלוזלית מתבטאת קלינית בניידות ורגישות, ורדיוגרפית בהתרחבות ה-PDL, עיבוי ה-Lamina Dura וספיגת עצם אופקית/זוויתית (אך אינה יוצרת כיס פריודונטלי ללא נוכחות פלאק חיידקי)."
     },
     {
-      "id": 1401,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14005,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
-      "question": "מהו היתרון הפיזיולוגי והביומכני המרכזי בשמירת שורשים טבעיים מתחת לתותבת על (Root-Supported Overdenture)?",
+      "question": "מהו הרוחב הביולוגי (Biological Width) הממוצע סביב שן טבעית לפי Gargiulo / Lindhe?",
       "options": [
-        "א. ביטול הצורך בניקוי התותבת. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. שימור העצם האלבאולרית סביב השורשים (מניעת ספיגה עד פי 8), ושמירה על הפרופריוצפציה (Proprioception) מהליגמנט הפריודונטלי.",
-        "ג. מניעת עששת לחלוטין. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. הגדלת המרווח הבין-אוקלוזלי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. 0.5 מ\"מ בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ב. כ-2.04 מ\"מ בסך הכל (כ-1.07 מ\"מ Junctional Epithelium + כ-0.97 מ\"מ Connective Tissue Attachment).",
+        "ג. 0.1 מ\"מ של אמייל. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. 5.0 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "ב. שימור העצם האלבאולרית סביב השורשים (מניעת ספיגה עד פי 8), ושמירה על הפרופריוצפציה (Proprioception) מהליגמנט הפריודונטלי.",
-      "explanation": "לפי זארב ומול, שמירת שורשים מתחת לתותבת משמרת את העצם האלבאולרית באופן דרמטי ושומרת על התחושה הפרופריוצפטית של ה-PDL."
+      "correct": "ב. כ-2.04 מ\"מ בסך הכל (כ-1.07 מ\"מ Junctional Epithelium + כ-0.97 מ\"מ Connective Tissue Attachment).",
+      "explanation": "לפי גרג'יולו ולינדה (פרקים 16-17), הרוחב הביולוגי מורכב מאחיזת האפיתל והאחיזה המחברת ומסתכם ב-2.04 מ\"מ בממוצע. פגיעה בו ע\"י שולי כתר עמוקים גורמת לדלקת ואובדן עצם."
     },
     {
-      "id": 1402,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14006,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
-      "question": "מהו המרווח הבין-אוקלוזלי האנכי המינימלי הנדרש (Interocclusal Space) משיא הרכס עד מישור הסגר לצורך תכנון תותבת על נתמכת שתלים עם Locator Attachments?",
+      "question": "מה מוגדר כטראומה אוקלוזלית ראשונית (Primary Occlusal Trauma)?",
       "options": [
-        "א. 3-4 מ\"מ בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
-        "ב. 20 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. כ-8.5 עד 10 מ\"מ לפחות (עבור המבנה, האטצ'מנט, האקריל והשיניים), כדי למנוע שבר תותבת.",
-        "ד. 1 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. עששת עמוקה בצוואר השן. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. ניידות שן הנגרמת עקב שבר שורש בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ג. כוחות אוקלוזליים מופרזים/חריגים המופעלים על שן בעלת מנגנון תמיכה פריודונטלי תקין ובריא.",
+        "ד. כוחות אוקלוזליים תקינים המופעלים על מנגנון תמיכה פריודונטלי מופחת עקב מחלת חניכיים."
       ],
-      "correct": "ג. כ-8.5 עד 10 מ\"מ לפחות (עבור המבנה, האטצ'מנט, האקריל והשיניים), כדי למנוע שבר תותבת.",
-      "explanation": "לפי מיש (פרק 15), תותבת על עם Locator מחייבת מרווח אנכי של 8.5-10 מ\"מ. חוסר במרווח אנכי יוביל לתותבת דקה ונשברת או בלט אסתטי."
+      "correct": "ג. כוחות אוקלוזליים מופרזים/חריגים המופעלים על שן בעלת מנגנון תמיכה פריודונטלי תקין ובריא.",
+      "explanation": "לפי לינדה, טראומה אוקלוזלית ראשונית מתרחשת כאשר כוחות מופרזים פועלים על תמיכה פריודונטלית בריאה. טראומה משנית מתרחשת כאשר כוחות תקינים/חריגים פועלים על תמיכה מופחתת."
     },
     {
-      "id": 1403,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14007,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
-      "question": "מהו ההבדל הביומכני בין תותבת על מסוג RP-4 לבין RP-5 בסיווג של מיש?",
+      "question": "מהו המרווח המינימלי הנדרש בין קו הסיום של השחזה (Margin) לבין שיא העצם האלבאולרית בעת ביצוע הארכת כותרת (Crown Lengthening)?",
       "options": [
-        "א. RP-4 מיועדת רק למקסילה ו-RP-5 רק למנדיבולה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ב. אין שום הבדל ביומכני בנשיאת העומס. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ג. RP-4 היא תותבת מודבקת ו-RP-5 היא מוברגת. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. RP-4 היא תותבת נשלפת הנתמכת לחלוטין ע\"י שתלים/בר (Implant-supported), בעוד RP-5 נתמכת ע\"י שתלים וגם ע\"י הרכס והרקמה הרכה (Implant-retained, tissue-supported)."
+        "א. 6.0 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. 1.0 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. 0.5 מ\"מ בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ד. לפחות 3.0 מ\"מ (2.0 מ\"מ לשמירת הרוחב הביולוגי + 1.0 מ\"מ עבור ה-Ferrule והשוליים)."
       ],
-      "correct": "ד. RP-4 היא תותבת נשלפת הנתמכת לחלוטין ע\"י שתלים/בר (Implant-supported), בעוד RP-5 נתמכת ע\"י שתלים וגם ע\"י הרכס והרקמה הרכה (Implant-retained, tissue-supported).",
-      "explanation": "לפי מיש (פרק 15), RP-4 נתמכת קשיחה ע\"י השתלים בלבד (אין שקיעה על הרקמה), בעוד RP-5 מקבלת תמיכה משולבת מהשתלים ומבסיס הרקמה הרכה."
+      "correct": "ד. לפחות 3.0 מ\"מ (2.0 מ\"מ לשמירת הרוחב הביולוגי + 1.0 מ\"מ עבור ה-Ferrule והשוליים).",
+      "explanation": "כדי למנוע פגיעה ברוחב הביולוגי ולהבטיח Ferrule תקין, הניתוח להארכת כותרת חייב לייצר מרחק של לפחות 3 מ\"מ משיא העצם עד לקו הסיום המתוכנן."
     },
     {
-      "id": 1404,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14008,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
-      "question": "איזה סוג בר (Bar attachment) מאפשר תנועת רוטציה חופשית במישור הסגיטלי סביב ציר יחיד (Hinge motion) בלבד?",
+      "question": "מתי מתווית סדיקת שיניים (Splinting) כאמצעי טיפולי לפי הספרות הפריודונטלית-שיקומית?",
       "options": [
-        "א. Dolder Bar בצורת אגס/עגולה (Egg-shaped / Runner bar) עם רווח מעל הבר בתוך התפס (Rider).",
-        "ב. בר מולחם קשיח ללא חופש תנועה. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
-        "ג. Dolder Bar בצורת U קשיחה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
-        "ד. Ackermann bar מרובע. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+        "א. כאשר ניידות השיניים היא פרוגרסיבית וגורמת לאי נוחות למטופל או מפריעה לתפקוד הלעיסה, לאחר שליטה בדלקת החניכיים ואיזון אוקלוזלי.",
+        "ב. בכל שן עם ניידות דרגה 1 בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ג. במקום טיפול חניכיים לחלוטין. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. רק לפני עקירת השיניים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
       ],
-      "correct": "א. Dolder Bar בצורת אגס/עגולה (Egg-shaped / Runner bar) עם רווח מעל הבר בתוך התפס (Rider).",
-      "explanation": "Dolder bar עגול/דמוי אגס מאפשר תנועת הציר (Hinge Action) וספיגת עומסים מהרקמה הרכה, בעוד Dolder bar מרובע בצורת U הוא קשיח (Rigid)."
+      "correct": "א. כאשר ניידות השיניים היא פרוגרסיבית וגורמת לאי נוחות למטופל או מפריעה לתפקוד הלעיסה, לאחר שליטה בדלקת החניכיים ואיזון אוקלוזלי.",
+      "explanation": "סדיקה אינה מרפאת מחלת חניכיים, אלא מתווית רק כאשר יש ניידות מתקדמת המפריעה לנוחות/תפקוד המטופל, לאחר שבוצעה שליטה בדלקת ואיזון סגר."
     },
     {
-      "id": 1832,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14009,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
       "options": [
@@ -14865,8 +15098,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1833,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14010,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
       "options": [
@@ -14879,8 +15112,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1834,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14011,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
       "options": [
@@ -14893,8 +15126,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1835,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14012,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
       "options": [
@@ -14907,8 +15140,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1836,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14013,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
       "options": [
@@ -14921,8 +15154,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1837,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14014,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
       "options": [
@@ -14935,8 +15168,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1838,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14015,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
       "options": [
@@ -14949,8 +15182,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1839,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14016,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
       "options": [
@@ -14963,8 +15196,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1840,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14017,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
       "options": [
@@ -14977,8 +15210,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1841,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14018,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
       "options": [
@@ -14991,8 +15224,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1842,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14019,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
       "options": [
@@ -15005,8 +15238,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1843,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14020,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
       "options": [
@@ -15019,8 +15252,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1844,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14021,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
       "options": [
@@ -15033,8 +15266,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1845,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14022,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
       "options": [
@@ -15047,8 +15280,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1846,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14023,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
       "options": [
@@ -15061,8 +15294,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1847,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14024,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
       "options": [
@@ -15075,8 +15308,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1848,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14025,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
       "options": [
@@ -15089,8 +15322,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1849,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14026,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
       "options": [
@@ -15103,8 +15336,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1850,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14027,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
       "options": [
@@ -15117,8 +15350,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1851,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14028,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
       "options": [
@@ -15131,8 +15364,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1852,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14029,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
       "options": [
@@ -15145,8 +15378,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1853,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14030,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
       "options": [
@@ -15159,8 +15392,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1854,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14031,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
       "options": [
@@ -15173,8 +15406,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1855,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14032,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
       "options": [
@@ -15187,8 +15420,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1856,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14033,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
       "options": [
@@ -15201,8 +15434,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1857,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14034,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
       "options": [
@@ -15215,8 +15448,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1858,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14035,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
       "options": [
@@ -15229,8 +15462,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1859,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14036,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
       "options": [
@@ -15243,8 +15476,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1860,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14037,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
       "options": [
@@ -15257,8 +15490,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1861,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14038,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
       "options": [
@@ -15271,8 +15504,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1862,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14039,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
       "options": [
@@ -15285,8 +15518,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1863,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14040,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
       "options": [
@@ -15299,8 +15532,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1864,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14041,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
       "options": [
@@ -15313,8 +15546,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1865,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14042,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
       "options": [
@@ -15327,8 +15560,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1866,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14043,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
       "options": [
@@ -15341,8 +15574,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1867,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14044,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
       "options": [
@@ -15355,8 +15588,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1868,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14045,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
       "options": [
@@ -15369,8 +15602,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1869,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14046,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
       "options": [
@@ -15383,8 +15616,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1870,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14047,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
       "options": [
@@ -15397,8 +15630,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1871,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14048,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
       "options": [
@@ -15411,8 +15644,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1872,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14049,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
       "options": [
@@ -15425,8 +15658,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1873,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14050,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
       "options": [
@@ -15439,8 +15672,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1874,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14051,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
       "options": [
@@ -15453,8 +15686,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1875,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14052,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
       "options": [
@@ -15467,8 +15700,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1876,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14053,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
       "options": [
@@ -15481,8 +15714,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1877,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14054,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
       "options": [
@@ -15495,8 +15728,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1878,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14055,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
       "options": [
@@ -15509,8 +15742,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1879,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14056,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
       "options": [
@@ -15523,8 +15756,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1880,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14057,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
       "options": [
@@ -15537,8 +15770,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1881,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14058,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
       "options": [
@@ -15551,8 +15784,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1882,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14059,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
       "options": [
@@ -15565,8 +15798,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1883,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14060,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
       "options": [
@@ -15579,8 +15812,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1884,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14061,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
       "options": [
@@ -15593,8 +15826,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1885,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14062,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
       "options": [
@@ -15607,8 +15840,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1886,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14063,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
       "options": [
@@ -15621,8 +15854,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1887,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14064,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
       "options": [
@@ -15635,8 +15868,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1888,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14065,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
       "options": [
@@ -15649,8 +15882,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1889,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14066,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
       "options": [
@@ -15663,8 +15896,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1890,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14067,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
       "options": [
@@ -15677,8 +15910,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1891,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14068,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
       "options": [
@@ -15691,8 +15924,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1892,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14069,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
       "options": [
@@ -15705,8 +15938,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1893,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14070,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
       "options": [
@@ -15719,8 +15952,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1894,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14071,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
       "options": [
@@ -15733,8 +15966,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1895,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14072,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
       "options": [
@@ -15747,8 +15980,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1896,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14073,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
       "options": [
@@ -15761,8 +15994,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1897,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14074,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
       "options": [
@@ -15775,8 +16008,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1898,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14075,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
       "options": [
@@ -15789,8 +16022,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1899,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14076,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
       "options": [
@@ -15803,8 +16036,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1900,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14077,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
       "options": [
@@ -15817,8 +16050,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1901,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14078,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
       "options": [
@@ -15831,8 +16064,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1902,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14079,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
       "options": [
@@ -15845,8 +16078,8 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1903,
-      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "id": 14080,
+      "topic": "13. יחסי גומלין פריודונטיה-שיקום וניידות שיניים",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
       "options": [
@@ -15861,7 +16094,1125 @@ ALL_QUESTIONS = {
   ],
   "15": [
     {
-      "id": 1,
+      "id": 15001,
+      "difficulty": "קל",
+      "question": "מהו היתרון הפיזיולוגי והאנטומי המרכזי של תותבת על על גבי שורשים (Tooth-supported Overdenture) בהשוואה לתותבת שלמה נתמכת רירית בלבד?",
+      "options": [
+        "א. מניעת היווצרות אבנית בשיניים העליונות. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. שימור עצם הרכס האלבאולרי סביב השורשים ושמירה על הפרופריוצפציה (Proprioception) של ה-PDL.",
+        "ג. אפשרות להקטין את עובי השיניים ב-80%. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. ביטול מוחלט של הצורך בניקוי התותבת. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+      ],
+      "correct": "ב. שימור עצם הרכס האלבאולרי סביב השורשים ושמירה על הפרופריוצפציה (Proprioception) של ה-PDL.",
+      "explanation": "לפי זארב (פרק 20) ומיש, השארת שורשים תחת תותבת על משמרת את עצם הרכס מספיגה מואצת ומשמרת את קולטני ה-PDL התחושתיים."
+    },
+    {
+      "id": 15002,
+      "difficulty": "בינוני",
+      "question": "כמה שתלים דנטליים נדרשים כמינימום המומלץ לתמיכה ואחיזה של תותבת על תחתונה (Mandibular Implant Overdenture) לפי קונצנזוס מקגיל (McGill Consensus)?",
+      "options": [
+        "א. שמונה שתלים ארוכים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. שישה שתלים קשיחים. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. שני שתלים באזור הקדמי (Interforaminal region).",
+        "ד. שתל אחד בלבד במרכז המנדיבולה. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים."
+      ],
+      "correct": "ג. שני שתלים באזור הקדמי (Interforaminal region).",
+      "explanation": "לפי קונצנזוס מקגיל (McGill Consensus Statement / Zarb / Misch), תותבת על תחתונה נתמכת 2 שתלים באזור האינטרפורמינלי היא סטנדרט הטיפול הטיפולי המינימלי למטופל חסר שיניים במנדיבולה."
+    },
+    {
+      "id": 15003,
+      "difficulty": "קשה",
+      "question": "איזה סוג מחבר (Attachment) מעניק תנועתיות רוטציונית (Resilient Attachment) ומפחית עומסים ממוקדים מ-2 שתלים בודדים במנדיבולה?",
+      "options": [
+        "א. מבנה יצוק בודד מוברג ללא שום חופש. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
+        "ב. צמנט זמני רך. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. Dolder Bar קשיח לחלוטין ללא שחרור. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
+        "ד. Stud Attachments (כגון Locator / Ball Attachment)."
+      ],
+      "correct": "ד. Stud Attachments (כגון Locator / Ball Attachment).",
+      "explanation": "לפי זארב ומיש, מחברי Stud בודדים (Locator / Ball) הם Resilient attachments המאפשרים תנועה מסוימת של בסיס התותבת לכיוון הרירית ומפחיתים כוחות מנוף על השתלים."
+    },
+    {
+      "id": 15004,
+      "difficulty": "מומחה",
+      "question": "מהן הדרישות האנטומיות והביומכניות לתכנון מחבר מסוג Dolder Bar / Hader Bar בתותבת על נתמכת שתלים?",
+      "options": [
+        "א. מרווח אנכי (Clearance) של לפחות 10-12 מ\"מ משיא העצם למישור הסגר, ומקבילות של הבר למישור הסיבוב.",
+        "ב. הדבקת הבר בצמנט אבץ פוספט. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. מרווח אנכי של 2 מ\"מ בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ד. הרכבת הבר ישירות על החניכיים ללא שום מרווח ניקוי. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation."
+      ],
+      "correct": "א. מרווח אנכי (Clearance) של לפחות 10-12 מ\"מ משיא העצם למישור הסגר, ומקבילות של הבר למישור הסיבוב.",
+      "explanation": "לפי זארב ומיש, מחבר Bar מורכב דורש מרווח אנכי משמעותי (לפחות 10-12 מ\"מ) ליצירת מקום לשתלים, למבנים, לבר, לרוכבים (Riders), לבסיס האקרילי ולשיניים."
+    },
+    {
+      "id": 15005,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מהו היתרון הפיזיולוגי והביומכני המרכזי בשמירת שורשים טבעיים מתחת לתותבת על (Root-Supported Overdenture)?",
+      "options": [
+        "א. ביטול הצורך בניקוי התותבת. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. שימור העצם האלבאולרית סביב השורשים (מניעת ספיגה עד פי 8), ושמירה על הפרופריוצפציה (Proprioception) מהליגמנט הפריודונטלי.",
+        "ג. מניעת עששת לחלוטין. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. הגדלת המרווח הבין-אוקלוזלי. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+      ],
+      "correct": "ב. שימור העצם האלבאולרית סביב השורשים (מניעת ספיגה עד פי 8), ושמירה על הפרופריוצפציה (Proprioception) מהליגמנט הפריודונטלי.",
+      "explanation": "לפי זארב ומול, שמירת שורשים מתחת לתותבת משמרת את העצם האלבאולרית באופן דרמטי ושומרת על התחושה הפרופריוצפטית של ה-PDL."
+    },
+    {
+      "id": 15006,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מהו המרווח הבין-אוקלוזלי האנכי המינימלי הנדרש (Interocclusal Space) משיא הרכס עד מישור הסגר לצורך תכנון תותבת על נתמכת שתלים עם Locator Attachments?",
+      "options": [
+        "א. 3-4 מ\"מ בלבד. תוך הסתמכות מוחלטת על הדרכת הרכס האלבאולרי השארי במשטחים הבוקאליים.",
+        "ב. 20 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. כ-8.5 עד 10 מ\"מ לפחות (עבור המבנה, האטצ'מנט, האקריל והשיניים), כדי למנוע שבר תותבת.",
+        "ד. 1 מ\"מ. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+      ],
+      "correct": "ג. כ-8.5 עד 10 מ\"מ לפחות (עבור המבנה, האטצ'מנט, האקריל והשיניים), כדי למנוע שבר תותבת.",
+      "explanation": "לפי מיש (פרק 15), תותבת על עם Locator מחייבת מרווח אנכי של 8.5-10 מ\"מ. חוסר במרווח אנכי יוביל לתותבת דקה ונשברת או בלט אסתטי."
+    },
+    {
+      "id": 15007,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מהו ההבדל הביומכני בין תותבת על מסוג RP-4 לבין RP-5 בסיווג של מיש?",
+      "options": [
+        "א. RP-4 מיועדת רק למקסילה ו-RP-5 רק למנדיבולה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ב. אין שום הבדל ביומכני בנשיאת העומס. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ג. RP-4 היא תותבת מודבקת ו-RP-5 היא מוברגת. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. RP-4 היא תותבת נשלפת הנתמכת לחלוטין ע\"י שתלים/בר (Implant-supported), בעוד RP-5 נתמכת ע\"י שתלים וגם ע\"י הרכס והרקמה הרכה (Implant-retained, tissue-supported)."
+      ],
+      "correct": "ד. RP-4 היא תותבת נשלפת הנתמכת לחלוטין ע\"י שתלים/בר (Implant-supported), בעוד RP-5 נתמכת ע\"י שתלים וגם ע\"י הרכס והרקמה הרכה (Implant-retained, tissue-supported).",
+      "explanation": "לפי מיש (פרק 15), RP-4 נתמכת קשיחה ע\"י השתלים בלבד (אין שקיעה על הרקמה), בעוד RP-5 מקבלת תמיכה משולבת מהשתלים ומבסיס הרקמה הרכה."
+    },
+    {
+      "id": 15008,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "איזה סוג בר (Bar attachment) מאפשר תנועת רוטציה חופשית במישור הסגיטלי סביב ציר יחיד (Hinge motion) בלבד?",
+      "options": [
+        "א. Dolder Bar בצורת אגס/עגולה (Egg-shaped / Runner bar) עם רווח מעל הבר בתוך התפס (Rider).",
+        "ב. בר מולחם קשיח ללא חופש תנועה. עקב היעדר מגעים אוקלוזליים הרמוניים בעמדת Maximum Intercuspation.",
+        "ג. Dolder Bar בצורת U קשיחה. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית.",
+        "ד. Ackermann bar מרובע. כפי שמתואר בניתוח הביומכני של מערכת הלעיסה בספרות העיונית."
+      ],
+      "correct": "א. Dolder Bar בצורת אגס/עגולה (Egg-shaped / Runner bar) עם רווח מעל הבר בתוך התפס (Rider).",
+      "explanation": "Dolder bar עגול/דמוי אגס מאפשר תנועת הציר (Hinge Action) וספיגת עומסים מהרקמה הרכה, בעוד Dolder bar מרובע בצורת U הוא קשיח (Rigid)."
+    },
+    {
+      "id": 15009,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15010,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15011,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15012,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15013,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15014,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15015,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15016,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15017,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15018,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15019,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15020,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15021,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15022,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15023,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15024,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15025,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15026,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קל",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15027,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15028,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15029,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15030,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15031,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15032,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15033,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15034,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15035,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15036,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15037,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15038,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15039,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15040,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15041,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15042,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15043,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15044,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "בינוני",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15045,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15046,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15047,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15048,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15049,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15050,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15051,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15052,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15053,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15054,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15055,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15056,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15057,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15058,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15059,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15060,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15061,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15062,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "קשה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15063,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15064,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15065,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15066,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15067,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15068,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15069,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15070,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15071,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15072,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15073,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15074,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15075,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
+      "options": [
+        "א. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ב. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "ג. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15076,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
+      "options": [
+        "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ב. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ג. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "א. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15077,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
+      "options": [
+        "א. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ב. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "ג. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    },
+    {
+      "id": 15078,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
+      "options": [
+        "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+        "ב. Retention ו-Resistance הם מושגים זהים המתייחסים לעובי קו הסיום בלבד.",
+        "ג. Resistance תלוי אך ורק בצמנט ההדבקה ללא קשר לגאומטריה של השן.",
+        "ד. Retention מושפע אך ורק מגובה החוד האינסיזלי ולא מזווית ההתכנסות (TOC)."
+      ],
+      "correct": "א. Retention מונע עקירת הכתר לאורך ציר ההכנסה, בעוד Resistance מונע התקת הכתר תחת כוחות זוויתיים/אלכסוניים.",
+      "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
+    },
+    {
+      "id": 15079,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
+      "options": [
+        "א. 20 עד 30 מעלות כדי להבטיח הכנסה קלה של הכתר.",
+        "ב. 0 מעלות מדויקת (דפנות מקבילות לחלוטין ללא שום התכנסות).",
+        "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+        "ד. 45 מעלות כדי למנוע גירוי מוך השן."
+      ],
+      "correct": "ג. 6 עד 10 מעלות (3-5 מעלות לכל דופן עקרית).",
+      "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
+    },
+    {
+      "id": 15080,
+      "topic": "14. תותבות על (Overdentures) ואטצ'מנטים",
+      "difficulty": "מומחה",
+      "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
+      "options": [
+        "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+        "ב. Feather edge דק במיוחד בעובי 0.2 מ\"מ.",
+        "ג. Chamfer צר מאוד בעובי 0.3 מ\"מ בלבד.",
+        "ד. Bevel זוויתי של 45 מעלות ללא קו סיום מוגדר."
+      ],
+      "correct": "א. Shoulder בשיפוע של 90 מעלות בעובי של 1.0-1.2 מ\"מ.",
+      "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
+    }
+  ],
+  "16": [
+    {
+      "id": 16001,
       "difficulty": "קל",
       "question": "מהם שלושת הממדים של הצבע לפי מודל Munsell המשמשים לבחירת גוון שיניים (Shade selection)?",
       "options": [
@@ -15874,7 +17225,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי רוזנסטיל (פרק 21) ופיליפס, מודל Munsell מגדיר: Hue = משפחת הצבע (A,B,C,D), Chroma = עוצמת/רוויית הצבע, ו-Value = כמות האור/בהירות (המדד הקריטי ביותר באסתטיקה)."
     },
     {
-      "id": 2,
+      "id": 16002,
       "difficulty": "בינוני",
       "question": "מהי התופעה האופטית הנקראת Metamerism, וכיצד מונעים טעות בעת בחירת צבע במרפאה?",
       "options": [
@@ -15887,7 +17238,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי רוזנסטיל ופיליפס, מטאמריזם הוא שינוי בתפיסת גוון תחת מקורות תאורה שונים. התאמת גוון מקצועית מבוצעת תחת תאורה נטרלית תקנית (5000 Kelvin)."
     },
     {
-      "id": 3,
+      "id": 16003,
       "difficulty": "קשה",
       "question": "בעבודה עם סורק תוך-אוראלי דיגיטלי (Intraoral Scanner), מהי המשמעות של Stitching וכיצד מונעים עיוות מרחבי בסריקת קשת שלמה?",
       "options": [
@@ -15900,7 +17251,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי רוזנסטיל ופיליפס (CAD/CAM), סורקים תוך-אוראליים מחברים רצף תמונות התרשמות (Stitching). סטייה ממסלול הסריקה הרציף צוברת שגיאה מרחבית מצטברת במעבר מקשת אחת לשנייה."
     },
     {
-      "id": 4,
+      "id": 16004,
       "difficulty": "מומחה",
       "question": "מהו קובץ הפורמט הסטנדרטי הפתוח לייצוג פני שטח תלת-ממדיים במערכות CAD/CAM דנטליות?",
       "options": [
@@ -15913,7 +17264,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי רוזנסטיל וספרות CAD/CAM, קובץ STL הוא הפורמט הבינלאומי הפתוח המייצג את הגאומטריה התלת-ממדית באמצעות רשת משולשים (Mesh), בעוד DICOM מיועד להדמיה נפחית CT."
     },
     {
-      "id": 1501,
+      "id": 16005,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "איזומיימנד צבע (Color Dimension) לפי סולם Munsell נחשב לקריטי ביותר להתאמה אסתטית של שחזור דנטלי?",
@@ -15927,7 +17278,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי רוזנסטיל (פרק 20) ופיליפס, Value (בהירות) הוא הממד החשוב ביותר בבחירת צבע. טעות ב-Value בולטת מיד לעין האנושית יותר מטעות ב-Hue או Chroma."
     },
     {
-      "id": 1502,
+      "id": 16006,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מהי תופעת המטמריזם (Metamerism) בבחירת צבע דנטלי וכיצד מונעים אותה?",
@@ -15941,7 +17292,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי רוזנסטיל (פרק 20), מטמריזם מתרחש עקב ספקטרום החזרה שונה של שני חומרים. לכן חובה לבחון צבע בשני מקורות אור שונים (אור יום ותאורת מרפאה 5500K)."
     },
     {
-      "id": 1503,
+      "id": 16007,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מהי המשמעות של Trueness ו-Precision בהערכת דיוק של סורק תוך-אוראלי (Intraoral Scanner)?",
@@ -15955,7 +17306,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי תקן ISO 5725, Trueness מודדת קירבה לאמת האבסולוטית, ו-Precision מודדת חזרתיות (Repeatability) בין סריקות שונות של אותו אובייקט."
     },
     {
-      "id": 1504,
+      "id": 16008,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "כיצד משפיעה התייבשות השן (Tooth Dehydration) במהלך טיפול דנטלי על בחירת הצבע?",
@@ -15969,7 +17320,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי רוזנסטיל (פרק 20), התייבשות שן מעלה את ה-Value (נראית לבנה/אטום יותר) עקב שינוי מקדם השבירה של האוויר באמייל. לכן בוחרים צבע בתחילת הפגישה כשהשן רטובה ברוק."
     },
     {
-      "id": 1904,
+      "id": 16009,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קל)",
@@ -15983,7 +17334,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1905,
+      "id": 16010,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קל)",
@@ -15997,7 +17348,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1906,
+      "id": 16011,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קל)",
@@ -16011,7 +17362,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1907,
+      "id": 16012,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קל)",
@@ -16025,7 +17376,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1908,
+      "id": 16013,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קל)",
@@ -16039,7 +17390,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1909,
+      "id": 16014,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קל)",
@@ -16053,7 +17404,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1910,
+      "id": 16015,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קל)",
@@ -16067,7 +17418,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1911,
+      "id": 16016,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קל)",
@@ -16081,7 +17432,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1912,
+      "id": 16017,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קל)",
@@ -16095,7 +17446,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1913,
+      "id": 16018,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קל)",
@@ -16109,7 +17460,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1914,
+      "id": 16019,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קל)",
@@ -16123,7 +17474,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1915,
+      "id": 16020,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קל)",
@@ -16137,7 +17488,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1916,
+      "id": 16021,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קל)",
@@ -16151,7 +17502,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1917,
+      "id": 16022,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קל)",
@@ -16165,7 +17516,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1918,
+      "id": 16023,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קל)",
@@ -16179,7 +17530,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1919,
+      "id": 16024,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קל)",
@@ -16193,7 +17544,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1920,
+      "id": 16025,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קל)",
@@ -16207,7 +17558,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1921,
+      "id": 16026,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קל",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קל)",
@@ -16221,7 +17572,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1922,
+      "id": 16027,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - בינוני)",
@@ -16235,7 +17586,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1923,
+      "id": 16028,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - בינוני)",
@@ -16249,7 +17600,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1924,
+      "id": 16029,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - בינוני)",
@@ -16263,7 +17614,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1925,
+      "id": 16030,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - בינוני)",
@@ -16277,7 +17628,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1926,
+      "id": 16031,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - בינוני)",
@@ -16291,7 +17642,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1927,
+      "id": 16032,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - בינוני)",
@@ -16305,7 +17656,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1928,
+      "id": 16033,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - בינוני)",
@@ -16319,7 +17670,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1929,
+      "id": 16034,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - בינוני)",
@@ -16333,7 +17684,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1930,
+      "id": 16035,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - בינוני)",
@@ -16347,7 +17698,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1931,
+      "id": 16036,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - בינוני)",
@@ -16361,7 +17712,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1932,
+      "id": 16037,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - בינוני)",
@@ -16375,7 +17726,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1933,
+      "id": 16038,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - בינוני)",
@@ -16389,7 +17740,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1934,
+      "id": 16039,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - בינוני)",
@@ -16403,7 +17754,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1935,
+      "id": 16040,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - בינוני)",
@@ -16417,7 +17768,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1936,
+      "id": 16041,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - בינוני)",
@@ -16431,7 +17782,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1937,
+      "id": 16042,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - בינוני)",
@@ -16445,7 +17796,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1938,
+      "id": 16043,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - בינוני)",
@@ -16459,7 +17810,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1939,
+      "id": 16044,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "בינוני",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - בינוני)",
@@ -16473,7 +17824,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1940,
+      "id": 16045,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - קשה)",
@@ -16487,7 +17838,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1941,
+      "id": 16046,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - קשה)",
@@ -16501,7 +17852,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1942,
+      "id": 16047,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - קשה)",
@@ -16515,7 +17866,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1943,
+      "id": 16048,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - קשה)",
@@ -16529,7 +17880,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1944,
+      "id": 16049,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - קשה)",
@@ -16543,7 +17894,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1945,
+      "id": 16050,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - קשה)",
@@ -16557,7 +17908,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1946,
+      "id": 16051,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - קשה)",
@@ -16571,7 +17922,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1947,
+      "id": 16052,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - קשה)",
@@ -16585,7 +17936,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1948,
+      "id": 16053,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - קשה)",
@@ -16599,7 +17950,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1949,
+      "id": 16054,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - קשה)",
@@ -16613,7 +17964,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1950,
+      "id": 16055,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - קשה)",
@@ -16627,7 +17978,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1951,
+      "id": 16056,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - קשה)",
@@ -16641,7 +17992,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1952,
+      "id": 16057,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - קשה)",
@@ -16655,7 +18006,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1953,
+      "id": 16058,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - קשה)",
@@ -16669,7 +18020,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1954,
+      "id": 16059,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - קשה)",
@@ -16683,7 +18034,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1955,
+      "id": 16060,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - קשה)",
@@ -16697,7 +18048,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1956,
+      "id": 16061,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - קשה)",
@@ -16711,7 +18062,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1957,
+      "id": 16062,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "קשה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - קשה)",
@@ -16725,7 +18076,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1958,
+      "id": 16063,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 3 - מומחה)",
@@ -16739,7 +18090,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1959,
+      "id": 16064,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 4 - מומחה)",
@@ -16753,7 +18104,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1960,
+      "id": 16065,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 5 - מומחה)",
@@ -16767,7 +18118,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1961,
+      "id": 16066,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 6 - מומחה)",
@@ -16781,7 +18132,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1962,
+      "id": 16067,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 7 - מומחה)",
@@ -16795,7 +18146,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1963,
+      "id": 16068,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 8 - מומחה)",
@@ -16809,7 +18160,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1964,
+      "id": 16069,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 9 - מומחה)",
@@ -16823,7 +18174,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1965,
+      "id": 16070,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 10 - מומחה)",
@@ -16837,7 +18188,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1966,
+      "id": 16071,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 11 - מומחה)",
@@ -16851,7 +18202,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1967,
+      "id": 16072,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 12 - מומחה)",
@@ -16865,7 +18216,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1968,
+      "id": 16073,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 13 - מומחה)",
@@ -16879,7 +18230,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1969,
+      "id": 16074,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 14 - מומחה)",
@@ -16893,7 +18244,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1970,
+      "id": 16075,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 15 - מומחה)",
@@ -16907,7 +18258,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1971,
+      "id": 16076,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 16 - מומחה)",
@@ -16921,7 +18272,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1972,
+      "id": 16077,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 17 - מומחה)",
@@ -16935,7 +18286,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     },
     {
-      "id": 1973,
+      "id": 16078,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "מה נכון לגבי Retention ו-Resistance בהשחזת שן לכתר קבוע? (שאלה 18 - מומחה)",
@@ -16949,7 +18300,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג (פרק 8) ורוזנסטיל, Retention מונע הינתקות לאורך ציר ההכנסה, ו-Resistance מונע התקה תחת כוחות אוקלוזליים זוויתיים."
     },
     {
-      "id": 1974,
+      "id": 16079,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "מהי זווית ההתכנסות הכללית (Total Occlusal Convergence - TOC) המומלצת קלינית בהשחזת כתר? (שאלה 19 - מומחה)",
@@ -16963,7 +18314,7 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג ורוזנסטיל, ה-TOC האידיאלי בתיאוריה הוא 6 מעלות, ובפרקטיקה הקלינית מומלץ לשמור על 6-10 מעלות."
     },
     {
-      "id": 1975,
+      "id": 16080,
       "topic": "15. אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית",
       "difficulty": "מומחה",
       "question": "איזה קו סיום (Finish line) מומלץ לכתר חרסינה מאוחה למתכת (PFM) עם שולי חרסינה (Porcelain butt margin)? (שאלה 20 - מומחה)",
@@ -16977,6 +18328,25 @@ ALL_QUESTIONS = {
       "explanation": "לפי שילינבורג, שולי חרסינה (Porcelain margin) דורשים Shoulder קלאסי של 90 מעלות בעובי 1.0-1.2 מ\"מ לתמיכה מכנית בחרסינה."
     }
   ]
+}
+
+TOPIC_SUMMARIES = {
+  "1": "\n### 📌 נושא 1: אוקלוזיה, TMJ ותנועות לסת (Occlusion & TMJ Biomechanics)\n**מקורות ליבה:** שילינבורג פרק 1, גרוס פרקים 1-5, זארב פרקים 1-6, שחזורי פתיחה (2015-2024).\n\n#### 1.1 אנטומיה תפקודית של מפרק הלסת (TMJ & Articular Disc)\n* **הרכב הדיסק:** מורכב מ-Dense fibrous connective tissue (נטול כלי דם ועצבוב במרכזו).\n* **אזורי הדיסק:**\n  * **Posterior Band (החלק האחורי):** העבה ביותר.\n  * **Intermediate Zone (האזור המרכזי):** הדק ביותר והוא האזור נושא העומס (Weight-bearing zone) הממוקם בין הקונדיל ל-Articular eminence.\n  * **Anterior Band (החלק הקדמי):** עובי בינוני.\n  * **Retrodiscal Pad (Bilinear zone):** אזור עשיר לכלי דם ועצבוב, מכיל סיבים אלסטיים עליונים (המושכים את הדיסק אחורנית בפתרון פתיחה) וסיבים קולגניים תחתונים.\n* **תנועת הלסת במדורים:**\n  * **Inferior Compartment (מדור תחתון):** מתרחשת תנועה צירית בלבד (**Rotation / Hinge movement**) עד פתיחה של כ-20-25 מ\"מ.\n  * **Superior Compartment (מדור עליון):** מתרחשת תנועה מחליקה (**Translation**) מול ה-Articular eminence.\n\n#### 1.2 עמדות אוקלוזליות ויחסי לסת\n* **Centric Relation (CR):** עמדה מפרקית אנטומית שבה הקונדילים ממוקמים בחלק הכי אנטרו-סופריורי (Antero-superior) של ה-Glenoid fossa מול המשטח האוולרי של הדיסק. **אינה תלויה במגע שיניים**, וניתנת לשחזור מדויק (Reproducible).\n* **Maximum Intercuspation (MI / ICP):** עמדה דנטלית שבה קים מגע מקסימלי בין תלוליות השיניים העליונות והתחתונות.\n* **Slide from CR to MI:** באוכלוסיה בריאה קיים מעבר פרוטרוזיבי של כ-0.5 עד 1.5 מ\"מ מ-CR ל-MI. בסגר אידיאלי (או שיקום פה מלא), שואפים ללכידה ישירה ב-CR ללא החלקה מטרידה (Interference).\n* **Mutually Protected Occlusion (סגר מוגן הדדית):**\n  * בסגירה מרכזית (MI): השיניים האחוריות סופגות את הכוחות המאונכים (Axial loading) ומגינות על הקדמיות.\n  * בגלישה אקסצנטרית (לטרלית/פרוטרוזיה): השיניים הקדמיות והניבים מנחות ומפרידות (**Disclude**) את השיניים האחוריות כדי למנוע כוחות גזירה הרסניים.\n\n#### 1.3 ביומכניקה ותנועת Bennett\n* **Bennett Movement (Side Shift):** התנועה הצידית הגופנית (Bodily lateral shift) של המנדיבולה בצד העובד (Working side) בעת תנועה לטרלית.\n* **Bennett Angle:** הזווית שנוצרת בצד הלא-עובד (Non-working side) במישור האופקי ביחס לקו הסגיטלי.\n* **Hanau's Quint (חמישיית האנאו לסגר מאוזן):**\n  $$\\text{Balanced Occlusion} = \\frac{\\text{Condylar Guidance} \\times \\text{Incisal Guidance}}{\\text{Plane of Occlusion} \\times \\text{Compensating Curve} \\times \\text{Cusp Height}}$$\n  * הרופא שולט ב: Incisal Guidance, Cusp Height, ו-Plane of Occlusion / Curve of Spee.\n  * ה-Condylar Guidance נקבעת בלעדית ע\"י אנטומיית המטופל.\n",
+  "2": "\n### 📌 נושא 2: ארטיקולטורים ורישום בין-לסתי (Articulators & Facebow)\n**מקורות ליבה:** שילינבורג פרקים 2-4, גרוס פרק 9, שחזורים.\n\n#### 2.1 Arcon vs. Non-Arcon Articulators\n* **Arcon (ARticulator CONdyle):**\n  * הרכיב הקונדילרי ממוקם בזרוע התחתונה והפוסה המכנית בזרוע העליונה (מדמה באופן מדויק את הגולגולת).\n  * **יתרון קריטי:** בעת שינוי המימד האנכי (VDO) או הסרת משנך שעווה, הזווית בין הפוסה למישור הסגר נשארת קבועה, ולכן ה-**Condylar guidance אינה משתנה**.\n* **Non-Arcon:**\n  * הרכיב הקונדילרי מחובר לזרוע העליונה והפוסה בזרוע התחתונה.\n  * בעת סגירת המנשך לאחר הסרת רישום בעובי 3-5 מ\"מ, הזווית הגיאומטרית משתנה וההדרכה הקונדילרית הופכת ל**רדודה יותר (Less steep)**.\n\n#### 2.2 קשת פנים (Facebow)\n* **תפקיד:** העברת יחס הלסת העליונה לבסיס הגולגולת ולציר הסיבוב המורפולוגי (Terminal Hinge Axis) אל הארטיקולטור.\n* **Arbitrary Facebow:** מתבססת על נקודות ייחוס אנטומיות חיצוניות (כגון תעלה שמע חיצונית / Auditory meatus + 13 מ\"מ קדימה לקנטוס).\n* **Kinematic Facebow:** מאתרת באופן מדויק את ציר הסיבוב הצירי הטהור של הקונדילים.\n* **שגיאות ויינברג (Weinberg Errors):** שגיאה של 5 מ\"מ במיקום ציר הסיבוב בקשת הפנים גורמת לשגיאת אוקלוזיה זניחה של פחות מ-0.2 מ\"מ באזור המולרי.\n\n#### 2.3 חומרי רישום בין-לסתי (Interocclusal Registration Materials)\n* **שעווה (Wax):** בעלת דפורמציה פלסטית ושינוי נפח תרמי.\n* **Zinc Oxide Eugenol (ZOE):** חומר קשיח מאוד ללא Elastic rebound, אך דורש זמן התקשות ארוך.\n* **Polyether & Addition Silicone (PVS):** יציבות ממדית מעולה, קשיחות גבוהה (High Shore A hardness) וגמישות מינימלית בעת הידוק הגבסים.\n",
+  "3": "\n### 📌 נושא 3: עקרונות הכנת שיניים למשמרת (Operative Dentistry Cavity Prep)\n**מקורות ליבה:** ספרות שיקומית ומשמרת (Sturdevant / Phillips / Shillingburg).\n\n#### 3.1 Retention & Resistance Form בחללים ישירים\n* **Retention Form:** תכנון גאומטרי המונע את יציאת השחזור מציר ההכנסה תחת כוחות מתיחה/גזירה.\n  * באמלגם: שיפוע התכנסות אקלוזלי (Occlusal convergence של 2-5 מעלות), חריצי אחיזה (Retention grooves) וזנב סנונית (Dovetail).\n  * בקומפוזיט: קישור אדהזיבי למיקרו-מבנה האמייל והדנטין.\n* **Resistance Form:** תכנון המונע שבר של השן השארית או של השחזור תחת כוחות סגירה מאונכים.\n  * רצפה פולפרית/ג'ינג'יבלית שטוחה המאונכת לכוחות הלעיסה.\n  * זווית Cavosurface של 90 מעלות (Butt-joint) באמלגם למניעת שבר שולי.\n  * עובי חומר מינימלי מספק (1.5-2.0 מ\"מ באמלגם).\n  * עיגול זוויות פנימיות (Rounding internal line angles) להפחתת ריכוז מאמצים.\n\n#### 3.2 C-Factor (Configuration Factor)\n* **הגדרה:** היחס בין מספר המשטחים הקשורים (Bonded surfaces) למספר המשטחים החופשיים (Unbonded surfaces).\n* **משמעות קלינית:** בחלל Class I עמוק (5 משטחים קשורים / 1 חופשי = C-factor של 5), מאמצי ההתכווצות של הפולימריזציה הם המרביים, ועלולים לגרום לפתחי דליפה שולית, סדקים באמייל ודואב לאחר סתימה.\n* **פתרון קליני:** הנחה בשכבות אלכסוניות/אופקיות של עד 2 מ\"מ (Incremental layering).\n\n#### 3.3 היברידיזציה וקישור דנטינלי\n* **Smear Layer:** שכבת שברי הידרוקסיאפטיט, קולגן וחיידקים הנוצרת מחיתוך המקדח ואוטמת את ה-Dentinal tubules.\n* **Total-Etch (Etch & Rinse):** צריבה בחומצה זרחנית (37%) ל-15 שניות מסירה לחלוטין את ה-Smear layer, פותחת תעלות וחשפת רשת סיבי קולגן. **חובה לשמור על Moist Bonding** – ייבוש יתר גורם לקריסת רשת הקולגן (Collagen collapse) ולפגיעה ב-Hybrid layer.\n* **MMP (Matrix Metalloproteinases):** אנזימים אנדוגניים בדנטין המופעלים ע\"י חומצה ומפרקים את סיבי הקולגן החשופים שלא נספגו ברזין לאורך זמן.\n",
+  "4": "\n### 📌 נושא 4: השחזת שיניים וגאומטריה שיקומית (Crown Preparation Geometry)\n**מקורות ליבה:** שילינבורג פרקים 8-14, רוזנסטיל פרקים 13-15.\n\n#### 4.1 Retention & Resistance Form בהשחזה לכתר\n* **Total Occlusal Convergence (TOC / Taper):** זווית ההתכנסות האקלוזלית האידיאלית היא **6-10 מעלות**. ככל שה-Taper קטן יותר, ה-Retention וה-Resistance גדלים.\n* **גובה קיר אקסיאלי (Axial Wall Height):** גובה מינימלי מומלץ של **3 מ\"מ** בשיניים קדמיות ומלתעות, ו-**4 מ\"מ** במולרים.\n* **יחס גובה לרוחב (Height-to-Width Ratio):** יחס של לפחות 0.4 נדרש כדי לספק Resistance קליני.\n\n#### 4.2 קווי סיום (Finish Lines)\n* **Chamfer:** קו סיום מעוגל המועדף לכתרי מתכת מלאה ו-PFM. עובי: 0.5-0.8 מ\"מ.\n* **Shoulder (זווית ישרה 90 מעלות):** קו סיום שטוח המיועד לכתרי חרסינה מלאה (All-ceramic) וגבולות פסיאליים ב-PFM למניעת שבר החרסינה. עובי: 1.0-1.2 מ\"מ.\n* **Modified / Radial Shoulder:** כתף עם זווית פנימית מעוגלת להפחתת ריכוז מאמצים.\n* **Feather Edge / Knife Edge:** קו סיום דק ובלתי מוגדר, אינו מומלץ בסרמיקות עקב סיכון לשבר או התרחבות שולית.\n\n#### 4.3 Ferrule Effect\n* **הגדרה:** טבעת קורטיקלית של חומר שן בריא מעל קו הסיום, החבוקה ע\"י הכתר השיקומי.\n* **מידות קריטיות:** גובה מינימלי של **1.5-2.0 מ\"מ** ועובי קיר של לפחות **1.0 מ\"מ**. ה-Ferrule מעביר כוחות לעיסה לשורש ומונע שברים אנכיים.\n",
+  "5": "\n### 📌 נושא 5: חומרי מטבע וטכניקות הטבעה בשיקום קבוע (Impression Materials & Digital Scanning)\n**מקורות ליבה:** פיליפס פרקים 8-9, שילינבורג פרק 14, רוזנסטיל פרק 14.\n\n#### 5.1 חומרי מטבע אלסטומריים (Elastomeric Impression Materials)\n* **Polyether:**\n  * **תכונות:** הידרופילי מובהק (Hydrophilic), קשיחות גבוהה לאחר התקשות.\n  * **אזהרה:** סופג מים בסביבה לחה (**Imbibition**), לכן חובה לאחסן בסביבה יבשה.\n* **Addition Silicone (PVS / A-Silicone):**\n  * **תכונות:** יציבות ממדית (Dimensional stability) הגבוהה ביותר. התכווצות זניחה (< 0.05%).\n  * **תופעת לוואי:** משחרר גז מימן (Hydrogen gas) במהלך התגובה – יש להמתין לפני יציקת גבס או להשתמש בחומר עם משככי מימן. הידרופובי בבסיסו.\n* **Polysulfide:**\n  * **תכונות:** גמישות וחוזק לקריעה גבוהים.\n  * **חסרון:** תוצר לוואי של מים בתגובה, הגורם להתכווצות ממדית לאורך זמן. דורש יציקה מיידית.\n\n#### 5.2 סריקה תוך-אוראלית (Digital Intraoral Scanning)\n* **עקרון:** לכידת ענני נקודות (Point clouds) ויצירת מודל תלת-ממדי בקובץ STL/PLY.\n* **הכנת רקמה רכה:** חובה לבצע הדחקה חניכית (Gingival retraction) מדויקת ויבוש שדה, מכיוון שהסורק האופטי אינו יכול לצלם דרך דם או רוק.\n",
+  "6": "\n### 📌 נושא 6: חומרים דנטליים - צמנטים, בונדינג, קומפוזיטים ואמלגם\n**מקורות ליבה:** פיליפס פרקים 1-6, 15, 16.\n\n#### 6.1 צמנטים דנטליים (Dental Cements)\n* **Zinc Phosphate:** צמנט קלאסי בעל קישור מכני בלבד. תגובה אקסותרמית חזקה בעת הערבוב (דורשת ערבוב על משטח זכוכית קריר).\n* **Glass Ionomer (GI):** קישור כימי לסידן בשן (Chelation) ושחרור פלואוריד מתמשך. רגיש ללחות בשעות הראשונות.\n* **Resin-Modified Glass Ionomer (RMGI):** שילוב של GI עם רזין. חוזק מתיחה משופר, רגישות מופחתת למים ושחרור פלואוריד.\n* **Resin Cements:** קישור אדהזיבי עוצמתי (Self-adhesive, Self-etch, or Total-etch). מועדף בשיקומים אסתטיים וכתרים דקים.\n\n#### 6.2 אמלגם דנטלי (Dental Amalgam)\n* **הרכב:** סגסוגת כספית, בדיל, נחושת וכסף.\n* **High-Copper Amalgam:** מכיל > 12% נחושת. מונע את היווצרות פאזת Gamma-2 (Sn8Hg), שהיא הפאזה החלשה והרגישה ביותר לקורוזיה ול-Creep.\n",
+  "7": "\n### 📌 נושא 7: חומרים דנטליים - מתכות וחומרים לכתרים\n**מקורות ליבה:** פיליפס פרקים 15-16, רוזנסטיל פרקים 20, 23.\n\n#### 7.1 סגסוגות מתכת (Dental Alloys)\n* **High Noble:** מכילות >= 60% מתכות אצילות (זהב, פלטינה, פלדיום), מתוכן לפחות 40% זהב.\n* **Base Metal (Co-Cr, Ni-Cr):** קשיחות ומודול אלסטיות גבוהים מאוד, אך סיכון לאלרגיה (ניקל) וקשיחות המקשה על עיבוד קליני.\n\n#### 7.2 חומרים קרמיים (All-Ceramic Materials)\n* **Lithium Disilicate (IPS e.max):** חוזק כפוף של כ-360-400 MPa. דורש צריבה בחומצה הידרופלואורית (HF 4.9%) ל-20 שניות וסילניזציה לפני הדבקה ברזין.\n* **Zirconia (Y-TZP):**\n  * **Transformation Toughening:** תחת מאמץ סדק, הפאזה הטטרגונלית (Tetragonal) עוברת לפאזה מונוקלינית (Monoclinic), מלווה בהתרחבות נפחית של כ-3-5% הנוחצת את הסדק וסוגרת אותו.\n",
+  "8": "\n### 📌 נושא 8: תותבות חלקיות נשלפות (RPD): אנטומיה וביומכניקה\n**מקורות ליבה:** מקרקן פרקים 3-10, זארב פרקים 16-18.\n\n#### 8.1 סיווג קנדי (Kennedy Classification)\n* **Class I:** אזורים מחוסרי שיניים דו-צדדיים אחוריים (Distal extension).\n* **Class II:** אזור מחוסר שיניים חד-צדדי אחורי.\n* **Class III:** אזור מחוסר שיניים חד-צדדי תחום (Tooth-borne).\n* **Class IV:** אזור מחוסר שיניים קדמי בודד החוצה את קו האמצע.\n* **חוקי אפלגייט (Applegate's Rules):** הסיווג נקבע תמיד לאחר ביצוע העקירות. המרווח האחורי ביותר קובע את ה-Class.\n\n#### 8.2 ביומכניקה וזרועות מנוף (Leverage)\n* **Fulcrum Line (קו משען):** הקו הדמיוני המחבר את המסעדים האחוריים ביותר הסמוכים למרווח החופשי.\n* **Class I Lever:** נוצר כאשר המסעד ממוקם קרוב למרווח החופשי והאנקור ממוקם דיסטלית. בלחיצה, הזרוע מפעילה כוח עקירה על שן המאחז.\n* **Indirect Retainers (מעקפים):** ממוקמים רחוק ככל הניתן מקו המשען (ניצבים לו) למניעת הרמת בסיס התותבת עקב מאכלים דביקים.\n",
+  "9": "\n### 📌 נושא 9: RPD: מחברים, מאחזים, מסעדים וקומפלקסים\n**מקורות ליבה:** מקרקן פרקים 12-14, זארב פרקים 19-21.\n\n#### 9.1 מחברים ראשיים (Major Connectors)\n* **מנדיבולה:**\n  * **Lingual Bar:** מנגנון בחירה ראשון. דורש מרווח אנכי מינימלי של **7 מ\"מ** בין שולי החניכיים לרצפת הפה (4 מ\"מ עובי בר + 3 מ\"מ מרווח חופשי).\n  * **Lingual Plate:** מיועד כאשר המרווח קטן מ-7 מ\"מ, או כשיש צורך בסדיקת שיניים ניידות.\n* **מקסילה:**\n  * **Anteroposterior (AP) Palatal Strap:** המחבר הריגידי והנוח ביותר לרוב המקרים.\n\n#### 9.2 קומפלקס RPI (Rest, Proximal Plate, I-Bar)\n* **תכנון:**\n  * **R (Rest):** מסעד מזואלי (Mesial rest).\n  * **P (Proximal Plate):** פלטה פרוקסימלית בדיסטל.\n  * **I (I-bar Clasp):** זרוע אחיזה בצורת I הממוקמת בשיא הקעירות הפסיאלית (גלובאלית לזווית ה-Survey).\n* **יתרון ביומכני:** בעת סגירה ועומס על המרווח החופשי, ה-I-bar והפלטה הפרוקסימלית נעים מטה וקדימה לתוך אנדרקאט משחרר, ללא הפעלת כוח עקירה על שן המאחז.\n",
+  "10": "\n### 📌 נושא 10: תותבות שלמות - גבולות, תמיכה, ספיגה ופתולוגיות\n**מקורות ליבה:** זארב פרקים 1-6, נטר פרקים 5-6, סיווג אטווד.\n\n#### 10.1 אזורי תמיכה ואנטומיה בתותבות שלמות\n* **מקסילה:**\n  * **Primary Support Area:** החך הקשה (Hard Palate) והחלק האחורי של הרכס האלבאולרי.\n  * **Post-Palatal Seal Zone (PPS):** ממוקם ב-Vibrating line (בין החך הקשה לרך) ומספק איטום היקפי (Peripheral seal).\n* **מנדיבולה:**\n  * **Primary Support Area:** ה-**Buccal Shelf** (עשוי עצם קורטיקלית דחוסה המאונכת לכוחות הסגירה ואינה נוטה לספיגה).\n  * **Retromolar Pad:** נקודת ייחוס אנטומית קריטית – מכיל גבול אחורי של התותבת ואינו נספג.\n\n#### 10.2 ספיגת עצם אלבאולרית (Atwood Classification)\n* **סיווג Atwood:**\n  * Class I: Pre-extraction, Class II: Post-extraction.\n  * Class III: High, round ridge, Class IV: Knife-edge ridge.\n  * Class V: Low, flat ridge, Class VI: Depressed ridge.\n* **קצב ספיגה:** במנדיבולה קצב ספיגת העצם מהיר פי 4 מאשר במקסילה.\n",
+  "11": "\n### 📌 נושא 11: תותבות שלמות - אוקלוזיה, מימד אנכי ויחס בין-לסתי\n**מקורות ליבה:** זארב פרקים 8-14, נטר פרק 13, גרוס.\n\n#### 11.1 מימד אנכי (VDO & VDR)\n* **Rest Vertical Dimension (VDR):** עמדת המנוחה של המנדיבולה המוכתבת ע\"י הטנוס השרירי.\n* **Occlusal Vertical Dimension (VDO):** המימד האנכי במגע אוקלוזלי.\n* **Freeway Space (Interocclusal Rest Space):**\n  $$\\text{Freeway Space} = \\text{VDR} - \\text{VDO} = 2 - 4 \\text{ mm}$$\n* **השלכות VDO מופרז (Overincreased VDO):** נקישת שיניים בדיבור, עייפות שרירים, ספיגת עצם מואצת ואי נוחות.\n\n#### 11.2 תפיסות אוקלוזליות בתותבות שלמות\n* **Balanced Occlusion:** מגעים אוקלוזליים בו-זמניים בשני צדי הקשת (Working & Non-working) ובשיניים הקדמיות בכל תנועה אקסצנטרית למניעת התהפכות התותבת.\n* **Lingualized Occlusion:** תלוליות לינגואליות של השיניים העליונות פוגשות את הפוסות של התחתונות, להפחתת כוחות גזירה אופקיים.\n",
+  "12": "\n### 📌 נושא 12: שתלים דנטליים - ביומכניקה, איכות עצם ותכנון\n**מקורות ליבה:** מיש מהדורה 2 פרקים 5-10, זארב.\n\n#### 12.1 אוסטאואינטגרציה ואיכות עצם (Misch Bone Density)\n* **D1:** עצם קורטיקלית דחוסה (בעיקר במנדיבולה קדמית). אספקת דם נמוכה, יציבות ראשונית מעולה.\n* **D2:** עצם קורטיקלית עבה עם טרבקולות דחוסות. אידיאלית לשתלים.\n* **D3:** עצם קורטיקלית דקה עם טרבקולות רכות.\n* **D4:** עצם טרבקולרית רכה מאוד (מקסילה אחורית). יציבות ראשונית נמוכה, דורשת השתלה זהירה וזמן ריפוי ממושך.\n\n#### 12.2 ביומכניקה וקוטר שתל\n* **ספיגת עצם קורטיקלית סביב צוואר השתל (Marginal Bone Loss):** ממוצע של **1.5 מ\"מ** בשנה הראשונה ולאחריה **0.2 מ\"מ לשנה**.\n* **השפעת קוטר השתל:** הגדלת קוטר השתל ב-1 מ\"מ מפחיתה את העומס המרוכז בצוואר השתל ב-35-45%, באופן אפקטיבי הרבה יותר מאשר הגדלת אורך השתל.\n",
+  "13": "\n### 📌 נושא 13: שיקום על גבי שתלים - מבנים ואפשרויות שיקומיות\n**מקורות ליבה:** מיש מהדורה 2 פרקים 12-15, זארב.\n\n#### 13.1 שיקום מוברג (Screw-Retained) vs. מודבק (Cement-Retained)\n* **שיקום מוברג:**\n  * **יתרונות:** הדירות ופרקיות (Retrievability) קלה, היעדר צמנט תת-חניכי.\n  * **חסרונות:** חור גישה אסתטי במשטח האוקלוזלי, דורש Passive fit קפדני.\n* **שיקום מודבק:**\n  * **יתרונות:** אסתטיקה אוקלוזלית מושלמת, מפצה על סטיית זווית קלה.\n  * **חסרונות:** סיכון קריטי ל-**Peri-implantitis** עקב עודפי צמנט תת-חניכיים שלא הוסרו.\n\n#### 13.2 Platform Switching\n* **עקרון:** חיבור מבנה (Abutment) בעל קוטר צר יותר מקוטר כתף השתל.\n* **יתרון:** מזיז את המפתח המיקרוביאלי והדלקתי פנימה אל מרכז השתל, ובכך משמר את העצם השולית ואת הפפילה הבין-דנטלית.\n",
+  "14": "\n### 📌 נושא 14: יחסי גומלין פריודונטיה-שיקום וניידות שיניים (Lindhe)\n**מקורות ליבה:** לינדה פרקים 16-17, מיש פרק 10.\n\n#### 14.1 הרוחב הביולוגי (Biological Width)\n* **רכיבים:**\n  * **Connective Tissue Attachment:** כ-1.07 מ\"מ.\n  * **Epithelial Attachment (Junctional Epithelium):** כ-0.97 מ\"מ.\n  * **סה\"כ הרוחב הביולוגי:** כ-**2.04 מ\"מ**.\n* **חריגת שולי שחזור (Violation of Biological Width):** מיקום קו סיום פחות מ-2 מ\"מ מרכס העצם גורם לדלקת כרונית, נסוגת חניכיים וספיגת עצם. נדרש ניתוח הארכת כתר (Crown Lengthening).\n\n#### 14.2 טראומה אוקלוזלית (Occlusal Trauma)\n* **Primary Occlusal Trauma:** כוחות סגירה מופרזים המופעלים על מנגנון תמיכה פריודונטלי תקין ובריא.\n* **Secondary Occlusal Trauma:** כוחות סגירה רגילים או מופרזים המופעלים על מנגנון תמיכה פריודונטלי מופחת ופגוע.\n",
+  "15": "\n### 📌 נושא 15: תותבות על (Overdentures) ואטצ'מנטים\n**מקורות ליבה:** זארב פרק 21, מיש פרק 15.\n\n#### 15.1 תותבות על שורשים ושתלים\n* **יתרון פיזיולוגי:** שימור שורשים טבעיים או שתלים משמר את העצם האלבאולרית מספיגה, ומספק תחושת פרופריוצפציה (Proprioception) דרך ה-PDL.\n* **אטצ'מנטים בודדים (Locator / Ball Attachments):** מאפשרים דרגת חופש תנועה (Resilient) וניקוי קל.\n* **מחברי סרגל (Bar Attachments):** מספקים אחיזה וייצוב קשיח (Rigid Splinting), אידיאלי במקרים של עצם ספוגה או עומסים אופקיים.\n",
+  "16": "\n### 📌 נושא 16: אסתטיקה, בחירת צבע ורפואת שיניים דיגיטלית\n**מקורות ליבה:** רוזנסטיל פרק 23, פיליפס, שילינבורג.\n\n#### 16.1 מודל הצבע של Munsell\n* **Hue (גוון):** שם הצבע (צהוב, אדום, חום - A, B, C, D במדריך Vita).\n* **Value (בהירות/ערך):** נמדד מסולם אפור עד לבן. **הגורם הקריטי ביותר בבחירת צבע דנטלי!** שגיאה ב-Value מורגשת מיד לעין האנושית.\n* **Chroma (רוויה):** עוצמת הגוון (A1 לעומת A3.5).\n\n#### 16.2 עקרונות אסתטיים\n* **Metamerism:** תופעה שבה שני עצמים נראים זהים בתאורה אחת אך שונים בתאורה אחרת.\n* **Golden Proportion (יחס הזהב):** רוחב נתפס של חותכת מרכזית (1.618) : חותכת לטרלית (1.0) : ניב (0.618) בתצפית פסיאלית ישרה.\n"
 }
 
 # Simple Data persistence file
@@ -17002,8 +18372,8 @@ if "user_data" not in st.session_state:
 # Header
 st.markdown("""
 <div class="main-header">
-    <h1>🦷 מדרשת שיקום הפה - אתר הלמידה והתרגול</h1>
-    <p>הכנה ממוקדת למבחן הכניסה בהתמחות בשיקום הפה | מבוסס ספרות ושחזורים</p>
+    <h1>🦷 מדרשת שיקום הפה - אתר הלמידה והתרגול המקיף</h1>
+    <p>הכנה ממוקדת למבחן הכניסה בהתמחות בשיקום הפה | מבוסס ספרות הלימוד והשחזורים</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -17028,124 +18398,136 @@ user_profile = st.session_state.user_data["users"][current_user]
 if "bookmarks" not in user_profile:
     user_profile["bookmarks"] = {}
 
-# Calculate Learning Progress
-total_q_system = sum(len(q_list) for q_list in ALL_QUESTIONS.values())
-total_q_answered = len(user_profile["answers"])
-overall_pct = int((total_q_answered / total_q_system) * 100) if total_q_system > 0 else 0
-
 st.sidebar.markdown("---")
-st.sidebar.header("📊 מד התקדמות בלמידה")
-st.sidebar.subheader(f"התקדמות כוללת: {overall_pct}%")
-st.sidebar.progress(total_q_answered / total_q_system if total_q_system > 0 else 0.0)
-st.sidebar.write(f"ענית על **{total_q_answered}** מתוך **{total_q_system}** שאלות במערכת")
 
-with st.sidebar.expander("🔍 פירוט התקדמות לפי 15 הנושאים"):
-    for idx, t_title in enumerate(TOPICS, 1):
-        t_q_list = ALL_QUESTIONS.get(str(idx), [])
-        t_tot = len(t_q_list)
-        t_ans = sum(1 for q in t_q_list if str(q["id"]) in user_profile["answers"])
-        t_pct = int((t_ans / t_tot) * 100) if t_tot > 0 else 0
-        st.write(f"**נושא {idx}:** {t_ans}/{t_tot} ({t_pct}%)")
-        st.progress(t_ans / t_tot if t_tot > 0 else 0.0)
+# Calculate Overall Progress
+total_all_q = sum(len(q_list) for q_list in ALL_QUESTIONS.values())
+total_user_answered = len(user_profile.get("answers", {}))
+overall_pct = int((total_user_answered / total_all_q) * 100) if total_all_q > 0 else 0
+
+st.sidebar.header("📊 התקדמות כוללת בלמידה")
+st.sidebar.progress(overall_pct / 100)
+st.sidebar.subheader(f"התקדמות כוללת: {overall_pct}%")
+st.sidebar.caption(f"ענית על {total_user_answered} מתוך {total_all_q} שאלות באתר")
+
+with st.sidebar.expander("🔍 פירוט התקדמות לפי 16 הנושאים"):
+    for t_idx, t_name in enumerate(TOPICS, 1):
+        t_key = str(t_idx)
+        t_q_list = ALL_QUESTIONS.get(t_key, [])
+        t_total = len(t_q_list)
+        t_ans = sum(1 for q in t_q_list if str(q["id"]) in user_profile.get("answers", {}))
+        t_pct = int((t_ans / t_total) * 100) if t_total > 0 else 0
+        st.write(f"**{t_idx}. {t_name.split('. ', 1)[-1]}**")
+        st.progress(t_pct / 100)
+        st.caption(f"{t_ans}/{t_total} שאלות ({t_pct}%)")
 
 st.sidebar.markdown("---")
 st.sidebar.header("📚 ניווט וסינון")
 
 selected_topic = st.sidebar.selectbox(
-    "בחר נושא לימוד (מתוך 15):",
+    "בחר נושא לימוד (מתוך 16):",
     TOPICS
 )
 
 selected_difficulty = st.sidebar.radio(
     "רמת קושי:",
-    ["הכל (80 שאלות)", "קל (20)", "בינוני (20)", "קשה (20)", "מומחה (20)"]
+    ["הכל (80 שאלות)", "קל", "בינוני", "קשה", "מומחה"]
 )
 
-# Tabs
-tab_practice, tab_bookmarks = st.tabs(["📝 תרגול שאלות ומבחן", "📌 מחברת סיכומים לחיזוק (נושאים מסומנים)"])
+topic_num = selected_topic.split(".")[0].strip()
+topic_meta_info = TOPIC_META.get(topic_num, {"icon": "📘", "sources": "ספרי היסוד והשחזורים"})
 
-with tab_practice:
-    st.subheader(f"📌 {selected_topic}")
-    
-    topic_num_str = str(TOPICS.index(selected_topic) + 1)
-    topic_q_list = ALL_QUESTIONS.get(topic_num_str, [])
-    
-    diff_clean = selected_difficulty.split(" ")[0]
-    
-    if diff_clean == "הכל":
-        filtered_q = topic_q_list
+# Main Navigation Tabs
+tab1, tab2, tab3 = st.tabs([
+    "📝 תרגול שאלות ומבחן", 
+    "📌 מחברת סיכומים לחיזוק",
+    "📖 תמצית חזרה כללית לכל 16 הנושאים"
+])
+
+# ==================== TAB 1: PRACTICE QUESTIONS ====================
+with tab1:
+    st.markdown(f"""
+    <div class="topic-banner">
+        <h2>{topic_meta_info['icon']} נושא {topic_num}: {selected_topic.split('. ', 1)[-1]}</h2>
+        <p><strong>📚 מקורות ליבה בספרות:</strong> {topic_meta_info['sources']}</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    t_questions = ALL_QUESTIONS.get(str(topic_num), [])
+
+    if selected_difficulty == "הכל (80 שאלות)":
+        filtered_q = t_questions
     else:
-        filtered_q = [q for q in topic_q_list if q.get("difficulty") == diff_clean]
-        
-    st.info(f"מציג **{len(filtered_q)}** שאלות בנושא **{selected_topic}** ברמת קושי: **{selected_difficulty}** עבור **{current_user}**")
-    
+        filtered_q = [q for q in t_questions if q["difficulty"] == selected_difficulty]
+
+    st.info(f"מציג **{len(filtered_q)}** שאלות ברמת קושי: **{selected_difficulty}** עבור **{current_user}**")
+
     score = 0
-    total_answered_in_view = 0
-    
+    total_answered_in_topic = 0
+
     for idx, q in enumerate(filtered_q, 1):
         q_id = str(q["id"])
-        
+
         badge_class = {
             "קל": "badge-easy",
             "בינוני": "badge-medium",
             "קשה": "badge-hard",
             "מומחה": "badge-expert"
-        }.get(q.get("difficulty", "קל"), "badge-easy")
-        
+        }.get(q["difficulty"], "badge-easy")
+
         st.markdown(f"""
         <div class="question-card">
-            <span class="difficulty-badge {badge_class}">דרגה: {q.get('difficulty', 'קל')}</span>
-            <div class="question-title">שאלה {idx}: {q['question']}</div>
+            <span class="difficulty-badge {badge_class}">דרגה: {q["difficulty"]}</span>
+            <div class="question-title">שאלה {idx}: {q["question"]}</div>
         </div>
         """, unsafe_allow_html=True)
-        
+
         saved_answer = user_profile["answers"].get(q_id, None)
-        
+
         selected_opt = st.radio(
             f"בחר/י תשובה לשאלה {idx}:",
             q["options"],
             index=q["options"].index(saved_answer) if saved_answer in q["options"] else None,
             key=f"q_{q_id}_{current_user}"
         )
-        
+
         if selected_opt:
             user_profile["answers"][q_id] = selected_opt
-            total_answered_in_view += 1
-            
+            total_answered_in_topic += 1
+
             if selected_opt == q["correct"]:
                 st.success("✅ תשובה נכונה!")
                 score += 1
             else:
                 st.error(f"❌ תשובה שגויה. התשובה הנכונה היא: **{q['correct']}**")
-            
-            # Explanation Box
+
             st.markdown(f"""
             <div class="explanation-box">
                 <strong>💡 הסבר מפורט מהספרות והשחזורים:</strong><br>
                 {q['explanation']}
             </div>
             """, unsafe_allow_html=True)
-            
-            # Bookmark Toggle
+
+            # Bookmark Button
             is_bookmarked = q_id in user_profile["bookmarks"]
             bm_button_label = "📌 הסר ממחברת הסיכומים" if is_bookmarked else "📌 סמן נושא זה לסיכום וחיזוק"
             
             if st.button(bm_button_label, key=f"bm_btn_{q_id}_{current_user}"):
                 if is_bookmarked:
                     del user_profile["bookmarks"][q_id]
-                    st.toast("הנושא הוסר ממחברת הסיכומים", icon="🗑️")
+                    st.toast("הוסר ממחברת הסיכומים!")
                 else:
                     user_profile["bookmarks"][q_id] = {
-                        "topic": q["topic"],
-                        "difficulty": q.get("difficulty", "קל"),
+                        "topic": selected_topic,
                         "question": q["question"],
                         "explanation": q["explanation"],
-                        "correct": q["correct"]
+                        "difficulty": q["difficulty"]
                     }
-                    st.toast("הנושא נשמר במחברת הסיכומים לחיזוק!", icon="📌")
+                    st.toast("נוסף בהצלחה למחברת הסיכומים לחיזוק!")
+                save_data(st.session_state.user_data)
                 st.rerun()
-            
-            # Rating & Feedback
+
+            st.markdown("---")
             col1, col2 = st.columns([1, 2])
             with col1:
                 saved_rating = user_profile["ratings"].get(q_id, 5)
@@ -17154,47 +18536,63 @@ with tab_practice:
                     1, 5, value=saved_rating, key=f"rate_{q_id}_{current_user}"
                 )
                 user_profile["ratings"][q_id] = rating
-            
+
             with col2:
                 saved_fb = user_profile["feedback"].get(q_id, "")
                 fb_text = st.text_input(
-                    "הערה אישית (אופציונלי):",
+                    "הערה/משוב אישי (אופציונלי):",
                     value=saved_fb, key=f"fb_{q_id}_{current_user}"
                 )
                 user_profile["feedback"][q_id] = fb_text
-                
+
         st.markdown("<br>", unsafe_allow_html=True)
 
     save_data(st.session_state.user_data)
 
-with tab_bookmarks:
-    st.header(f"📌 מחברת הסיכומים האישית של {current_user}")
-    
-    bms = user_profile.get("bookmarks", {})
-    if not bms:
-        st.info("💡 עדיין לא סימנת נושאים לחיזוק. במהלך התרגול בלשונית השאלות, לחץ על '📌 סמן נושא זה לסיכום וחיזוק' מתחת לתשובה, והסיכומים הממוקדים יופיעו כאן!")
+# ==================== TAB 2: BOOKMARKS ====================
+with tab2:
+    st.header(f"📌 מחברת סיכומים לחיזוק עבור {current_user}")
+    st.write("כאן מרכזות כל השאלות והנקודות שסימנת לחיזוק ולחזרה ממוקדת.")
+
+    user_bm = user_profile.get("bookmarks", {})
+    if not user_bm:
+        st.info("💡 עדיין לא סימנת שאלות לחיזוק. במהלך התרגול בלשונית השאלות, לחץ על הכפתור '📌 סמן נושא זה לסיכום וחיזוק' מתחת לשאלות שתרצה לשמור!")
     else:
-        st.success(f"נשמרו **{len(bms)}** נושאים ודגשים לחיזוק במחברת שלך.")
-        
-        grouped = {}
-        for b_id, b_data in bms.items():
-            top = b_data.get("topic", "כללי")
-            if top not in grouped:
-                grouped[top] = []
-            grouped[top].append((b_id, b_data))
-            
-        for top_name, items in grouped.items():
-            st.subheader(f"📖 {top_name}")
-            for b_id, b_data in items:
-                st.markdown(f"""
-                <div class="bookmark-box">
-                    <strong>❓ שאלה:</strong> {b_data['question']}<br>
-                    <strong>✅ תשובה נכונה:</strong> {b_data['correct']}<br>
-                    <strong>💡 סיכום ודגש לימודי:</strong> {b_data['explanation']}
+        for bm_id, bm_data in list(user_bm.items()):
+            st.markdown(f"""
+            <div class="question-card" style="border-right-color: #f59e0b;">
+                <span class="difficulty-badge badge-medium">{bm_data.get('topic', 'נושא')}</span>
+                <div class="question-title">{bm_data.get('question')}</div>
+                <div class="explanation-box">
+                    <strong>💡 תמצית הסיכום והנימוק התיאורטי:</strong><br>
+                    {bm_data.get('explanation')}
                 </div>
-                """, unsafe_allow_html=True)
-                if st.button("🗑️ הסר ממחברת", key=f"del_bm_{b_id}_{current_user}"):
-                    del user_profile["bookmarks"][b_id]
-                    save_data(st.session_state.user_data)
-                    st.rerun()
-                st.markdown("<br>", unsafe_allow_html=True)
+            </div>
+            """, unsafe_allow_html=True)
+            
+            if st.button("🗑️ הסר ממחברת הסיכומים", key=f"remove_bm_{bm_id}_{current_user}"):
+                del user_profile["bookmarks"][bm_id]
+                save_data(st.session_state.user_data)
+                st.toast("הוסר ממחברת הסיכומים")
+                st.rerun()
+
+# ==================== TAB 3: COMPREHENSIVE STUDY GUIDE ====================
+with tab3:
+    st.header("📖 תמצית חזרה כללית לכל 16 הנושאים (Study Guide)")
+    st.write("תמצית מרוכזת של ראשי הפרקים, חוקי הברזל, והעקרונות התיאורטיים מתוך הספרות העיונית המכסים את תשובות כל השאלות באתר.")
+
+    selected_summary_topic = st.selectbox(
+        "בחר נושא לעיון בסיכום התיאורטי המלא:",
+        TOPICS,
+        key=f"summary_topic_select_{current_user}"
+    )
+
+    s_num = selected_summary_topic.split(".")[0].strip()
+    s_content = TOPIC_SUMMARIES.get(s_num, "תמצית נושא זה נמצאת בעריכה ותתעדכן בקרוב.")
+
+    st.markdown(f"""
+    <div class="summary-card">
+        <h3>📖 {selected_summary_topic}</h3>
+        {s_content}
+    </div>
+    """, unsafe_allow_html=True)
